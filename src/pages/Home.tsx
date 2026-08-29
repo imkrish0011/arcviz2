@@ -1,34 +1,32 @@
 import React from 'react';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero';
-import { LogoTicker } from '../components/LogoTicker';
-import { StatsSection } from '../components/StatsSection';
-import { ThreeShiftsBento } from '../components/ThreeShiftsBento';
-import { WorkflowShowcase } from '../components/WorkflowShowcase';
-import { FeaturesGrid } from '../components/FeaturesGrid';
-import { ComparisonTable } from '../components/ComparisonTable';
-import { Testimonials } from '../components/Testimonials';
-import { Pricing } from '../components/Pricing';
-import { FAQ } from '../components/FAQ';
-import { CtaBanner } from '../components/CtaBanner';
+import { FragmentedCloud } from '../components/FragmentedCloud';
+import { LivingInfrastructure } from '../components/LivingInfrastructure';
+import { InvestigationShowcase } from '../components/InvestigationShowcase';
+import { SimulationLoop } from '../components/SimulationLoop';
+import { ControlledActions } from '../components/ControlledActions';
+import { AgentSystem } from '../components/AgentSystem';
+import { SecurityGovernance } from '../components/SecurityGovernance';
+import { MemorySystem } from '../components/MemorySystem';
+import { FinalCTA } from '../components/FinalCTA';
 import { Footer } from '../components/Footer';
 
 export const Home: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#080c12] text-white selection:bg-[#99a0b0] selection:text-[#09090b]">
+    <div className="min-h-screen bg-[#08090a] text-[#ededed] font-sans antialiased selection:bg-[#0ea5e9] selection:text-white">
       <Navbar />
       <main>
         <Hero />
-        <LogoTicker />
-        <StatsSection />
-        <ThreeShiftsBento />
-        <WorkflowShowcase />
-        <FeaturesGrid />
-        <ComparisonTable />
-        <Testimonials />
-        <Pricing />
-        <FAQ />
-        <CtaBanner />
+        <FragmentedCloud />
+        <LivingInfrastructure />
+        <InvestigationShowcase />
+        <SimulationLoop />
+        <ControlledActions />
+        <AgentSystem />
+        <SecurityGovernance />
+        <MemorySystem />
+        <FinalCTA />
       </main>
       <Footer />
     </div>

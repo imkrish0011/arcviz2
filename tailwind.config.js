@@ -7,49 +7,45 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "#030305",
+        background: "#08090a",
         surface: {
-          DEFAULT: "#08080c",
-          elevated: "#0d0f16",
-          card: "#0a0b10",
-          subtle: "#12141d",
-          border: "rgba(255, 255, 255, 0.08)",
-          hover: "rgba(255, 255, 255, 0.04)"
+          DEFAULT: "#0e1013",
+          elevated: "#12151a",
+          card: "#0d0f14",
+          subtle: "#181b22",
+          border: "#1e2229",
+          borderHover: "#2e3440"
         },
-        brand: {
-          red: "#ff2d46",
-          redHover: "#ff4d61",
-          redDark: "#b91c1c",
-          redGlow: "rgba(255, 45, 70, 0.25)",
-          midnight: "#070b14",
-          blueAccent: "#38bdf8",
+        arch: {
+          blue: "#0ea5e9",
+          blueHover: "#38bdf8",
+          blueDim: "rgba(14, 165, 233, 0.12)",
+          dark: "#050607"
+        },
+        status: {
+          healthy: "#10b981",
+          healthyDim: "rgba(16, 185, 129, 0.12)",
+          warning: "#f59e0b",
+          warningDim: "rgba(245, 158, 11, 0.12)",
+          incident: "#ef4444",
+          incidentDim: "rgba(239, 68, 68, 0.12)",
+          info: "#0ea5e9",
+          infoDim: "rgba(14, 165, 233, 0.12)",
         },
         text: {
-          primary: "#ffffff",
-          secondary: "rgba(255, 255, 255, 0.75)",
-          muted: "#858b9c",
-          disabled: "rgba(255, 255, 255, 0.3)"
+          primary: "#ededed",
+          secondary: "#888d96",
+          muted: "#5e636e",
+          disabled: "#3a3e48"
         }
       },
       fontFamily: {
-        sans: ["Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
-        display: ["Syne", "Plus Jakarta Sans", "sans-serif"],
-        mono: ["Space Grotesk", "monospace"],
+        sans: ["Geist Sans", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        mono: ["Geist Mono", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
       },
-      animation: {
-        'marquee': 'marquee 30s linear infinite',
-        'marquee-reverse': 'marquee-reverse 30s linear infinite',
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      },
-      keyframes: {
-        marquee: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-50%)' },
-        },
-        'marquee-reverse': {
-          '0%': { transform: 'translateX(-50%)' },
-          '100%': { transform: 'translateX(0%)' },
-        }
+      borderRadius: {
+        'card': '8px',
+        'subtle': '6px',
       }
     },
   },

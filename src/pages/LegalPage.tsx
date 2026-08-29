@@ -9,139 +9,77 @@ export const LegalPage: React.FC = () => {
 
   const doc = isPrivacy
     ? {
-        title: 'Privacy Policy',
-        description: 'How we collect, use, and protect your data when using Nouva.',
+        title: 'Security & Privacy Policy',
+        description: 'How ArchViz connects to your cloud, safeguards customer telemetry, and isolates credentials.',
         lastUpdated: 'August 2026',
         sections: [
           {
-            heading: 'Who We Are',
+            heading: '1. Architecture & Telemetry Scope',
             paragraphs: [
-              'Nouva is a modern productivity and content platform designed for fast-moving teams. For the purposes of data protection law, Nouva is the data controller of your personal information. You can reach our privacy and security team directly at hello@nouva.com.'
+              'ArchViz connects to customer cloud environments via read-only IAM roles using cross-account STS assume-role delegation. ArchViz never requests nor stores permanent AWS root or administrator credentials.',
+              'Ingested data is strictly limited to infrastructure configuration metadata, topology graphs, CloudWatch metrics, and structured log events. Customer data stored within databases, S3 objects, or application payloads is never read or stored.'
             ]
           },
           {
-            heading: 'What Data We Collect',
+            heading: '2. SOC2 & Data Encryption Standards',
             paragraphs: [
-              'We collect information necessary to provide and continually improve our platform:',
-              '• Account Information: Name, email address, company name, and password when you create an account.',
-              '• Billing Information: Payment details and transaction history processed securely through our payment partners.',
-              '• Usage Data: Information about how you interact with Nouva, including feature usage, session duration, and device specifications.',
-              '• Input and Generated Content: Prompts, briefs, and output text created within your team workspace.'
+              'All data in transit is encrypted using TLS 1.3 with forward secrecy. All graph metadata at rest is encrypted using AWS KMS-managed keys with AES-256 standards.',
+              'ArchViz adheres to strict SOC2 Type II and ISO-27001 data isolation policies. Customer graphs are cryptographically segregated in dedicated tenant namespaces.'
             ]
           },
           {
-            heading: 'How We Use Your Data',
+            heading: '3. Open Policy Agent (OPA) Guardrails',
             paragraphs: [
-              'We use your data to operate, maintain, and provide the features of Nouva; to process transactions and send related communications; to respond to comments and questions; and to monitor and analyze trends and usage.'
+              'Any action or simulation plan evaluated by ArchViz is subject to customer-defined Open Policy Agent (OPA) rules. Write actions cannot proceed without passing organization policy constraints and multi-party human approval.'
             ]
           },
           {
-            heading: 'Legal Basis for Processing',
+            heading: '4. Data Retention & Deletion',
             paragraphs: [
-              'We process personal data based on contractual necessity (to provide our services), legitimate business interests (improving our platform and preventing fraud), and compliance with legal obligations.'
+              'Customers retain full ownership of their operational memory and topology history. Disconnecting an IAM role immediately halts all ingestion, and tenant graph data can be purged on demand via the console.'
             ]
           },
           {
-            heading: 'How Long We Keep Your Data',
+            heading: '5. Security Inquiries',
             paragraphs: [
-              'We retain your personal data for as long as necessary to fulfill the purposes outlined in this policy, unless a longer retention period is required or permitted by law.'
-            ]
-          },
-          {
-            heading: 'Sharing Your Data',
-            paragraphs: [
-              'We do not sell your personal data. We only share information with trusted third-party service providers who assist us in operating our platform, subject to strict confidentiality and data protection agreements.'
-            ]
-          },
-          {
-            heading: 'Your Rights',
-            paragraphs: [
-              'Depending on your location, you may have rights regarding your personal data, including the right to access, correct, delete, or restrict the processing of your personal information. You may exercise these rights by contacting us at hello@nouva.com.'
-            ]
-          },
-          {
-            heading: 'Cookies',
-            paragraphs: [
-              'We use essential cookies and similar tracking technologies to track activity on our platform and remember user preferences. You can control cookies through your browser settings.'
-            ]
-          },
-          {
-            heading: 'Changes to This Policy',
-            paragraphs: [
-              'We may update this Privacy Policy periodically. Any changes will be posted on this page with an updated revision date.'
-            ]
-          },
-          {
-            heading: 'Contact',
-            paragraphs: [
-              'If you have any questions or concerns regarding this Privacy Policy, please email us at hello@nouva.com.'
+              'For vulnerability reports, SOC2 reports, or enterprise security questionnaires, contact security@archviz.io.'
             ]
           }
         ]
       }
     : {
         title: 'Terms of Service',
-        description: 'Please read these terms carefully before using the Nouva platform.',
+        description: 'Standard terms governing the use of the ArchViz Cloud Operating System platform.',
         lastUpdated: 'August 2026',
         sections: [
           {
-            heading: 'Use of the Platform',
+            heading: '1. Platform Use & Access Grant',
             paragraphs: [
-              'Nouva grants you a non-exclusive, non-transferable, revocable license to access and use our platform in accordance with these Terms of Service. You agree not to misuse our platform or help anyone else do so.'
+              'ArchViz Technologies Inc. grants you a non-exclusive license to use the ArchViz operating system to model, observe, investigate, and operate your authorized cloud infrastructure.'
             ]
           },
           {
-            heading: 'Account Responsibility',
+            heading: '2. Customer Responsibilities',
             paragraphs: [
-              'You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You must notify us immediately of any unauthorized use.'
+              'You are responsible for maintaining proper IAM role boundaries and ensuring that credential authorizations granted to ArchViz comply with your organization\'s internal security policies.'
             ]
           },
           {
-            heading: 'Intellectual Property',
+            heading: '3. Service Level Agreement (SLA)',
             paragraphs: [
-              'All content, features, and functionality of Nouva (including software, design, text, and graphics) are owned by Nouva and protected by copyright and intellectual property laws. You retain full ownership of the inputs and outputs generated by your account.'
+              'ArchViz provides a 99.95% availability SLA for the living topology engine and automated telemetry correlation pipelines for enterprise production plans.'
             ]
           },
           {
-            heading: 'Subscriptions and Payments',
+            heading: '4. Limitation of Liability',
             paragraphs: [
-              'Certain features of Nouva are provided on a subscription basis. Subscriptions automatically renew unless canceled prior to the end of the current billing cycle.'
+              'To the maximum extent permitted by applicable law, ArchViz shall not be liable for any indirect, incidental, or consequential damages arising out of cloud provider outages or external service interruptions.'
             ]
           },
           {
-            heading: 'Cancellation',
+            heading: '5. Governing Law & Contact',
             paragraphs: [
-              'You may cancel your subscription at any time through your account settings. Upon cancellation, you will retain access until the end of your prepaid period.'
-            ]
-          },
-          {
-            heading: 'Limitation of Liability',
-            paragraphs: [
-              'To the fullest extent permitted by law, Nouva shall not be liable for any indirect, incidental, or consequential damages arising from your use of the platform. Our total liability to you shall not exceed the amount you paid to us in the twelve months preceding the claim.'
-            ]
-          },
-          {
-            heading: 'Disclaimer of Warranties',
-            paragraphs: [
-              'Nouva is provided on an "as is" and "as available" basis. We do not guarantee that the platform will be error-free, uninterrupted, or meet your specific requirements.'
-            ]
-          },
-          {
-            heading: 'Changes to These Terms',
-            paragraphs: [
-              'We may update these Terms of Service from time to time. Any changes will be posted on this page with an updated date. Continued use of the platform after changes are posted constitutes your acceptance of the revised terms.'
-            ]
-          },
-          {
-            heading: 'Governing Law',
-            paragraphs: [
-              'These terms are governed by and construed in accordance with applicable law. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the relevant courts.'
-            ]
-          },
-          {
-            heading: 'Contact',
-            paragraphs: [
-              'If you have any questions about these terms, please email us at hello@nouva.com.'
+              'These terms are governed by the laws of the State of Delaware. Inquiries may be directed to legal@archviz.io.'
             ]
           }
         ]
@@ -152,29 +90,29 @@ export const LegalPage: React.FC = () => {
   }, [slug]);
 
   return (
-    <div className="min-h-screen bg-[#030305] text-[#f1f1f4] selection:bg-[#ff2d46] selection:text-white">
+    <div className="min-h-screen bg-[#08090a] text-[#ededed] font-sans antialiased selection:bg-[#0ea5e9] selection:text-white">
       <Navbar />
 
-      <main className="pt-32 pb-24 md:pt-44 md:pb-36 relative">
-        <div className="max-w-[860px] mx-auto px-6 md:px-10">
+      <main className="pt-32 pb-24 md:pt-40 md:pb-36 relative">
+        <div className="max-w-[800px] mx-auto px-6 md:px-10">
           {/* Top Switcher */}
-          <div className="flex items-center gap-3 mb-8 text-xs font-semibold uppercase tracking-wider font-mono">
+          <div className="flex items-center gap-3 mb-8 text-xs font-mono">
             <Link
               to="/legal/privacy-policy"
-              className={`px-5 py-2.5 rounded-full transition-colors ${
+              className={`px-4 py-2 rounded transition-colors ${
                 isPrivacy
-                  ? 'bg-white text-[#030305] font-bold shadow-md'
-                  : 'bg-white/[0.04] text-[#858b9c] hover:text-white border border-white/10'
+                  ? 'bg-[#12151a] text-[#ededed] border border-[#1e2229] font-medium'
+                  : 'bg-transparent text-[#888d96] hover:text-[#ededed] border border-transparent'
               }`}
             >
-              Privacy Policy
+              Security & Privacy
             </Link>
             <Link
               to="/legal/terms-of-service"
-              className={`px-5 py-2.5 rounded-full transition-colors ${
+              className={`px-4 py-2 rounded transition-colors ${
                 !isPrivacy
-                  ? 'bg-white text-[#030305] font-bold shadow-md'
-                  : 'bg-white/[0.04] text-[#858b9c] hover:text-white border border-white/10'
+                  ? 'bg-[#12151a] text-[#ededed] border border-[#1e2229] font-medium'
+                  : 'bg-transparent text-[#888d96] hover:text-[#ededed] border border-transparent'
               }`}
             >
               Terms of Service
@@ -182,26 +120,26 @@ export const LegalPage: React.FC = () => {
           </div>
 
           {/* Title Header */}
-          <div className="mb-14 pb-8 border-b border-white/10">
-            <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">
+          <div className="mb-12 pb-6 border-b border-[#1e2229]">
+            <h1 className="text-3xl sm:text-4xl font-medium tracking-tight text-[#ededed] mb-3">
               {doc.title}
             </h1>
-            <p className="text-base sm:text-lg text-[#858b9c] mb-4">
+            <p className="text-sm text-[#888d96] mb-3">
               {doc.description}
             </p>
-            <div className="text-xs text-[#858b9c] font-mono">
+            <div className="text-xs text-[#5e636e] font-mono">
               Last updated: {doc.lastUpdated}
             </div>
           </div>
 
           {/* Sections List */}
-          <div className="space-y-12">
+          <div className="space-y-10">
             {doc.sections.map((section, idx) => (
-              <div key={idx} className="space-y-4">
-                <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              <div key={idx} className="space-y-3">
+                <h2 className="text-base font-semibold text-[#ededed] font-mono">
                   {section.heading}
                 </h2>
-                <div className="space-y-3 text-sm sm:text-base text-[#858b9c] leading-relaxed">
+                <div className="space-y-2.5 text-xs sm:text-sm text-[#888d96] leading-relaxed font-sans">
                   {section.paragraphs.map((p, pIdx) => (
                     <p key={pIdx}>{p}</p>
                   ))}

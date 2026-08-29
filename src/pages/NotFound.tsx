@@ -6,29 +6,26 @@ import { ArrowLeft } from 'lucide-react';
 
 export const NotFound: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#030305] text-[#f1f1f4] selection:bg-[#ff2d46] selection:text-white flex flex-col justify-between">
+    <div className="min-h-screen bg-[#08090a] text-[#ededed] font-sans antialiased selection:bg-[#0ea5e9] selection:text-white flex flex-col justify-between">
       <Navbar />
 
       <main className="pt-36 pb-24 md:pt-48 md:pb-36 flex-grow flex items-center justify-center relative">
-        {/* Ambient Red & Indigo Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] bg-gradient-to-tr from-[#ff2d46]/10 via-blue-900/10 to-transparent blur-[140px] rounded-full pointer-events-none" />
-
-        <div className="max-w-[600px] mx-auto px-6 text-center relative z-10">
-          <div className="text-7xl sm:text-9xl font-extrabold tracking-tighter text-white/15 mb-4 select-none font-mono">
+        <div className="max-w-[540px] mx-auto px-6 text-center relative z-10">
+          <div className="text-6xl sm:text-8xl font-mono font-bold text-[#1e2229] mb-4 select-none">
             404
           </div>
-          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">
-            This page doesn't exist
+          <h1 className="text-2xl sm:text-3xl font-medium tracking-tight text-[#ededed] mb-2 font-mono">
+            Resource Not Found
           </h1>
-          <p className="text-base sm:text-lg text-[#858b9c] mb-8 max-w-md mx-auto">
-            The page you're looking for may have moved or no longer exists.
+          <p className="text-xs sm:text-sm text-[#888d96] mb-8 font-mono">
+            Error: The requested route does not match any known resource endpoint in the system model.
           </p>
           <Link
             to="/"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#ff2d46] to-[#e11d48] hover:from-[#ff4d61] hover:to-[#ff2d46] text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-[0_0_30px_rgba(255,45,70,0.35)]"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded bg-[#0ea5e9] hover:bg-[#38bdf8] text-white font-medium text-xs font-mono transition-all"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Homepage
+            Return to Operating System
           </Link>
         </div>
       </main>

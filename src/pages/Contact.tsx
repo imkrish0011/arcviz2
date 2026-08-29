@@ -2,17 +2,16 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
-import { CheckCircle2, ArrowRight } from 'lucide-react';
+import { CheckCircle2, ArrowRight,   } from 'lucide-react';
 
 export const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
     company: '',
-    subject: '',
+    provider: 'AWS',
+    scale: '50-500 instances',
     message: '',
-    newsletter: false,
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -20,11 +19,9 @@ export const Contact: React.FC = () => {
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
-    if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
-    if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
-    if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Valid email is required';
-    if (!formData.subject) newErrors.subject = 'Please select a subject';
-    if (!formData.message.trim()) newErrors.message = 'Message is required';
+    if (!formData.name.trim()) newErrors.name = 'Full name is required';
+    if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Valid work email is required';
+    if (!formData.company.trim()) newErrors.company = 'Company is required';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -37,195 +34,155 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#030305] text-[#f1f1f4] selection:bg-[#ff2d46] selection:text-white">
+    <div className="min-h-screen bg-[#08090a] text-[#ededed] font-sans antialiased selection:bg-[#0ea5e9] selection:text-white">
       <Navbar />
 
-      <main className="pt-32 pb-24 md:pt-44 md:pb-36 relative">
-        {/* Ambient Red & Navy Glow */}
-        <div className="absolute top-28 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-gradient-to-tr from-[#ff2d46]/10 via-blue-900/10 to-transparent blur-[140px] rounded-full pointer-events-none" />
-
-        <div className="max-w-[680px] mx-auto px-6 relative z-10">
+      <main className="pt-32 pb-24 md:pt-40 md:pb-36 relative">
+        <div className="max-w-[640px] mx-auto px-6 relative z-10">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-4">
-              Contact us
+          <div className="mb-10 text-center">
+            <span className="text-xs font-mono text-[#0ea5e9] tracking-wider uppercase block mb-2">
+              Cloud Discovery & Access
+            </span>
+            <h1 className="text-3xl sm:text-5xl font-medium tracking-tight text-[#ededed] mb-3">
+              Connect your cloud
             </h1>
-            <p className="text-base sm:text-lg text-[#858b9c]">
-              Have a question or need help? We'll get back to you shortly.
+            <p className="text-sm sm:text-base text-[#888d96]">
+              Request early console access or schedule an architecture walkthrough with an infrastructure engineer.
             </p>
           </div>
 
           {/* Form Container */}
-          <div className="p-8 sm:p-10 rounded-2xl md:rounded-3xl bg-[#08080c]/90 border border-white/[0.08] shadow-2xl backdrop-blur-xl">
+          <div className="p-6 sm:p-8 rounded-lg bg-[#0e1013] border border-[#1e2229] shadow-2xl">
             {isSubmitted ? (
-              <div className="py-12 text-center animate-in fade-in zoom-in duration-300">
-                <div className="w-16 h-16 rounded-full bg-[#ff2d46]/15 border border-[#ff2d46]/40 flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(255,45,70,0.3)]">
-                  <CheckCircle2 className="w-8 h-8 text-[#ff2d46]" />
+              <div className="py-10 text-center animate-in fade-in zoom-in duration-200">
+                <div className="w-12 h-12 rounded-full bg-[#10b981]/10 border border-[#10b981]/30 flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle2 className="w-6 h-6 text-[#10b981]" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Message sent!</h3>
-                <p className="text-sm sm:text-base text-[#858b9c] mb-8 max-w-sm mx-auto">
-                  We'll review your request and get back to you shortly.
+                <h3 className="text-xl font-medium text-[#ededed] mb-2 font-mono">Access Request Received</h3>
+                <p className="text-xs sm:text-sm text-[#888d96] mb-6 max-w-sm mx-auto">
+                  Our infrastructure team will provision your tenant credentials and follow up within 2 business hours.
                 </p>
                 <Link
                   to="/"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/10 text-xs font-semibold uppercase tracking-wider transition-all"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded bg-[#12151a] hover:bg-[#181b22] text-[#ededed] border border-[#1e2229] text-xs font-mono transition-all"
                 >
-                  Return to Home
+                  Return to System Overview
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* First and Last Name Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs font-medium text-white mb-2">
-                      First name<span className="text-[#ff2d46]">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Jane"
-                      value={formData.firstName}
-                      onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                      className={`w-full px-4 py-3 rounded-xl bg-white/[0.03] border ${
-                        errors.firstName ? 'border-[#ff2d46]' : 'border-white/10 focus:border-[#ff2d46]/60'
-                      } text-white placeholder-white/25 text-sm focus:outline-none transition-colors`}
-                    />
-                    {errors.firstName && (
-                      <p className="text-[#ff2d46] text-xs mt-1">{errors.firstName}</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-medium text-white mb-2">
-                      Last name<span className="text-[#ff2d46]">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Smith"
-                      value={formData.lastName}
-                      onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                      className={`w-full px-4 py-3 rounded-xl bg-white/[0.03] border ${
-                        errors.lastName ? 'border-[#ff2d46]' : 'border-white/10 focus:border-[#ff2d46]/60'
-                      } text-white placeholder-white/25 text-sm focus:outline-none transition-colors`}
-                    />
-                    {errors.lastName && (
-                      <p className="text-[#ff2d46] text-xs mt-1">{errors.lastName}</p>
-                    )}
-                  </div>
+              <form onSubmit={handleSubmit} className="space-y-4 text-xs font-mono">
+                <div>
+                  <label className="block text-[#888d96] mb-1.5 uppercase text-[10px]">
+                    Full Name <span className="text-[#0ea5e9]">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Alex Rivera"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className={`w-full px-3.5 py-2.5 rounded bg-[#08090a] border ${
+                      errors.name ? 'border-[#ef4444]' : 'border-[#1e2229] focus:border-[#0ea5e9]'
+                    } text-[#ededed] placeholder-[#3a3e48] focus:outline-none transition-colors text-xs`}
+                  />
+                  {errors.name && <p className="text-[#ef4444] text-[10px] mt-1">{errors.name}</p>}
                 </div>
 
-                {/* Email and Company */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-medium text-white mb-2">
-                      Email<span className="text-[#ff2d46]">*</span>
+                    <label className="block text-[#888d96] mb-1.5 uppercase text-[10px]">
+                      Work Email <span className="text-[#0ea5e9]">*</span>
                     </label>
                     <input
                       type="email"
-                      placeholder="jane@framer.com"
+                      placeholder="alex@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className={`w-full px-4 py-3 rounded-xl bg-white/[0.03] border ${
-                        errors.email ? 'border-[#ff2d46]' : 'border-white/10 focus:border-[#ff2d46]/60'
-                      } text-white placeholder-white/25 text-sm focus:outline-none transition-colors`}
+                      className={`w-full px-3.5 py-2.5 rounded bg-[#08090a] border ${
+                        errors.email ? 'border-[#ef4444]' : 'border-[#1e2229] focus:border-[#0ea5e9]'
+                      } text-[#ededed] placeholder-[#3a3e48] focus:outline-none transition-colors text-xs`}
                     />
-                    {errors.email && (
-                      <p className="text-[#ff2d46] text-xs mt-1">{errors.email}</p>
-                    )}
+                    {errors.email && <p className="text-[#ef4444] text-[10px] mt-1">{errors.email}</p>}
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-white mb-2">
-                      Company
+                    <label className="block text-[#888d96] mb-1.5 uppercase text-[10px]">
+                      Company <span className="text-[#0ea5e9]">*</span>
                     </label>
                     <input
                       type="text"
-                      placeholder="Acme Inc."
+                      placeholder="Acme Infrastructure"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 focus:border-white/30 text-white placeholder-white/25 text-sm focus:outline-none transition-colors"
+                      className={`w-full px-3.5 py-2.5 rounded bg-[#08090a] border ${
+                        errors.company ? 'border-[#ef4444]' : 'border-[#1e2229] focus:border-[#0ea5e9]'
+                      } text-[#ededed] placeholder-[#3a3e48] focus:outline-none transition-colors text-xs`}
                     />
+                    {errors.company && <p className="text-[#ef4444] text-[10px] mt-1">{errors.company}</p>}
                   </div>
                 </div>
 
-                {/* Subject Dropdown */}
-                <div>
-                  <label className="block text-xs font-medium text-white mb-2">
-                    Subject<span className="text-[#ff2d46]">*</span>
-                  </label>
-                  <select
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className={`w-full px-4 py-3 rounded-xl bg-[#08080c] border ${
-                      errors.subject ? 'border-[#ff2d46]' : 'border-white/10 focus:border-[#ff2d46]/60'
-                    } text-white text-sm focus:outline-none transition-colors`}
-                  >
-                    <option value="" disabled>Select…</option>
-                    <option value="General inquiry">General inquiry</option>
-                    <option value="Pricing & plans">Pricing & plans</option>
-                    <option value="Technical support">Technical support</option>
-                    <option value="Partnership">Partnership</option>
-                    <option value="Other">Other</option>
-                  </select>
-                  {errors.subject && (
-                    <p className="text-[#ff2d46] text-xs mt-1">{errors.subject}</p>
-                  )}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-[#888d96] mb-1.5 uppercase text-[10px]">
+                      Primary Cloud
+                    </label>
+                    <select
+                      value={formData.provider}
+                      onChange={(e) => setFormData({ ...formData, provider: e.target.value })}
+                      className="w-full px-3.5 py-2.5 rounded bg-[#08090a] border border-[#1e2229] focus:border-[#0ea5e9] text-[#ededed] focus:outline-none transition-colors text-xs"
+                    >
+                      <option value="AWS">Amazon Web Services (AWS)</option>
+                      <option value="GCP">Google Cloud Platform (GCP)</option>
+                      <option value="Azure">Microsoft Azure</option>
+                      <option value="Multi-Cloud">Multi-Cloud / Hybrid</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-[#888d96] mb-1.5 uppercase text-[10px]">
+                      Infrastructure Scale
+                    </label>
+                    <select
+                      value={formData.scale}
+                      onChange={(e) => setFormData({ ...formData, scale: e.target.value })}
+                      className="w-full px-3.5 py-2.5 rounded bg-[#08090a] border border-[#1e2229] focus:border-[#0ea5e9] text-[#ededed] focus:outline-none transition-colors text-xs"
+                    >
+                      <option value="<50 instances">&lt; 50 resources</option>
+                      <option value="50-500 instances">50 – 500 resources</option>
+                      <option value="500-2500 instances">500 – 2,500 resources</option>
+                      <option value="2500+ instances">2,500+ resources (Enterprise)</option>
+                    </select>
+                  </div>
                 </div>
 
-                {/* Message Textarea */}
                 <div>
-                  <label className="block text-xs font-medium text-white mb-2">
-                    Your message<span className="text-[#ff2d46]">*</span>
+                  <label className="block text-[#888d96] mb-1.5 uppercase text-[10px]">
+                    Use Case / Architectural Requirements
                   </label>
                   <textarea
-                    rows={4}
-                    placeholder="Tell us what's on your mind..."
+                    rows={3}
+                    placeholder="E.g. Investigating ECS latency spikes, automated Terraform drift detection, OPA policy enforcement..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className={`w-full px-4 py-3 rounded-xl bg-white/[0.03] border ${
-                      errors.message ? 'border-[#ff2d46]' : 'border-white/10 focus:border-[#ff2d46]/60'
-                    } text-white placeholder-white/25 text-sm focus:outline-none transition-colors resize-none`}
+                    className="w-full px-3.5 py-2.5 rounded bg-[#08090a] border border-[#1e2229] focus:border-[#0ea5e9] text-[#ededed] placeholder-[#3a3e48] focus:outline-none transition-colors resize-none text-xs font-sans"
                   />
-                  {errors.message && (
-                    <p className="text-[#ff2d46] text-xs mt-1">{errors.message}</p>
-                  )}
                 </div>
 
-                {/* Newsletter Checkbox */}
-                <div className="flex items-center gap-3">
-                  <input
-                    type="checkbox"
-                    id="newsletter"
-                    checked={formData.newsletter}
-                    onChange={(e) => setFormData({ ...formData, newsletter: e.target.checked })}
-                    className="w-4 h-4 rounded border-white/20 bg-white/5 text-[#ff2d46] focus:ring-0 focus:ring-offset-0 cursor-pointer accent-[#ff2d46]"
-                  />
-                  <label htmlFor="newsletter" className="text-xs text-[#858b9c] cursor-pointer">
-                    I'd like to receive updates and news via email.
-                  </label>
-                </div>
-
-                {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#ff2d46] to-[#e11d48] hover:from-[#ff4d61] hover:to-[#ff2d46] text-white font-semibold text-xs uppercase tracking-wider transition-all duration-200 shadow-[0_0_25px_rgba(255,45,70,0.35)]"
+                  className="w-full py-3 rounded bg-[#0ea5e9] hover:bg-[#38bdf8] text-white font-medium text-xs tracking-wider uppercase transition-all duration-150 shadow-sm"
                 >
-                  Send message
+                  Request Console Provisioning
                 </button>
 
-                {/* Disclaimer */}
-                <p className="text-center text-xs text-[#858b9c] pt-2">
-                  By submitting, you agree to our{' '}
-                  <Link to="/legal/terms-of-service" className="text-white hover:text-[#ff2d46] transition-colors">
-                    Terms of Service
-                  </Link>{' '}
-                  and{' '}
-                  <Link to="/legal/privacy-policy" className="text-white hover:text-[#ff2d46] transition-colors">
-                    Privacy Policy
+                <div className="pt-2 text-center text-[10px] text-[#5e636e]">
+                  Read-only IAM deployment • Zero agents required •{' '}
+                  <Link to="/legal/privacy-policy" className="text-[#888d96] hover:underline">
+                    Security Policy
                   </Link>
-                  .
-                </p>
+                </div>
               </form>
             )}
           </div>
