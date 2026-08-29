@@ -20,27 +20,39 @@ export const ArchVizLogo: React.FC<{ className?: string; size?: number }> = ({
     />
     <path 
       d="M12 7.5L17 10.5V14.5L12 17.5L7 14.5V10.5L12 7.5Z" 
-      fill="#0EA5E9" 
+      fill="#38BDF8" 
       fillOpacity="0.25"
-      stroke="#0EA5E9" 
+      stroke="#38BDF8" 
       strokeWidth="1.25" 
     />
-    <circle cx="12" cy="12.5" r="1.5" fill="#EDEDED" />
+    <circle cx="12" cy="12.5" r="1.5" fill="#F1F2EE" />
   </svg>
 );
 
 export const ArchVizBrand: React.FC<{ className?: string }> = ({ className = "" }) => (
-  <div className={`flex items-center gap-2.5 font-sans font-semibold tracking-tight text-white ${className}`}>
-    <ArchVizLogo size={20} />
-    <span className="text-[15px] font-mono tracking-tight font-medium text-[#ededed]">ARCHVIZ</span>
-    <span className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-surface-subtle border border-surface-border text-text-muted">OS</span>
+  <div className={`flex items-center gap-2.5 font-sans font-medium tracking-tight text-[#f1f2ee] ${className}`}>
+    <ArchVizLogo size={19} />
+    <span className="text-[14px] font-mono tracking-tight font-medium text-[#f1f2ee]">ARCHVIZ</span>
+    <span className="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded bg-white/[0.04] border border-white/[0.08] text-[#858a85]">OS</span>
   </div>
 );
 
-// Cloud & Tool Logos
+// Multi-Cloud Provider Icons
 export const AwsIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path d="M18.74 15.65c-2.3 1.69-5.63 2.59-8.5 2.59-4.04 0-7.68-1.53-10.43-4.09-.22-.2-.03-.49.24-.33 2.97 1.73 6.64 2.76 10.42 2.76 2.55 0 5.43-.65 7.97-2.02.39-.21.68.16.3.09zm1.18-1.32c-.29-.37-1.92-.18-2.65-.09-.22.03-.26-.14-.06-.28 1.3-1 3.44-.71 3.7-.38.26.34-.07 2.51-1.3 3.6-.19.17-.37.08-.29-.14.28-.71.89-2.34.6-2.71zM14.7 9.87c0 1.25-.09 2.29-.83 3.32-.61.85-1.47 1.34-2.42 1.34-1.32 0-2.07-1-2.07-2.47 0-2.88 2.52-3.4 5.32-3.4v1.21zm2.34 5.34c-.16.14-.38.16-.54.06-.73-.55-.86-.8-1.25-1.38-.94.95-2.04 1.5-3.37 1.5-2.03 0-3.52-1.32-3.52-3.5 0-1.74 1-3.03 2.5-3.72 1.29-.6 3.09-.72 4.46-.87v-.48c0-.75-.16-1.57-.75-2.11-.53-.48-1.28-.68-1.99-.68-1.38 0-2.6.59-2.92 2.05-.04.22-.2.38-.41.37l-2.04-.21c-.2-.04-.38-.2-.33-.43.51-2.48 2.59-3.44 5.56-3.44 1.5 0 3.12.39 4.23 1.5 1.13 1.13 1.21 2.65 1.21 4.22v3.74c0 1.13.48 1.63.93 2.24.16.22.14.47-.07.65l-1.99 1.49z"/>
+  </svg>
+);
+
+export const AzureIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M13.05 4.24l-5.7 10.12 4.1 3.52 7.7-11.45-6.1-2.19zm-7.9 11.23l2.84-5.06-4.99 7.71h5.85l-3.7-2.65z"/>
+  </svg>
+);
+
+export const GcpIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/>
   </svg>
 );
 
@@ -60,15 +72,6 @@ export const CloudWatchIcon: React.FC<{ className?: string }> = ({ className = "
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
     <path d="M3 13.5L7 9.5L11 13.5L16 6.5L21 11.5" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M3 18H21" strokeOpacity="0.3"/>
-  </svg>
-);
-
-export const TopologyIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-    <circle cx="12" cy="5" r="3" />
-    <circle cx="5" cy="19" r="3" />
-    <circle cx="19" cy="19" r="3" />
-    <path d="M12 8V13M12 13L5 16M12 13L19 16" />
   </svg>
 );
 
