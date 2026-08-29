@@ -7,35 +7,38 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "#080c12",
+        background: "#030305",
         surface: {
-          DEFAULT: "#0e131d",
-          elevated: "#121926",
-          card: "#0f1520",
-          subtle: "#171717",
+          DEFAULT: "#08080c",
+          elevated: "#0d0f16",
+          card: "#0a0b10",
+          subtle: "#12141d",
           border: "rgba(255, 255, 255, 0.08)",
-          hover: "rgba(255, 255, 255, 0.05)"
+          hover: "rgba(255, 255, 255, 0.04)"
         },
         brand: {
-          green: "#8cff2e",
-          greenHover: "#9eff47",
-          dark: "#09090b"
+          red: "#ff2d46",
+          redHover: "#ff4d61",
+          redDark: "#b91c1c",
+          redGlow: "rgba(255, 45, 70, 0.25)",
+          midnight: "#070b14",
+          blueAccent: "#38bdf8",
         },
         text: {
           primary: "#ffffff",
-          secondary: "rgba(255, 255, 255, 0.7)",
-          muted: "rgba(255, 255, 255, 0.5)",
+          secondary: "rgba(255, 255, 255, 0.75)",
+          muted: "#858b9c",
           disabled: "rgba(255, 255, 255, 0.3)"
         }
       },
       fontFamily: {
-        sans: ["Onest", "Inter", "system-ui", "sans-serif"],
-        inter: ["Inter", "sans-serif"],
-        onest: ["Onest", "sans-serif"]
+        sans: ["Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
+        display: ["Syne", "Plus Jakarta Sans", "sans-serif"],
+        mono: ["Space Grotesk", "monospace"],
       },
       animation: {
-        'marquee': 'marquee 25s linear infinite',
-        'marquee-reverse': 'marquee-reverse 25s linear infinite',
+        'marquee': 'marquee 30s linear infinite',
+        'marquee-reverse': 'marquee-reverse 30s linear infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {

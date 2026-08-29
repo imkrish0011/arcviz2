@@ -9,7 +9,7 @@ export const Testimonials: React.FC = () => {
       image: "/assets/images/GTixWkG3xzgCHSiGEGlw2ImbJNk.png"
     },
     {
-      quote: "I was skeptical about AI tools. Nouva changed my mind in the first ten minutes.",
+      quote: "I was skeptical about automated tools. Nouva changed my mind in the first ten minutes.",
       name: "James Okafor",
       role: "CMO at BrightLayer",
       image: "/assets/images/62rLb7wkZinJCVN6AjgjzxxGU.png"
@@ -83,36 +83,36 @@ export const Testimonials: React.FC = () => {
   const renderCard = (item: typeof testimonials[0], index: number) => (
     <div
       key={index}
-      className="p-6 rounded-2xl bg-[#0e131d]/70 border border-white/[0.08] hover:border-white/20 transition-all duration-300 flex flex-col justify-between mb-6 shadow-md"
+      className="p-6 md:p-8 rounded-2xl bg-[#08080c] border border-white/[0.06] hover:border-[#ff2d46]/30 transition-all duration-300 flex flex-col justify-between mb-6 shadow-xl group"
     >
-      <p className="text-sm sm:text-base text-white/90 leading-relaxed mb-6 font-normal">
+      <p className="text-sm sm:text-base text-white/85 leading-relaxed mb-6 font-normal">
         "{item.quote}"
       </p>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3.5 pt-4 border-t border-white/[0.05]">
         <img
           src={item.image}
           alt={item.name}
-          className="w-10 h-10 rounded-full object-cover border border-white/10"
+          className="w-10 h-10 rounded-full object-cover border border-white/10 filter saturate-[0.95]"
         />
         <div>
-          <h4 className="text-sm font-semibold text-white">{item.name}</h4>
-          <p className="text-xs text-[#99a0b0]">{item.role}</p>
+          <h4 className="text-sm font-semibold text-white group-hover:text-[#ff2d46] transition-colors">{item.name}</h4>
+          <p className="text-xs text-[#858b9c]">{item.role}</p>
         </div>
       </div>
     </div>
   );
 
   return (
-    <section className="py-24 md:py-36 relative overflow-hidden bg-[#080c12]">
+    <section className="py-24 md:py-36 relative overflow-hidden bg-[#030305]">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-medium text-[#99a0b0] mb-5 uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-semibold font-mono text-[#ff2d46] mb-5 uppercase tracking-wider">
             Real results
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
             Teams who <br className="hidden sm:inline" />
-            <span className="text-white/50">never looked back.</span>
+            <span className="text-white/40">never looked back.</span>
           </h2>
         </div>
 

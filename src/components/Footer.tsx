@@ -8,25 +8,25 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="border-t border-white/[0.08] bg-[#080c12] pt-16 pb-12 relative z-10">
+    <footer className="border-t border-white/[0.08] bg-[#030305] pt-16 pb-12 relative z-10">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-16 border-b border-white/[0.08]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-16 border-b border-white/[0.06]">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
             <Link to="/" onClick={scrollToTop} className="inline-block">
               <NouvaLogo />
             </Link>
-            <p className="text-sm text-[#99a0b0] max-w-sm leading-relaxed">
-              The AI platform that helps teams work faster, smarter, and at scale.
+            <p className="text-sm text-[#858b9c] max-w-sm leading-relaxed">
+              The precision platform that helps modern teams work faster, smarter, and at scale.
             </p>
           </div>
 
           {/* Navigation Links */}
           <div>
-            <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">
+            <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4 font-mono">
               Navigation
             </h4>
-            <ul className="space-y-3 text-sm text-[#99a0b0]">
+            <ul className="space-y-3 text-sm text-[#858b9c]">
               <li>
                 <a href="/#why-it-matters" className="hover:text-white transition-colors">
                   Why It Matters
@@ -52,10 +52,10 @@ export const Footer: React.FC = () => {
 
           {/* Information Links */}
           <div>
-            <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">
+            <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4 font-mono">
               Information
             </h4>
-            <ul className="space-y-3 text-sm text-[#99a0b0]">
+            <ul className="space-y-3 text-sm text-[#858b9c]">
               <li>
                 <Link to="/contact" className="hover:text-white transition-colors">
                   Contact
@@ -81,10 +81,10 @@ export const Footer: React.FC = () => {
 
           {/* Socials */}
           <div>
-            <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">
+            <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4 font-mono">
               Socials
             </h4>
-            <ul className="space-y-3 text-sm text-[#99a0b0]">
+            <ul className="space-y-3 text-sm text-[#858b9c]">
               <li>
                 <a
                   href="https://x.com/kadircalik"
@@ -120,20 +120,20 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Attribution */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#99a0b0] gap-4">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#858b9c] gap-4">
           <div>
             © {new Date().getFullYear()} Nouva by{' '}
             <a
               href="https://x.com/kadircalik"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:underline"
+              className="text-white hover:text-[#ff2d46] transition-colors"
             >
               Kadir Calik
             </a>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#8cff2e]" />
+          <div className="flex items-center gap-2 font-mono">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ff2d46] shadow-[0_0_8px_rgba(255,45,70,0.8)]" />
             <span>All systems operational</span>
           </div>
         </div>

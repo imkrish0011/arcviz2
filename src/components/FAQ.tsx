@@ -36,16 +36,16 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="py-24 md:py-36 relative bg-[#080c12]">
+    <section id="faq" className="py-24 md:py-36 relative bg-[#030305]">
       <div className="max-w-[860px] mx-auto px-6 md:px-10">
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-medium text-[#99a0b0] mb-5 uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-semibold font-mono text-[#ff2d46] mb-5 uppercase tracking-wider">
             FAQ
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
             You have questions. <br className="hidden sm:inline" />
-            <span className="text-white/50">We have answers.</span>
+            <span className="text-white/40">We have answers.</span>
           </h2>
         </div>
 
@@ -59,24 +59,26 @@ export const FAQ: React.FC = () => {
                 key={idx}
                 className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
                   isOpen
-                    ? 'bg-[#0e131d] border-white/20 shadow-lg'
-                    : 'bg-[#0e131d]/40 border-white/[0.06] hover:border-white/15'
+                    ? 'bg-[#08080c] border-[#ff2d46]/30 shadow-xl'
+                    : 'bg-[#08080c]/50 border-white/[0.06] hover:border-white/15'
                 }`}
               >
                 <button
                   onClick={() => toggle(idx)}
                   className="w-full px-6 sm:px-8 py-5 sm:py-6 flex items-center justify-between text-left gap-4"
                 >
-                  <span className="text-base sm:text-lg font-semibold text-white">
+                  <span className={`text-base sm:text-lg font-semibold transition-colors ${isOpen ? 'text-white' : 'text-white/80'}`}>
                     {faq.q}
                   </span>
-                  <div className="w-8 h-8 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center flex-shrink-0 text-white/70">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
+                    isOpen ? 'bg-[#ff2d46]/20 border border-[#ff2d46]/40 text-[#ff2d46]' : 'bg-white/[0.03] border border-white/10 text-white/50'
+                  }`}>
                     {isOpen ? <MinusIcon className="w-4 h-4" /> : <PlusIcon className="w-4 h-4" />}
                   </div>
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 sm:px-8 pb-6 text-sm sm:text-base text-[#99a0b0] leading-relaxed border-t border-white/[0.04] pt-4 animate-in fade-in duration-200">
+                  <div className="px-6 sm:px-8 pb-6 text-sm sm:text-base text-[#858b9c] leading-relaxed border-t border-white/[0.04] pt-4 animate-in fade-in duration-200">
                     {faq.a}
                   </div>
                 )}

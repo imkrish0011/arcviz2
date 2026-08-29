@@ -31,7 +31,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-[#080c12]/80 backdrop-blur-xl border-b border-white/[0.06] py-3' : 'bg-transparent py-5'
+      isScrolled ? 'bg-[#030305]/85 backdrop-blur-xl border-b border-white/[0.06] py-3.5 shadow-2xl' : 'bg-transparent py-5'
     }`}>
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 flex items-center justify-between">
         {/* Brand Logo */}
@@ -40,7 +40,7 @@ export const Navbar: React.FC = () => {
         </Link>
 
         {/* Center Nav Links - Desktop */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#99a0b0]">
+        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#858b9c]">
           <a
             href="/#why-it-matters"
             onClick={(e) => scrollToSection(e, 'why-it-matters')}
@@ -75,7 +75,7 @@ export const Navbar: React.FC = () => {
         <div className="hidden md:flex items-center gap-4">
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#09090b] bg-[#8cff2e] hover:bg-[#9eff47] rounded-full transition-all duration-200 shadow-[0_0_20px_rgba(140,255,46,0.2)] hover:shadow-[0_0_25px_rgba(140,255,46,0.4)]"
+            className="inline-flex items-center justify-center px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-gradient-to-r from-[#ff2d46] to-[#e11d48] hover:from-[#ff4d61] hover:to-[#ff2d46] rounded-full transition-all duration-200 shadow-[0_0_20px_rgba(255,45,70,0.35)] hover:shadow-[0_0_25px_rgba(255,45,70,0.55)]"
           >
             Try Nouva
           </Link>
@@ -93,8 +93,8 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Slide-down Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0e131d]/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 transition-all animate-in fade-in slide-in-from-top-4 duration-200">
-          <div className="flex flex-col gap-5 text-base font-medium text-[#99a0b0]">
+        <div className="md:hidden bg-[#08080c]/98 backdrop-blur-2xl border-b border-white/10 px-6 py-6 transition-all animate-in fade-in slide-in-from-top-4 duration-200">
+          <div className="flex flex-col gap-5 text-base font-medium text-[#858b9c]">
             <a
               href="/#why-it-matters"
               onClick={(e) => scrollToSection(e, 'why-it-matters')}
@@ -127,7 +127,7 @@ export const Navbar: React.FC = () => {
               <Link
                 to="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full inline-flex items-center justify-center px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-[#09090b] bg-[#8cff2e] hover:bg-[#9eff47] rounded-full transition-all text-center shadow-[0_0_20px_rgba(140,255,46,0.2)]"
+                className="w-full inline-flex items-center justify-center px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white bg-gradient-to-r from-[#ff2d46] to-[#e11d48] rounded-full transition-all text-center shadow-[0_0_20px_rgba(255,45,70,0.35)]"
               >
                 Try Nouva
               </Link>

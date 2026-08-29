@@ -16,7 +16,7 @@ export const LegalPage: React.FC = () => {
           {
             heading: 'Who We Are',
             paragraphs: [
-              'Nouva is an AI content platform designed for modern teams. For the purposes of data protection law, Nouva is the data controller of your personal information. You can reach our privacy and security team directly at hello@nouva.com.'
+              'Nouva is a modern productivity and content platform designed for fast-moving teams. For the purposes of data protection law, Nouva is the data controller of your personal information. You can reach our privacy and security team directly at hello@nouva.com.'
             ]
           },
           {
@@ -152,29 +152,29 @@ export const LegalPage: React.FC = () => {
   }, [slug]);
 
   return (
-    <div className="min-h-screen bg-[#080c12] text-white selection:bg-[#99a0b0] selection:text-[#09090b]">
+    <div className="min-h-screen bg-[#030305] text-[#f1f1f4] selection:bg-[#ff2d46] selection:text-white">
       <Navbar />
 
       <main className="pt-32 pb-24 md:pt-44 md:pb-36 relative">
         <div className="max-w-[860px] mx-auto px-6 md:px-10">
           {/* Top Switcher */}
-          <div className="flex items-center gap-3 mb-8 text-xs font-semibold uppercase tracking-wider">
+          <div className="flex items-center gap-3 mb-8 text-xs font-semibold uppercase tracking-wider font-mono">
             <Link
               to="/legal/privacy-policy"
-              className={`px-4 py-2 rounded-full transition-colors ${
+              className={`px-5 py-2.5 rounded-full transition-colors ${
                 isPrivacy
-                  ? 'bg-white text-[#09090b]'
-                  : 'bg-white/[0.04] text-[#99a0b0] hover:text-white border border-white/10'
+                  ? 'bg-white text-[#030305] font-bold shadow-md'
+                  : 'bg-white/[0.04] text-[#858b9c] hover:text-white border border-white/10'
               }`}
             >
               Privacy Policy
             </Link>
             <Link
               to="/legal/terms-of-service"
-              className={`px-4 py-2 rounded-full transition-colors ${
+              className={`px-5 py-2.5 rounded-full transition-colors ${
                 !isPrivacy
-                  ? 'bg-white text-[#09090b]'
-                  : 'bg-white/[0.04] text-[#99a0b0] hover:text-white border border-white/10'
+                  ? 'bg-white text-[#030305] font-bold shadow-md'
+                  : 'bg-white/[0.04] text-[#858b9c] hover:text-white border border-white/10'
               }`}
             >
               Terms of Service
@@ -186,10 +186,10 @@ export const LegalPage: React.FC = () => {
             <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">
               {doc.title}
             </h1>
-            <p className="text-base sm:text-lg text-[#99a0b0] mb-4">
+            <p className="text-base sm:text-lg text-[#858b9c] mb-4">
               {doc.description}
             </p>
-            <div className="text-xs text-[#99a0b0]">
+            <div className="text-xs text-[#858b9c] font-mono">
               Last updated: {doc.lastUpdated}
             </div>
           </div>
@@ -201,7 +201,7 @@ export const LegalPage: React.FC = () => {
                 <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                   {section.heading}
                 </h2>
-                <div className="space-y-3 text-sm sm:text-base text-[#99a0b0] leading-relaxed">
+                <div className="space-y-3 text-sm sm:text-base text-[#858b9c] leading-relaxed">
                   {section.paragraphs.map((p, pIdx) => (
                     <p key={pIdx}>{p}</p>
                   ))}

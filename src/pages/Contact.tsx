@@ -37,12 +37,12 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#080c12] text-white selection:bg-[#99a0b0] selection:text-[#09090b]">
+    <div className="min-h-screen bg-[#030305] text-[#f1f1f4] selection:bg-[#ff2d46] selection:text-white">
       <Navbar />
 
       <main className="pt-32 pb-24 md:pt-44 md:pb-36 relative">
-        {/* Ambient Glow */}
-        <div className="absolute top-28 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-gradient-to-tr from-amber-600/10 via-pink-600/10 to-indigo-600/10 blur-[130px] rounded-full pointer-events-none" />
+        {/* Ambient Red & Navy Glow */}
+        <div className="absolute top-28 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-gradient-to-tr from-[#ff2d46]/10 via-blue-900/10 to-transparent blur-[140px] rounded-full pointer-events-none" />
 
         <div className="max-w-[680px] mx-auto px-6 relative z-10">
           {/* Header */}
@@ -50,20 +50,20 @@ export const Contact: React.FC = () => {
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-4">
               Contact us
             </h1>
-            <p className="text-base sm:text-lg text-[#99a0b0]">
+            <p className="text-base sm:text-lg text-[#858b9c]">
               Have a question or need help? We'll get back to you shortly.
             </p>
           </div>
 
           {/* Form Container */}
-          <div className="p-8 sm:p-10 rounded-2xl md:rounded-3xl bg-[#0e131d]/80 border border-white/[0.08] shadow-2xl backdrop-blur-xl">
+          <div className="p-8 sm:p-10 rounded-2xl md:rounded-3xl bg-[#08080c]/90 border border-white/[0.08] shadow-2xl backdrop-blur-xl">
             {isSubmitted ? (
               <div className="py-12 text-center animate-in fade-in zoom-in duration-300">
-                <div className="w-16 h-16 rounded-full bg-[#8cff2e]/20 border border-[#8cff2e]/40 flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle2 className="w-8 h-8 text-[#8cff2e]" />
+                <div className="w-16 h-16 rounded-full bg-[#ff2d46]/15 border border-[#ff2d46]/40 flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(255,45,70,0.3)]">
+                  <CheckCircle2 className="w-8 h-8 text-[#ff2d46]" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">Message sent!</h3>
-                <p className="text-sm sm:text-base text-[#99a0b0] mb-8 max-w-sm mx-auto">
+                <p className="text-sm sm:text-base text-[#858b9c] mb-8 max-w-sm mx-auto">
                   We'll review your request and get back to you shortly.
                 </p>
                 <Link
@@ -80,7 +80,7 @@ export const Contact: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-xs font-medium text-white mb-2">
-                      First name<span className="text-[#8cff2e]">*</span>
+                      First name<span className="text-[#ff2d46]">*</span>
                     </label>
                     <input
                       type="text"
@@ -88,17 +88,17 @@ export const Contact: React.FC = () => {
                       value={formData.firstName}
                       onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                       className={`w-full px-4 py-3 rounded-xl bg-white/[0.03] border ${
-                        errors.firstName ? 'border-red-500' : 'border-white/10 focus:border-white/30'
-                      } text-white placeholder-white/30 text-sm focus:outline-none transition-colors`}
+                        errors.firstName ? 'border-[#ff2d46]' : 'border-white/10 focus:border-[#ff2d46]/60'
+                      } text-white placeholder-white/25 text-sm focus:outline-none transition-colors`}
                     />
                     {errors.firstName && (
-                      <p className="text-red-400 text-xs mt-1">{errors.firstName}</p>
+                      <p className="text-[#ff2d46] text-xs mt-1">{errors.firstName}</p>
                     )}
                   </div>
 
                   <div>
                     <label className="block text-xs font-medium text-white mb-2">
-                      Last name<span className="text-[#8cff2e]">*</span>
+                      Last name<span className="text-[#ff2d46]">*</span>
                     </label>
                     <input
                       type="text"
@@ -106,11 +106,11 @@ export const Contact: React.FC = () => {
                       value={formData.lastName}
                       onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                       className={`w-full px-4 py-3 rounded-xl bg-white/[0.03] border ${
-                        errors.lastName ? 'border-red-500' : 'border-white/10 focus:border-white/30'
-                      } text-white placeholder-white/30 text-sm focus:outline-none transition-colors`}
+                        errors.lastName ? 'border-[#ff2d46]' : 'border-white/10 focus:border-[#ff2d46]/60'
+                      } text-white placeholder-white/25 text-sm focus:outline-none transition-colors`}
                     />
                     {errors.lastName && (
-                      <p className="text-red-400 text-xs mt-1">{errors.lastName}</p>
+                      <p className="text-[#ff2d46] text-xs mt-1">{errors.lastName}</p>
                     )}
                   </div>
                 </div>
@@ -119,7 +119,7 @@ export const Contact: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-xs font-medium text-white mb-2">
-                      Email<span className="text-[#8cff2e]">*</span>
+                      Email<span className="text-[#ff2d46]">*</span>
                     </label>
                     <input
                       type="email"
@@ -127,11 +127,11 @@ export const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className={`w-full px-4 py-3 rounded-xl bg-white/[0.03] border ${
-                        errors.email ? 'border-red-500' : 'border-white/10 focus:border-white/30'
-                      } text-white placeholder-white/30 text-sm focus:outline-none transition-colors`}
+                        errors.email ? 'border-[#ff2d46]' : 'border-white/10 focus:border-[#ff2d46]/60'
+                      } text-white placeholder-white/25 text-sm focus:outline-none transition-colors`}
                     />
                     {errors.email && (
-                      <p className="text-red-400 text-xs mt-1">{errors.email}</p>
+                      <p className="text-[#ff2d46] text-xs mt-1">{errors.email}</p>
                     )}
                   </div>
 
@@ -144,7 +144,7 @@ export const Contact: React.FC = () => {
                       placeholder="Acme Inc."
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 focus:border-white/30 text-white placeholder-white/30 text-sm focus:outline-none transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 focus:border-white/30 text-white placeholder-white/25 text-sm focus:outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -152,13 +152,13 @@ export const Contact: React.FC = () => {
                 {/* Subject Dropdown */}
                 <div>
                   <label className="block text-xs font-medium text-white mb-2">
-                    Subject<span className="text-[#8cff2e]">*</span>
+                    Subject<span className="text-[#ff2d46]">*</span>
                   </label>
                   <select
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className={`w-full px-4 py-3 rounded-xl bg-[#0e131d] border ${
-                      errors.subject ? 'border-red-500' : 'border-white/10 focus:border-white/30'
+                    className={`w-full px-4 py-3 rounded-xl bg-[#08080c] border ${
+                      errors.subject ? 'border-[#ff2d46]' : 'border-white/10 focus:border-[#ff2d46]/60'
                     } text-white text-sm focus:outline-none transition-colors`}
                   >
                     <option value="" disabled>Select…</option>
@@ -169,14 +169,14 @@ export const Contact: React.FC = () => {
                     <option value="Other">Other</option>
                   </select>
                   {errors.subject && (
-                    <p className="text-red-400 text-xs mt-1">{errors.subject}</p>
+                    <p className="text-[#ff2d46] text-xs mt-1">{errors.subject}</p>
                   )}
                 </div>
 
                 {/* Message Textarea */}
                 <div>
                   <label className="block text-xs font-medium text-white mb-2">
-                    Your message<span className="text-[#8cff2e]">*</span>
+                    Your message<span className="text-[#ff2d46]">*</span>
                   </label>
                   <textarea
                     rows={4}
@@ -184,11 +184,11 @@ export const Contact: React.FC = () => {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className={`w-full px-4 py-3 rounded-xl bg-white/[0.03] border ${
-                      errors.message ? 'border-red-500' : 'border-white/10 focus:border-white/30'
-                    } text-white placeholder-white/30 text-sm focus:outline-none transition-colors resize-none`}
+                      errors.message ? 'border-[#ff2d46]' : 'border-white/10 focus:border-[#ff2d46]/60'
+                    } text-white placeholder-white/25 text-sm focus:outline-none transition-colors resize-none`}
                   />
                   {errors.message && (
-                    <p className="text-red-400 text-xs mt-1">{errors.message}</p>
+                    <p className="text-[#ff2d46] text-xs mt-1">{errors.message}</p>
                   )}
                 </div>
 
@@ -199,9 +199,9 @@ export const Contact: React.FC = () => {
                     id="newsletter"
                     checked={formData.newsletter}
                     onChange={(e) => setFormData({ ...formData, newsletter: e.target.checked })}
-                    className="w-4 h-4 rounded border-white/20 bg-white/5 text-[#8cff2e] focus:ring-0 focus:ring-offset-0 cursor-pointer accent-[#8cff2e]"
+                    className="w-4 h-4 rounded border-white/20 bg-white/5 text-[#ff2d46] focus:ring-0 focus:ring-offset-0 cursor-pointer accent-[#ff2d46]"
                   />
-                  <label htmlFor="newsletter" className="text-xs text-[#99a0b0] cursor-pointer">
+                  <label htmlFor="newsletter" className="text-xs text-[#858b9c] cursor-pointer">
                     I'd like to receive updates and news via email.
                   </label>
                 </div>
@@ -209,19 +209,19 @@ export const Contact: React.FC = () => {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-full bg-[#8cff2e] hover:bg-[#9eff47] text-[#09090b] font-semibold text-xs uppercase tracking-wider transition-all duration-200 shadow-[0_0_20px_rgba(140,255,46,0.25)] hover:shadow-[0_0_30px_rgba(140,255,46,0.4)]"
+                  className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#ff2d46] to-[#e11d48] hover:from-[#ff4d61] hover:to-[#ff2d46] text-white font-semibold text-xs uppercase tracking-wider transition-all duration-200 shadow-[0_0_25px_rgba(255,45,70,0.35)]"
                 >
                   Send message
                 </button>
 
                 {/* Disclaimer */}
-                <p className="text-center text-xs text-[#99a0b0] pt-2">
+                <p className="text-center text-xs text-[#858b9c] pt-2">
                   By submitting, you agree to our{' '}
-                  <Link to="/legal/terms-of-service" className="text-white hover:underline">
+                  <Link to="/legal/terms-of-service" className="text-white hover:text-[#ff2d46] transition-colors">
                     Terms of Service
                   </Link>{' '}
                   and{' '}
-                  <Link to="/legal/privacy-policy" className="text-white hover:underline">
+                  <Link to="/legal/privacy-policy" className="text-white hover:text-[#ff2d46] transition-colors">
                     Privacy Policy
                   </Link>
                   .
