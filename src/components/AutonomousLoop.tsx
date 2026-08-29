@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Play, 
-   
   RotateCcw, 
   CheckCircle2, 
   Activity, 
@@ -151,34 +150,34 @@ export const AutonomousLoop: React.FC = () => {
   };
 
   return (
-    <section id="autonomous-loop" className="py-36 md:py-48 border-t border-white/[0.06] bg-[#080a08] relative">
+    <section id="autonomous-loop" className="py-36 md:py-48 border-t border-white/[0.06] bg-[#090c09] relative">
       <div className="max-w-[1240px] mx-auto px-6 md:px-10">
         {/* Section Header */}
-        <div className="max-w-2xl mb-20 md:mb-28">
+        <div className="max-w-3xl mb-20 md:mb-28">
           <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4">
             07 / Closed-Loop Autonomy
           </span>
-          <h2 className="text-3xl sm:text-5xl lg:text-[56px] font-medium tracking-tight text-[#f2f2ee] leading-[1.04] mb-6">
+          <h2 className="text-4xl sm:text-6xl font-medium tracking-tight text-[#f1f2ee] leading-[1.02] mb-6">
             Autonomous operations <br />
             <span className="text-[#858a85]">in a closed loop.</span>
           </h2>
-          <p className="text-base sm:text-lg text-[#888d96] leading-relaxed">
+          <p className="text-base sm:text-lg text-[#888d96] leading-relaxed max-w-xl">
             ArchViz connects autonomous detection, diagnosis, pre-flight simulation, execution, and verification into one continuous, deterministic control loop.
           </p>
         </div>
 
-        {/* Closed-Loop Execution Interactive Engine */}
-        <div className="rounded-lg border border-white/[0.07] bg-[#0d100d]/80 backdrop-blur-md p-6 sm:p-12 space-y-10">
-          {/* Header Controls */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-white/[0.06] gap-4">
+        {/* Open Closed-Loop Execution Engine (No heavy outer box) */}
+        <div className="space-y-10">
+          {/* Header Controls Bar */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-white/[0.08] gap-4 font-mono text-xs">
             <div className="flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
-              <span className="text-xs font-mono text-[#f2f2ee] uppercase tracking-wider font-semibold">
+              <span className="text-xs text-[#f1f2ee] uppercase tracking-wider font-semibold">
                 Autonomous Execution Pipeline Trace
               </span>
             </div>
 
-            <div className="flex items-center gap-3 font-mono text-xs">
+            <div className="flex items-center gap-3">
               <button
                 onClick={handleRunCycle}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#0ea5e9] hover:bg-[#38bdf8] text-white font-medium transition-colors cursor-pointer"
@@ -189,7 +188,7 @@ export const AutonomousLoop: React.FC = () => {
 
               <button
                 onClick={() => { setIsAutoRunning(false); setActiveStep(0); }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-white/[0.04] hover:bg-white/[0.08] text-[#858a85] hover:text-[#f2f2ee] border border-white/[0.08] transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-white/[0.04] hover:bg-white/[0.08] text-[#858a85] hover:text-[#f1f2ee] border border-white/[0.08] transition-colors cursor-pointer"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Reset</span>
@@ -197,25 +196,25 @@ export const AutonomousLoop: React.FC = () => {
             </div>
           </div>
 
-          {/* 8-Stage Connected Pipeline Trace */}
+          {/* 8-Stage Connected Pipeline Trace Bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 font-mono text-xs">
             {phases.map((phase) => (
               <button
                 key={phase.id}
                 onClick={() => { setIsAutoRunning(false); setActiveStep(phase.id); }}
-                className={`p-3.5 rounded text-left transition-all duration-200 cursor-pointer border relative ${
+                className={`p-3.5 rounded-lg text-left transition-all duration-200 cursor-pointer border relative ${
                   activeStep === phase.id
-                    ? 'border-[#38bdf8] bg-[#38bdf8]/15 text-[#f2f2ee] shadow-[0_0_20px_rgba(56,189,248,0.15)]'
+                    ? 'border-[#38bdf8] bg-[#38bdf8]/15 text-[#f1f2ee] shadow-[0_0_20px_rgba(56,189,248,0.15)]'
                     : activeStep > phase.id
-                      ? 'border-white/[0.08] bg-[#080a08] text-[#10b981]'
-                      : 'border-white/[0.04] bg-[#080a08]/80 text-[#858a85] hover:border-white/15'
+                      ? 'border-white/[0.08] bg-[#0d100d]/80 text-[#10b981]'
+                      : 'border-white/[0.04] bg-[#0d100d]/60 text-[#858a85] hover:border-white/15'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1.5">
                   <span className="text-[10px] text-[#505551]">0{phase.id + 1}</span>
                   {phase.icon}
                 </div>
-                <span className="font-semibold text-xs block text-[#f2f2ee]">{phase.name}</span>
+                <span className="font-semibold text-xs block text-[#f1f2ee]">{phase.name}</span>
                 <span className={`text-[9px] block mt-1 ${
                   activeStep === phase.id ? 'text-[#38bdf8]' : activeStep > phase.id ? 'text-[#10b981]' : 'text-[#505551]'
                 }`}>
@@ -228,7 +227,7 @@ export const AutonomousLoop: React.FC = () => {
           {/* Detailed Active Phase Deep-Dive View */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch font-mono text-xs">
             {/* Left: Phase Title, Summary & Telemetry (6 Cols) */}
-            <div className="lg:col-span-6 p-6 sm:p-8 rounded border border-white/[0.06] bg-[#080a08] flex flex-col justify-between">
+            <div className="lg:col-span-6 p-8 rounded-lg border border-white/[0.08] bg-[#0d100d]/90 flex flex-col justify-between shadow-2xl">
               <div>
                 <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.04]">
                   <span className="text-[10px] text-[#505551] uppercase">Phase {currentPhase.id + 1} of 8</span>
@@ -236,7 +235,7 @@ export const AutonomousLoop: React.FC = () => {
                 </div>
 
                 <div className="space-y-3 mb-6">
-                  <h3 className="text-base sm:text-lg font-medium text-[#f2f2ee] font-sans">
+                  <h3 className="text-lg font-medium text-[#f1f2ee] font-sans">
                     {currentPhase.title}
                   </h3>
                   <p className="text-xs text-[#858a85] font-sans leading-relaxed">
@@ -245,13 +244,13 @@ export const AutonomousLoop: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-3 rounded border border-white/[0.06] bg-white/[0.02] text-[11px] text-[#10b981]">
+              <div className="p-3.5 rounded border border-white/[0.06] bg-[#080a08] text-[11px] text-[#10b981]">
                 {currentPhase.telemetry}
               </div>
             </div>
 
             {/* Right: Live Execution Log Terminal (6 Cols) */}
-            <div className="lg:col-span-6 p-6 rounded border border-white/[0.06] bg-[#050605] flex flex-col justify-between">
+            <div className="lg:col-span-6 p-6 rounded-lg border border-white/[0.08] bg-[#050605] flex flex-col justify-between shadow-2xl">
               <div>
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/[0.04]">
                   <div className="flex items-center gap-2 text-[#505551] text-[10px]">

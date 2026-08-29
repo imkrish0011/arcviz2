@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { Database, Layers } from 'lucide-react';
 
-
 interface InteractiveNode {
   id: string;
   name: string;
   provider: 'AWS' | 'Azure' | 'GCP';
   type: string;
   region: string;
-  status: 'healthy' | 'warning' | 'incident';
   dependencies: string[];
   metrics: { latency: string; throughput: string; cpu: string };
   recentEvent: string;
@@ -26,7 +24,6 @@ export const LivingSystem: React.FC = () => {
       provider: 'AWS',
       type: 'CloudFront CDN / Route53',
       region: 'Global',
-      status: 'healthy',
       dependencies: ['alb-ingress'],
       metrics: { latency: '12ms', throughput: '4.8k req/s', cpu: '14%' },
       recentEvent: 'WAF rules synced via OPA policy',
@@ -38,7 +35,6 @@ export const LivingSystem: React.FC = () => {
       provider: 'AWS',
       type: 'Application Load Balancer',
       region: 'us-east-1',
-      status: 'healthy',
       dependencies: ['edge-router', 'ecs-checkout', 'ecs-auth'],
       metrics: { latency: '18ms', throughput: '4.8k req/s', cpu: '22%' },
       recentEvent: 'SSL certificate active',
@@ -50,7 +46,6 @@ export const LivingSystem: React.FC = () => {
       provider: 'AWS',
       type: 'ECS Fargate (8 tasks)',
       region: 'us-east-1a/b',
-      status: 'healthy',
       dependencies: ['alb-ingress', 'rds-aurora', 'redis-cache'],
       metrics: { latency: '42ms', throughput: '2.1k req/s', cpu: '34%' },
       recentEvent: 'Autoscaled 6 -> 8 tasks (14:32:10 UTC)',
@@ -62,7 +57,6 @@ export const LivingSystem: React.FC = () => {
       provider: 'Azure',
       type: 'Azure Container Apps (4 instances)',
       region: 'eastus',
-      status: 'healthy',
       dependencies: ['alb-ingress', 'redis-cache'],
       metrics: { latency: '8ms', throughput: '2.7k req/s', cpu: '18%' },
       recentEvent: 'JWT key rotation verified',
@@ -74,7 +68,6 @@ export const LivingSystem: React.FC = () => {
       provider: 'AWS',
       type: 'Aurora PostgreSQL v2 Multi-AZ',
       region: 'us-east-1a',
-      status: 'healthy',
       dependencies: ['ecs-checkout'],
       metrics: { latency: '2.4ms', throughput: '128 conn', cpu: '41%' },
       recentEvent: 'Automated snapshot verified',
@@ -86,7 +79,6 @@ export const LivingSystem: React.FC = () => {
       provider: 'GCP',
       type: 'Google Cloud Memorystore Redis',
       region: 'us-central1',
-      status: 'healthy',
       dependencies: ['ecs-checkout', 'ecs-auth'],
       metrics: { latency: '0.8ms', throughput: '12k ops/s', cpu: '26%' },
       recentEvent: 'Replication lag < 1ms',
@@ -96,7 +88,6 @@ export const LivingSystem: React.FC = () => {
 
   const activeNode = nodes.find(n => n.id === selectedNodeId) || nodes[2];
 
-  // Helper to determine if a node is dimmed during hover
   const isNodeDimmed = (nodeId: string) => {
     if (!hoveredNodeId) return false;
     if (nodeId === hoveredNodeId) return false;
@@ -106,210 +97,208 @@ export const LivingSystem: React.FC = () => {
   };
 
   return (
-    <section id="living-system" className="py-36 md:py-48 border-t border-white/[0.06] bg-[#080a08] relative">
+    <section id="living-system" className="py-36 md:py-48 border-t border-white/[0.06] bg-[#090c09] relative">
       <div className="max-w-[1240px] mx-auto px-6 md:px-10">
         {/* Section Header */}
-        <div className="max-w-2xl mb-24 md:mb-32">
+        <div className="max-w-3xl mb-20 md:mb-28">
           <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4">
             02 / Living Infrastructure Model
           </span>
-          <h2 className="text-3xl sm:text-5xl lg:text-[56px] font-medium tracking-tight text-[#f2f2ee] leading-[1.04] mb-6">
+          <h2 className="text-4xl sm:text-6xl font-medium tracking-tight text-[#f1f2ee] leading-[1.02] mb-6">
             Your infrastructure isn't a diagram. <br />
             <span className="text-[#858a85]">It's a living system.</span>
           </h2>
-          <p className="text-base sm:text-lg text-[#858a85] leading-relaxed">
+          <p className="text-base sm:text-lg text-[#858a85] leading-relaxed max-w-xl">
             Hover over any resource to trace dependency flow across multi-cloud networks. Click to inspect live telemetry, configuration parameters, and recent operational events.
           </p>
         </div>
 
-        {/* Spatial Topology Interactive Explorer */}
-        <div className="p-8 sm:p-14 rounded-lg border border-white/[0.07] bg-[#0d100d]/60 backdrop-blur-sm relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Graph Canvas (8 Cols) */}
-            <div className="lg:col-span-8 flex flex-col items-center gap-8 py-6 min-w-[480px]">
-              {/* Level 1: Edge CDN */}
+        {/* Open Spatial Topology Architecture (No heavy outer box) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Spatial Graph Display (8 Cols) */}
+          <div className="lg:col-span-8 flex flex-col items-center gap-6 py-6 select-none min-w-[480px]">
+            {/* Level 1: Edge CDN */}
+            <div 
+              onMouseEnter={() => setHoveredNodeId('edge-router')}
+              onMouseLeave={() => setHoveredNodeId(null)}
+              onClick={() => setSelectedNodeId('edge-router')}
+              className={`cursor-pointer px-4 py-2.5 rounded transition-all duration-300 font-mono text-xs ${
+                isNodeDimmed('edge-router') ? 'opacity-25' : 'opacity-100'
+              } ${
+                selectedNodeId === 'edge-router'
+                  ? 'border border-[#38bdf8] bg-[#38bdf8]/10 text-[#f1f2ee]'
+                  : 'border border-white/[0.08] bg-[#0d100d]/90 hover:border-white/20 text-[#858a85]'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
+                <span className="text-[#f1f2ee]">ingress-global-edge</span>
+                <span className="text-[10px] text-[#505551]">AWS CloudFront</span>
+              </div>
+            </div>
+
+            {/* Connecting Line */}
+            <div className="w-[1px] h-6 bg-white/[0.12] relative my-1">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] absolute top-1/2 -left-[2px] animate-pulse" />
+            </div>
+
+            {/* Level 2: ALB Ingress */}
+            <div 
+              onMouseEnter={() => setHoveredNodeId('alb-ingress')}
+              onMouseLeave={() => setHoveredNodeId(null)}
+              onClick={() => setSelectedNodeId('alb-ingress')}
+              className={`cursor-pointer px-4 py-2.5 rounded transition-all duration-300 font-mono text-xs ${
+                isNodeDimmed('alb-ingress') ? 'opacity-25' : 'opacity-100'
+              } ${
+                selectedNodeId === 'alb-ingress'
+                  ? 'border border-[#38bdf8] bg-[#38bdf8]/10 text-[#f1f2ee]'
+                  : 'border border-white/[0.08] bg-[#0d100d]/90 hover:border-white/20 text-[#858a85]'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
+                <span className="text-[#f1f2ee]">alb-public-prod</span>
+                <span className="text-[10px] text-[#505551]">AWS ALB Ingress</span>
+              </div>
+            </div>
+
+            {/* Branch Lines */}
+            <div className="w-80 h-[1px] bg-white/[0.12] relative my-1">
+              <div className="absolute top-0 left-8 w-[1px] h-6 bg-white/[0.12]" />
+              <div className="absolute top-0 right-8 w-[1px] h-6 bg-white/[0.12]" />
+            </div>
+
+            {/* Level 3: Multi-Cloud Services */}
+            <div className="grid grid-cols-2 gap-8 w-full max-w-lg pt-2">
               <div 
-                onMouseEnter={() => setHoveredNodeId('edge-router')}
+                onMouseEnter={() => setHoveredNodeId('ecs-checkout')}
                 onMouseLeave={() => setHoveredNodeId(null)}
-                onClick={() => setSelectedNodeId('edge-router')}
-                className={`cursor-pointer px-4 py-2.5 rounded transition-all duration-300 font-mono text-xs ${
-                  isNodeDimmed('edge-router') ? 'opacity-25' : 'opacity-100'
+                onClick={() => setSelectedNodeId('ecs-checkout')}
+                className={`cursor-pointer p-4 rounded transition-all duration-300 font-mono text-xs ${
+                  isNodeDimmed('ecs-checkout') ? 'opacity-25' : 'opacity-100'
                 } ${
-                  selectedNodeId === 'edge-router'
-                    ? 'border border-[#38bdf8] bg-[#38bdf8]/10 text-[#f2f2ee]'
-                    : 'border border-white/[0.08] bg-[#080a08] hover:border-white/20 text-[#858a85]'
+                  selectedNodeId === 'ecs-checkout'
+                    ? 'border border-[#38bdf8] bg-[#38bdf8]/10 text-[#f1f2ee]'
+                    : 'border border-white/[0.08] bg-[#0d100d]/90 hover:border-white/20 text-[#858a85]'
                 }`}
               >
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
-                  <span className="text-[#f2f2ee]">ingress-global-edge</span>
-                  <span className="text-[10px] text-[#505551]">AWS CloudFront</span>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-semibold text-sm text-[#f1f2ee]">svc-checkout</span>
+                  <span className="text-[10px] text-[#38bdf8]">AWS ECS</span>
                 </div>
+                <div className="text-[10px] text-[#858a85]">8 tasks • 42ms p99</div>
               </div>
 
-              {/* Connecting Line */}
-              <div className="w-[1px] h-6 bg-white/[0.1] relative">
-                <div className="w-1 h-1 rounded-full bg-[#38bdf8] absolute top-1/2 -left-[1.5px]" />
-              </div>
-
-              {/* Level 2: ALB Ingress */}
               <div 
-                onMouseEnter={() => setHoveredNodeId('alb-ingress')}
+                onMouseEnter={() => setHoveredNodeId('ecs-auth')}
                 onMouseLeave={() => setHoveredNodeId(null)}
-                onClick={() => setSelectedNodeId('alb-ingress')}
-                className={`cursor-pointer px-4 py-2.5 rounded transition-all duration-300 font-mono text-xs ${
-                  isNodeDimmed('alb-ingress') ? 'opacity-25' : 'opacity-100'
+                onClick={() => setSelectedNodeId('ecs-auth')}
+                className={`cursor-pointer p-4 rounded transition-all duration-300 font-mono text-xs ${
+                  isNodeDimmed('ecs-auth') ? 'opacity-25' : 'opacity-100'
                 } ${
-                  selectedNodeId === 'alb-ingress'
-                    ? 'border border-[#38bdf8] bg-[#38bdf8]/10 text-[#f2f2ee]'
-                    : 'border border-white/[0.08] bg-[#080a08] hover:border-white/20 text-[#858a85]'
+                  selectedNodeId === 'ecs-auth'
+                    ? 'border border-[#38bdf8] bg-[#38bdf8]/10 text-[#f1f2ee]'
+                    : 'border border-white/[0.08] bg-[#0d100d]/90 hover:border-white/20 text-[#858a85]'
                 }`}
               >
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
-                  <span className="text-[#f2f2ee]">alb-public-prod</span>
-                  <span className="text-[10px] text-[#505551]">ALB Ingress</span>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-semibold text-sm text-[#f1f2ee]">svc-auth</span>
+                  <span className="text-[10px] text-[#38bdf8]">Azure Apps</span>
                 </div>
+                <div className="text-[10px] text-[#858a85]">4 instances • 8ms p99</div>
+              </div>
+            </div>
+
+            {/* Branch Lines */}
+            <div className="w-80 h-[1px] bg-white/[0.12] relative my-1">
+              <div className="absolute top-0 left-10 w-[1px] h-6 bg-white/[0.12]" />
+              <div className="absolute top-0 right-10 w-[1px] h-6 bg-white/[0.12]" />
+            </div>
+
+            {/* Level 4: State Tier (Aurora & GCP Redis) */}
+            <div className="grid grid-cols-2 gap-8 w-full max-w-lg pt-2">
+              <div 
+                onMouseEnter={() => setHoveredNodeId('rds-aurora')}
+                onMouseLeave={() => setHoveredNodeId(null)}
+                onClick={() => setSelectedNodeId('rds-aurora')}
+                className={`cursor-pointer p-3.5 rounded transition-all duration-300 font-mono text-xs ${
+                  isNodeDimmed('rds-aurora') ? 'opacity-25' : 'opacity-100'
+                } ${
+                  selectedNodeId === 'rds-aurora'
+                    ? 'border border-[#38bdf8] bg-[#38bdf8]/10 text-[#f1f2ee]'
+                    : 'border border-white/[0.08] bg-[#0d100d]/90 hover:border-white/20 text-[#858a85]'
+                }`}
+              >
+                <div className="flex items-center gap-1.5 mb-1">
+                  <Database className="w-3.5 h-3.5 text-[#38bdf8]" />
+                  <span className="text-[#f1f2ee] font-medium">aurora-pg</span>
+                </div>
+                <div className="text-[10px] text-[#505551]">AWS PostgreSQL v2 Multi-AZ</div>
               </div>
 
-              {/* Branch Line */}
-              <div className="w-64 h-[1px] bg-white/[0.1] relative">
-                <div className="absolute top-0 left-8 w-[1px] h-6 bg-white/[0.1]" />
-                <div className="absolute top-0 right-8 w-[1px] h-6 bg-white/[0.1]" />
+              <div 
+                onMouseEnter={() => setHoveredNodeId('redis-cache')}
+                onMouseLeave={() => setHoveredNodeId(null)}
+                onClick={() => setSelectedNodeId('redis-cache')}
+                className={`cursor-pointer p-3.5 rounded transition-all duration-300 font-mono text-xs ${
+                  isNodeDimmed('redis-cache') ? 'opacity-25' : 'opacity-100'
+                } ${
+                  selectedNodeId === 'redis-cache'
+                    ? 'border border-[#38bdf8] bg-[#38bdf8]/10 text-[#f1f2ee]'
+                    : 'border border-white/[0.08] bg-[#0d100d]/90 hover:border-white/20 text-[#858a85]'
+                }`}
+              >
+                <div className="flex items-center gap-1.5 mb-1">
+                  <Layers className="w-3.5 h-3.5 text-[#38bdf8]" />
+                  <span className="text-[#f1f2ee] font-medium">cache-session</span>
+                </div>
+                <div className="text-[10px] text-[#505551]">GCP Memorystore Redis</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Floating Contextual Inspector (4 Cols) */}
+          <div className="lg:col-span-4 p-6 rounded-lg border border-white/[0.08] bg-[#080a08]/90 font-mono text-xs flex flex-col justify-between min-h-[340px] shadow-2xl">
+            <div>
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.06]">
+                <span className="text-[10px] uppercase text-[#505551]">Node Inspector</span>
+                <span className="text-[#10b981] flex items-center gap-1 text-[11px]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" /> Active Stream
+                </span>
               </div>
 
-              {/* Level 3: Multi-Cloud Services */}
-              <div className="grid grid-cols-2 gap-8 w-full max-w-md pt-2">
-                <div 
-                  onMouseEnter={() => setHoveredNodeId('ecs-checkout')}
-                  onMouseLeave={() => setHoveredNodeId(null)}
-                  onClick={() => setSelectedNodeId('ecs-checkout')}
-                  className={`cursor-pointer p-3.5 rounded transition-all duration-300 font-mono text-xs ${
-                    isNodeDimmed('ecs-checkout') ? 'opacity-25' : 'opacity-100'
-                  } ${
-                    selectedNodeId === 'ecs-checkout'
-                      ? 'border border-[#38bdf8] bg-[#38bdf8]/10 text-[#f2f2ee]'
-                      : 'border border-white/[0.08] bg-[#080a08] hover:border-white/20 text-[#858a85]'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="font-semibold text-sm text-[#f2f2ee]">svc-checkout</span>
-                    <span className="text-[10px] text-[#38bdf8]">AWS ECS</span>
-                  </div>
-                  <div className="text-[10px] text-[#858a85]">8 tasks • 42ms p99</div>
+              <div className="space-y-4 mb-6">
+                <div>
+                  <span className="text-[10px] text-[#505551] block uppercase">Identifier</span>
+                  <span className="text-base font-semibold text-[#f1f2ee]">{activeNode.name}</span>
                 </div>
 
-                <div 
-                  onMouseEnter={() => setHoveredNodeId('ecs-auth')}
-                  onMouseLeave={() => setHoveredNodeId(null)}
-                  onClick={() => setSelectedNodeId('ecs-auth')}
-                  className={`cursor-pointer p-3.5 rounded transition-all duration-300 font-mono text-xs ${
-                    isNodeDimmed('ecs-auth') ? 'opacity-25' : 'opacity-100'
-                  } ${
-                    selectedNodeId === 'ecs-auth'
-                      ? 'border border-[#38bdf8] bg-[#38bdf8]/10 text-[#f2f2ee]'
-                      : 'border border-white/[0.08] bg-[#080a08] hover:border-white/20 text-[#858a85]'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="font-semibold text-sm text-[#f2f2ee]">svc-auth</span>
-                    <span className="text-[10px] text-[#38bdf8]">Azure Apps</span>
+                <div className="grid grid-cols-2 gap-3 text-[11px]">
+                  <div>
+                    <span className="text-[#505551] block">Provider</span>
+                    <span className="text-[#f1f2ee] font-medium">{activeNode.provider}</span>
                   </div>
-                  <div className="text-[10px] text-[#858a85]">4 instances • 8ms p99</div>
-                </div>
-              </div>
-
-              {/* Branch Line */}
-              <div className="w-64 h-[1px] bg-white/[0.1] relative">
-                <div className="absolute top-0 left-10 w-[1px] h-6 bg-white/[0.1]" />
-                <div className="absolute top-0 right-10 w-[1px] h-6 bg-white/[0.1]" />
-              </div>
-
-              {/* Level 4: State Tier (Aurora & GCP Redis) */}
-              <div className="grid grid-cols-2 gap-8 w-full max-w-md pt-2">
-                <div 
-                  onMouseEnter={() => setHoveredNodeId('rds-aurora')}
-                  onMouseLeave={() => setHoveredNodeId(null)}
-                  onClick={() => setSelectedNodeId('rds-aurora')}
-                  className={`cursor-pointer p-3 rounded transition-all duration-300 font-mono text-xs ${
-                    isNodeDimmed('rds-aurora') ? 'opacity-25' : 'opacity-100'
-                  } ${
-                    selectedNodeId === 'rds-aurora'
-                      ? 'border border-[#38bdf8] bg-[#38bdf8]/10 text-[#f2f2ee]'
-                      : 'border border-white/[0.08] bg-[#080a08] hover:border-white/20 text-[#858a85]'
-                  }`}
-                >
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <Database className="w-3.5 h-3.5 text-[#38bdf8]" />
-                    <span className="text-[#f2f2ee] font-medium">aurora-pg</span>
+                  <div>
+                    <span className="text-[#505551] block">Region</span>
+                    <span className="text-[#f1f2ee] font-medium">{activeNode.region}</span>
                   </div>
-                  <div className="text-[10px] text-[#505551]">AWS PostgreSQL v2</div>
                 </div>
 
-                <div 
-                  onMouseEnter={() => setHoveredNodeId('redis-cache')}
-                  onMouseLeave={() => setHoveredNodeId(null)}
-                  onClick={() => setSelectedNodeId('redis-cache')}
-                  className={`cursor-pointer p-3 rounded transition-all duration-300 font-mono text-xs ${
-                    isNodeDimmed('redis-cache') ? 'opacity-25' : 'opacity-100'
-                  } ${
-                    selectedNodeId === 'redis-cache'
-                      ? 'border border-[#38bdf8] bg-[#38bdf8]/10 text-[#f2f2ee]'
-                      : 'border border-white/[0.08] bg-[#080a08] hover:border-white/20 text-[#858a85]'
-                  }`}
-                >
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <Layers className="w-3.5 h-3.5 text-[#38bdf8]" />
-                    <span className="text-[#f2f2ee] font-medium">cache-session</span>
+                <div className="grid grid-cols-2 gap-3 pt-2 border-t border-white/[0.04] text-[11px]">
+                  <div>
+                    <span className="text-[#505551] block">Latency</span>
+                    <span className="text-[#10b981] font-semibold">{activeNode.metrics.latency}</span>
                   </div>
-                  <div className="text-[10px] text-[#505551]">GCP Memorystore</div>
+                  <div>
+                    <span className="text-[#505551] block">Monthly Cost</span>
+                    <span className="text-[#f1f2ee] font-semibold">{activeNode.cost}</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* In-Canvas Inspector Drawer (4 Cols) */}
-            <div className="lg:col-span-4 p-6 rounded border border-white/[0.08] bg-[#080a08] font-mono text-xs flex flex-col justify-between min-h-[340px]">
-              <div>
-                <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.06]">
-                  <span className="text-[10px] uppercase text-[#505551]">Resource Telemetry</span>
-                  <span className="text-[#10b981] flex items-center gap-1 text-[11px]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" /> Healthy
-                  </span>
-                </div>
-
-                <div className="space-y-3 mb-6">
-                  <div>
-                    <span className="text-[10px] text-[#505551] block uppercase">Identifier</span>
-                    <span className="text-sm font-semibold text-[#f2f2ee]">{activeNode.name}</span>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-2 text-[11px]">
-                    <div>
-                      <span className="text-[#505551] block">Provider</span>
-                      <span className="text-[#f2f2ee]">{activeNode.provider}</span>
-                    </div>
-                    <div>
-                      <span className="text-[#505551] block">Region</span>
-                      <span className="text-[#f2f2ee]">{activeNode.region}</span>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-white/[0.04] text-[11px]">
-                    <div>
-                      <span className="text-[#505551] block">Latency</span>
-                      <span className="text-[#10b981]">{activeNode.metrics.latency}</span>
-                    </div>
-                    <div>
-                      <span className="text-[#505551] block">Monthly Cost</span>
-                      <span className="text-[#f2f2ee]">{activeNode.cost}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-3 border-t border-white/[0.06] text-[10px] text-[#505551]">
-                Recent: {activeNode.recentEvent}
-              </div>
+            <div className="pt-3 border-t border-white/[0.06] text-[10px] text-[#858a85]">
+              Recent: {activeNode.recentEvent}
             </div>
           </div>
         </div>
