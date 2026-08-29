@@ -4,139 +4,101 @@ import {
   TerraformIcon, 
   GitHubIcon, 
   CloudWatchIcon, 
-   
   PolicyShieldIcon 
 } from './icons/ArchVizIcons';
-import {   CheckCircle2, XCircle,   } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
 export const FragmentedCloud: React.FC = () => {
-  const silos = [
-    {
-      name: "AWS Console",
-      sub: "Raw resources & IAM",
-      icon: <AwsIcon className="w-4 h-4 text-[#ededed]" />,
-      pain: "No dependency context or code history"
-    },
-    {
-      name: "GitHub / GitLab",
-      sub: "Commits & Pull Requests",
-      icon: <GitHubIcon className="w-4 h-4 text-[#ededed]" />,
-      pain: "Disconnected from actual runtime state"
-    },
-    {
-      name: "Terraform / IaC",
-      sub: "Declared state files",
-      icon: <TerraformIcon className="w-4 h-4 text-[#ededed]" />,
-      pain: "Blind to runtime drift & telemetry"
-    },
-    {
-      name: "CloudWatch / Datadog",
-      sub: "Metrics, logs, traces",
-      icon: <CloudWatchIcon className="w-4 h-4 text-[#ededed]" />,
-      pain: "Isolated charts without topology linkage"
-    },
-    {
-      name: "Security & FinOps",
-      sub: "Vulnerability & billing alerts",
-      icon: <PolicyShieldIcon className="w-4 h-4 text-[#ededed]" />,
-      pain: "Alert fatigue without root-cause reasoning"
-    }
+  const disconnectedSources = [
+    { name: "AWS Console", label: "Infrastructure & IAM", icon: <AwsIcon className="w-3.5 h-3.5" /> },
+    { name: "GitHub / GitLab", label: "Commits & Pull Requests", icon: <GitHubIcon className="w-3.5 h-3.5" /> },
+    { name: "Terraform / IaC", label: "Declared State Files", icon: <TerraformIcon className="w-3.5 h-3.5" /> },
+    { name: "CloudWatch / Logs", label: "Metrics, Traces & Spans", icon: <CloudWatchIcon className="w-3.5 h-3.5" /> },
+    { name: "Security & Cost", label: "CVEs & Billing Alerts", icon: <PolicyShieldIcon className="w-3.5 h-3.5" /> }
   ];
 
   return (
-    <section id="problem" className="py-24 md:py-36 border-t border-[#1e2229] bg-[#08090a]">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-10">
+    <section id="problem" className="py-36 md:py-48 border-t border-white/[0.06] bg-[#080a08] relative">
+      <div className="max-w-[1240px] mx-auto px-6 md:px-10">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16 md:mb-20">
-          <span className="text-xs font-mono text-[#0ea5e9] tracking-wider uppercase block mb-3">
+        <div className="max-w-2xl mb-24 md:mb-32">
+          <span className="text-[11px] font-mono text-[#858a86] uppercase tracking-wider block mb-4">
             01 / The Fragmentation Problem
           </span>
-          <h2 className="text-3xl sm:text-5xl font-medium tracking-tight text-[#ededed] leading-tight mb-6">
+          <h2 className="text-3xl sm:text-5xl lg:text-[56px] font-medium tracking-tight text-[#f2f2ee] leading-[1.04] mb-6">
             Your cloud is a system. <br />
-            <span className="text-[#888d96]">Your tools aren't.</span>
+            <span className="text-[#858a86]">Your tools aren't.</span>
           </h2>
-          <p className="text-base sm:text-lg text-[#888d96] leading-relaxed">
+          <p className="text-base sm:text-lg text-[#858a86] leading-relaxed">
             Engineering teams juggle separate dashboards for metrics, pull requests, state files, security alerts, and logs. When an incident hits, engineers must manually reconstruct the mental model in their heads.
           </p>
         </div>
 
-        {/* Silos vs Unified Model Comparison Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Left Column: Disconnected Silos (5 Cols) */}
-          <div className="lg:col-span-5 p-6 md:p-8 rounded-lg bg-[#0e1013] border border-[#1e2229] flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#1e2229]">
-                <span className="text-xs font-mono font-medium text-[#888d96] uppercase">Fragmented Tool Silos</span>
-                <span className="text-[11px] font-mono text-[#ef4444] bg-[#ef4444]/10 px-2 py-0.5 rounded border border-[#ef4444]/20">Disconnected</span>
+        {/* Visual Convergence Architecture Diagram */}
+        <div className="relative p-8 md:p-14 rounded-lg border border-white/[0.06] bg-[#0d100d]/60 backdrop-blur-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            {/* Left: Disconnected Tool Silos (5 Cols) */}
+            <div className="lg:col-span-5 space-y-3">
+              <div className="text-xs font-mono text-[#858a86] uppercase mb-4 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ef4444]" />
+                Fragmented Tool Silos (No Shared Context)
               </div>
 
-              <div className="space-y-3">
-                {silos.map((silo, idx) => (
-                  <div key={idx} className="p-3 rounded bg-[#08090a] border border-[#1e2229] flex items-start gap-3">
-                    <div className="w-8 h-8 rounded bg-[#12151a] border border-[#1e2229] flex items-center justify-center flex-shrink-0 mt-0.5">
-                      {silo.icon}
+              {disconnectedSources.map((source, idx) => (
+                <div 
+                  key={idx}
+                  className="p-3.5 rounded border border-white/[0.06] bg-[#080a08]/80 flex items-center justify-between font-mono text-xs text-[#858a86]"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-6 h-6 rounded bg-white/[0.03] border border-white/[0.06] flex items-center justify-center text-[#f2f2ee]">
+                      {source.icon}
                     </div>
-                    <div className="flex-grow min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono font-medium text-[#ededed]">{silo.name}</span>
-                        <span className="text-[10px] font-mono text-[#5e636e]">{silo.sub}</span>
-                      </div>
-                      <p className="text-[11px] text-[#888d96] mt-0.5">{silo.pain}</p>
-                    </div>
+                    <span className="text-[#f2f2ee]">{source.name}</span>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-[#1e2229] text-xs font-mono text-[#ef4444] flex items-center gap-2">
-              <XCircle className="w-4 h-4 flex-shrink-0" />
-              <span>High MTTR, blind spots, constant context switching</span>
-            </div>
-          </div>
-
-          {/* Right Column: ArchViz Unified OS (7 Cols) */}
-          <div className="lg:col-span-7 p-6 md:p-8 rounded-lg bg-[#0e1013] border border-[#0ea5e9]/40 flex flex-col justify-between relative shadow-xl">
-            <div>
-              <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#1e2229]">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#0ea5e9]" />
-                  <span className="text-xs font-mono font-medium text-[#ededed] uppercase">ArchViz Unified Knowledge Graph</span>
+                  <span className="text-[10px] text-[#505551]">{source.label}</span>
                 </div>
-                <span className="text-[11px] font-mono text-[#0ea5e9] bg-[#0ea5e9]/10 px-2 py-0.5 rounded border border-[#0ea5e9]/30">Single Living Model</span>
-              </div>
+              ))}
+            </div>
 
-              {/* Visual Unified Node Mapping Box */}
-              <div className="p-6 rounded bg-[#08090a] border border-[#1e2229] mb-6">
-                <div className="text-xs font-mono text-[#888d96] mb-4">Topology Node: <code className="text-[#ededed]">aws_ecs_service.checkout</code></div>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
-                  <div className="p-3 rounded bg-[#12151a] border border-[#1e2229]">
-                    <span className="text-[#5e636e] block text-[10px]">INFRASTRUCTURE</span>
-                    <span className="text-[#ededed] font-medium">8 tasks • Fargate us-east-1</span>
+            {/* Center: Convergence Vector (2 Cols) */}
+            <div className="hidden lg:flex lg:col-span-2 flex-col items-center justify-center gap-2 text-[#505551]">
+              <div className="w-full h-[1px] bg-gradient-to-r from-white/[0.1] to-[#38bdf8]/40 relative">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] absolute -top-[2px] right-0 animate-pulse" />
+              </div>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-[#38bdf8]/80">Unified</span>
+            </div>
+
+            {/* Right: ArchViz Unified Living Model (5 Cols) */}
+            <div className="lg:col-span-5 p-6 rounded border border-white/[0.1] bg-[#080a08] flex flex-col justify-between min-h-[280px]">
+              <div>
+                <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.06] text-xs font-mono">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
+                    <span className="text-[#f2f2ee] font-medium">ARCHVIZ OS GRAPH</span>
                   </div>
-                  <div className="p-3 rounded bg-[#12151a] border border-[#1e2229]">
-                    <span className="text-[#5e636e] block text-[10px]">GIT COMMIT LINEAGE</span>
-                    <span className="text-[#0ea5e9] font-medium">#8f31b9d via PR #429</span>
+                  <span className="text-[#38bdf8] text-[10px]">Continuous Synthesis</span>
+                </div>
+
+                <div className="space-y-2.5 font-mono text-xs text-[#858a86] mb-6">
+                  <div className="p-2 rounded bg-white/[0.02] border border-white/[0.04]">
+                    <span className="text-[#505551] text-[10px] block uppercase">Topology & Runtime</span>
+                    <span className="text-[#f2f2ee]">aws_ecs_service.checkout-prod (8 tasks)</span>
                   </div>
-                  <div className="p-3 rounded bg-[#12151a] border border-[#1e2229]">
-                    <span className="text-[#5e636e] block text-[10px]">OBSERVABILITY</span>
-                    <span className="text-[#10b981] font-medium">p99 42ms • 0.01% error</span>
+                  <div className="p-2 rounded bg-white/[0.02] border border-white/[0.04]">
+                    <span className="text-[#505551] text-[10px] block uppercase">Commit Lineage</span>
+                    <span className="text-[#38bdf8]">#8f31b9d (PR #429) • 14:32:10 UTC</span>
                   </div>
-                  <div className="p-3 rounded bg-[#12151a] border border-[#1e2229]">
-                    <span className="text-[#5e636e] block text-[10px]">SECURITY & COST</span>
-                    <span className="text-[#ededed] font-medium">KMS key rotated • $380/mo</span>
+                  <div className="p-2 rounded bg-white/[0.02] border border-white/[0.04]">
+                    <span className="text-[#505551] text-[10px] block uppercase">Correlated Signal</span>
+                    <span className="text-[#10b981]">p99 42ms • Aurora connection lock</span>
                   </div>
                 </div>
               </div>
 
-              <p className="text-sm text-[#888d96] leading-relaxed">
-                ArchViz correlates infrastructure configuration, runtime metrics, deployment history, security findings, and dependencies into an always-current, queryable knowledge graph.
-              </p>
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-[#1e2229] text-xs font-mono text-[#10b981] flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-              <span>Full contextual reasoning across your entire stack in one place</span>
+              <div className="pt-3 border-t border-white/[0.06] flex items-center gap-2 text-xs font-mono text-[#10b981]">
+                <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0" />
+                <span>Single correlated operational reality</span>
+              </div>
             </div>
           </div>
         </div>

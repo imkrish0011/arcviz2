@@ -1,31 +1,26 @@
 @import "@fontsource/geist-sans/400.css";
 @import "@fontsource/geist-sans/500.css";
 @import "@fontsource/geist-sans/600.css";
-@import "@fontsource/geist-sans/700.css";
 @import "@fontsource/geist-mono/400.css";
 @import "@fontsource/geist-mono/500.css";
-@import "@fontsource/geist-mono/600.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #08090a;
-  --surface: #0e1013;
-  --surface-elevated: #12151a;
-  --surface-card: #0d0f14;
-  --border: #1e2229;
-  --border-hover: #2e3440;
-  --foreground: #ededed;
-  --muted: #888d96;
-  --dim: #5e636e;
-  --accent: #0ea5e9;
-  --accent-dim: rgba(14, 165, 233, 0.12);
+  --background: #080a08;
+  --surface: #0d100d;
+  --surface-elevated: #111411;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.14);
+  --foreground: #f2f2ee;
+  --muted: #858a86;
+  --dim: #505551;
+  --accent: #38bdf8;
   --status-healthy: #10b981;
   --status-warning: #f59e0b;
   --status-incident: #ef4444;
-  --status-info: #0ea5e9;
 }
 
 * {
@@ -35,65 +30,73 @@
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
+  background-color: #080a08;
 }
 
 body {
-  background-color: #08090a;
-  color: #ededed;
+  background-color: #080a08;
+  color: #f2f2ee;
   font-family: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
-  letter-spacing: -0.012em;
+  letter-spacing: -0.011em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Subtle Technical Grid Background */
-.bg-grid-pattern {
-  background-size: 32px 32px;
+/* Subtle Technical Coordinate Grid */
+.bg-grid-subtle {
+  background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
 }
 
-.bg-dot-pattern {
-  background-size: 24px 24px;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+/* Restrained pulse animation */
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+/* Restrained signal flow */
+@keyframes signal-flow {
+  0% { transform: translateY(-100%); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+.animate-signal-flow {
+  animation: signal-flow 4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 /* Typography Hierarchy */
 h1, h2, h3, h4 {
   font-family: 'Geist Sans', sans-serif;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
+  color: #f2f2ee;
 }
 
 .font-mono {
   font-family: 'Geist Mono', ui-monospace, Menlo, Monaco, Consolas, monospace;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
-/* Technical Panels & Cards */
-.tech-card {
-  background-color: #0e1013;
-  border: 1px solid #1e2229;
-  border-radius: 8px;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.tech-card:hover {
-  border-color: #2e3440;
-  background-color: #12151a;
-}
-
-/* Restrained Minimal Custom Scrollbar */
+/* Restrained Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #08090a;
+  background: #080a08;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e2229;
-  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2e3440;
+  background: rgba(255, 255, 255, 0.16);
 }

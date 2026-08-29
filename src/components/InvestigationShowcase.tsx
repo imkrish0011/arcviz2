@@ -1,179 +1,117 @@
-import React, { useState } from 'react';
-import { SystemBadge } from './ui/SystemBadge';
-import { 
-  Search, 
-   
-  GitPullRequest, 
-  Database, 
-  Activity, 
-   
-  AlertTriangle, 
-  
-  
-  
-} from 'lucide-react';
+import React from 'react';
+
+import { CheckCircle2, AlertTriangle, GitPullRequest, Database, Activity, Search } from 'lucide-react';
 
 export const InvestigationShowcase: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'rca' | 'evidence' | 'patch'>('rca');
+  const timelineEvents = [
+    {
+      time: "14:32:10",
+      type: "DEPLOYMENT",
+      icon: <GitPullRequest className="w-3.5 h-3.5 text-[#38bdf8]" />,
+      title: "Deployment detected",
+      detail: "Commit #8f31b9d merged to main via PR #429. Task definition v43 rolled to ECS.",
+      status: "info"
+    },
+    {
+      time: "14:32:18",
+      type: "ANOMALY",
+      icon: <Activity className="w-3.5 h-3.5 text-[#f59e0b]" />,
+      title: "Latency anomaly detected",
+      detail: "P99 latency spiked from 42ms to 890ms on route POST /api/v1/checkout.",
+      status: "warning"
+    },
+    {
+      time: "14:32:24",
+      type: "CORRELATION",
+      icon: <Search className="w-3.5 h-3.5 text-[#38bdf8]" />,
+      title: "Dependency correlation found",
+      detail: "Traversed DAG: svc-checkout-prod -> aurora-pg-primary connection lock.",
+      status: "info"
+    },
+    {
+      time: "14:32:31",
+      type: "BOTTLENECK",
+      icon: <Database className="w-3.5 h-3.5 text-[#ef4444]" />,
+      title: "Database connection pool saturation identified",
+      detail: "Active connection count reached 495 / 500 max limit. Worker threads stalled.",
+      status: "incident"
+    },
+    {
+      time: "14:32:36",
+      type: "ROOT CAUSE",
+      icon: <AlertTriangle className="w-3.5 h-3.5 text-[#10b981]" />,
+      title: "Root cause confidence: 94%",
+      detail: "PR #429 introduced unclosed transaction handle in checkout loop without defer db.Close().",
+      status: "healthy"
+    }
+  ];
 
   return (
-    <section id="investigation" className="py-24 md:py-36 border-t border-[#1e2229] bg-[#08090a]">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-10">
+    <section id="investigation" className="py-36 md:py-48 border-t border-white/[0.06] bg-[#080a08] relative">
+      <div className="max-w-[1240px] mx-auto px-6 md:px-10">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16 md:mb-20">
-          <span className="text-xs font-mono text-[#0ea5e9] tracking-wider uppercase block mb-3">
-            03 / AI-Native Root Cause Investigation
+        <div className="max-w-2xl mb-24 md:mb-32">
+          <span className="text-[11px] font-mono text-[#858a86] uppercase tracking-wider block mb-4">
+            03 / Root Cause Investigation
           </span>
-          <h2 className="text-3xl sm:text-5xl font-medium tracking-tight text-[#ededed] leading-tight mb-6">
+          <h2 className="text-3xl sm:text-5xl lg:text-[56px] font-medium tracking-tight text-[#f2f2ee] leading-[1.04] mb-6">
             Ask what happened. <br />
-            <span className="text-[#888d96]">ArchViz finds out why.</span>
+            <span className="text-[#858a86]">ArchViz finds out why.</span>
           </h2>
           <p className="text-base sm:text-lg text-[#888d96] leading-relaxed">
-            Instead of manually clicking through 20 tabs of logs, CloudWatch dashboards, and GitHub PR diffs, ask in natural language. ArchViz traverses topology, telemetry, and change logs to assemble evidence-backed root cause analyses.
+            Instead of manually clicking through 20 tabs of logs, CloudWatch dashboards, and pull requests, ask in natural language. ArchViz traverses topology, telemetry, and change history to assemble an evidence-backed incident timeline.
           </p>
         </div>
 
-        {/* Embedded Investigation Workspace Card */}
-        <div className="rounded-lg border border-[#1e2229] bg-[#0d0f14] overflow-hidden shadow-2xl">
-          {/* Natural Language Investigation Query Bar */}
-          <div className="p-4 md:p-5 bg-[#0a0b10] border-b border-[#1e2229] flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="flex items-center gap-3 flex-grow">
-              <div className="w-7 h-7 rounded bg-[#0ea5e9]/10 border border-[#0ea5e9]/30 flex items-center justify-center text-[#0ea5e9] flex-shrink-0">
-                <Search className="w-3.5 h-3.5" />
-              </div>
-              <div className="font-mono text-sm text-[#ededed] flex-grow">
-                <span className="text-[#5e636e] mr-2">QUERY:</span>
-                <span className="text-[#ededed] font-medium">"Why did checkout latency increase after the 14:32 deployment?"</span>
-              </div>
+        {/* Investigation Timeline UI (Spacious engineering timeline) */}
+        <div className="p-8 sm:p-14 rounded-lg border border-white/[0.06] bg-[#0d100d]/60 backdrop-blur-sm">
+          {/* Query Bar */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-8 mb-10 border-b border-white/[0.06] gap-4">
+            <div className="font-mono text-sm text-[#f2f2ee]">
+              <span className="text-[#505551] mr-2">QUERY:</span>
+              <span>"Why did checkout latency increase after the 14:32 deployment?"</span>
             </div>
-            <div className="flex items-center gap-2">
-              <SystemBadge status="incident" label="Incident Investigated" />
-              <span className="text-xs font-mono text-[#888d96] bg-[#12151a] px-2 py-1 rounded border border-[#1e2229]">
-                RCA duration: 1.2s
-              </span>
-            </div>
+            <span className="text-[11px] font-mono text-[#858a86] self-start sm:self-auto">
+              Synthesized in 1.2s across 4 data planes
+            </span>
           </div>
 
-          {/* Sub Navigation Bar */}
-          <div className="px-5 py-2.5 bg-[#0e1013] border-b border-[#1e2229] flex items-center gap-4 text-xs font-mono">
-            <button
-              onClick={() => setActiveTab('rca')}
-              className={`pb-1 transition-colors ${
-                activeTab === 'rca' ? 'text-[#0ea5e9] border-b-2 border-[#0ea5e9] font-medium' : 'text-[#888d96] hover:text-[#ededed]'
-              }`}
-            >
-              1. Root Cause Summary
-            </button>
-            <button
-              onClick={() => setActiveTab('evidence')}
-              className={`pb-1 transition-colors ${
-                activeTab === 'evidence' ? 'text-[#0ea5e9] border-b-2 border-[#0ea5e9] font-medium' : 'text-[#888d96] hover:text-[#ededed]'
-              }`}
-            >
-              2. Correlated Evidence (4 signals)
-            </button>
-            <button
-              onClick={() => setActiveTab('patch')}
-              className={`pb-1 transition-colors ${
-                activeTab === 'patch' ? 'text-[#0ea5e9] border-b-2 border-[#0ea5e9] font-medium' : 'text-[#888d96] hover:text-[#ededed]'
-              }`}
-            >
-              3. Proposed Remediation Plan
-            </button>
+          {/* Timeline Sequence */}
+          <div className="space-y-6 relative">
+            {/* Connecting Vertical Line */}
+            <div className="hidden sm:block absolute top-3 bottom-3 left-[95px] w-[1px] bg-white/[0.06]" />
+
+            {timelineEvents.map((evt, idx) => (
+              <div key={idx} className="flex flex-col sm:flex-row items-start gap-4 sm:gap-8 relative z-10">
+                {/* Timestamp */}
+                <div className="font-mono text-xs text-[#858a86] w-20 flex-shrink-0 pt-1">
+                  {evt.time} UTC
+                </div>
+
+                {/* Event Card */}
+                <div className="flex-grow p-4 sm:p-5 rounded border border-white/[0.06] bg-[#080a08]/80 font-mono text-xs w-full">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <div className="flex items-center gap-2">
+                      {evt.icon}
+                      <span className="font-semibold text-sm text-[#f2f2ee]">{evt.title}</span>
+                    </div>
+                    <span className="text-[10px] uppercase text-[#505551]">{evt.type}</span>
+                  </div>
+                  <p className="text-xs text-[#858a86] font-sans leading-relaxed mt-1">
+                    {evt.detail}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Tab Content Display */}
-          <div className="p-6 md:p-8 min-h-[360px]">
-            {activeTab === 'rca' && (
-              <div className="space-y-6">
-                <div className="p-4 rounded bg-[#ef4444]/5 border border-[#ef4444]/25">
-                  <div className="flex items-center gap-2 text-xs font-mono text-[#ef4444] font-medium mb-1.5">
-                    <AlertTriangle className="w-4 h-4" />
-                    <span>IDENTIFIED ROOT CAUSE</span>
-                  </div>
-                  <p className="text-sm text-[#ededed] font-sans leading-relaxed">
-                    Database connection pool exhaustion on <code className="text-[#0ea5e9] font-mono">aurora-pg-primary</code> caused by unclosed transaction handles introduced in commit <code className="text-[#0ea5e9] font-mono">#8f31b9d</code> (merged in PR #429).
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs">
-                  <div className="p-4 rounded bg-[#08090a] border border-[#1e2229]">
-                    <span className="text-[#888d96] text-[10px] block mb-1 uppercase">AFFECTED SERVICE</span>
-                    <span className="text-sm font-bold text-[#ededed]">svc-checkout-prod</span>
-                    <span className="text-[#ef4444] text-[11px] block mt-1">{"p99 spiked 42ms -> 890ms"}</span>
-                  </div>
-                  <div className="p-4 rounded bg-[#08090a] border border-[#1e2229]">
-                    <span className="text-[#888d96] text-[10px] block mb-1 uppercase">BOTTLENECK RESOURCE</span>
-                    <span className="text-sm font-bold text-[#ededed]">aurora-pg-primary</span>
-                    <span className="text-[#f59e0b] text-[11px] block mt-1">Active connections: 495 / 500</span>
-                  </div>
-                  <div className="p-4 rounded bg-[#08090a] border border-[#1e2229]">
-                    <span className="text-[#888d96] text-[10px] block mb-1 uppercase">CONFIDENCE SCORE</span>
-                    <span className="text-sm font-bold text-[#10b981]">98.6%</span>
-                    <span className="text-[#888d96] text-[11px] block mt-1">Backed by 4 correlated signals</span>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'evidence' && (
-              <div className="space-y-3 font-mono text-xs">
-                <div className="p-3.5 rounded bg-[#08090a] border border-[#1e2229] flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <GitPullRequest className="w-4 h-4 text-[#0ea5e9]" />
-                    <div>
-                      <span className="text-[#ededed] font-medium">Deployment PR #429 Merged (14:32 UTC)</span>
-                      <p className="text-[#888d96] text-[11px]">Changed checkout_controller.go line 84: added raw DB query without defer db.Close()</p>
-                    </div>
-                  </div>
-                  <span className="text-[#0ea5e9]">Git Signal</span>
-                </div>
-
-                <div className="p-3.5 rounded bg-[#08090a] border border-[#1e2229] flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Database className="w-4 h-4 text-[#ef4444]" />
-                    <div>
-                      <span className="text-[#ededed] font-medium">Aurora DB Connection Spike (14:33 UTC)</span>
-                      <p className="text-[#888d96] text-[11px]">Active connection count jumped from 120 to 495 in 90 seconds</p>
-                    </div>
-                  </div>
-                  <span className="text-[#ef4444]">Metric Anomaly</span>
-                </div>
-
-                <div className="p-3.5 rounded bg-[#08090a] border border-[#1e2229] flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Activity className="w-4 h-4 text-[#f59e0b]" />
-                    <div>
-                      <span className="text-[#ededed] font-medium">ECS Task Queue Saturation (14:34 UTC)</span>
-                      <p className="text-[#888d96] text-[11px]">Tasks stalled waiting on Aurora Postgres connection acquire timeout (5000ms)</p>
-                    </div>
-                  </div>
-                  <span className="text-[#f59e0b]">Trace Signal</span>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'patch' && (
-              <div className="space-y-4 font-mono text-xs">
-                <div className="p-4 rounded bg-[#08090a] border border-[#1e2229]">
-                  <div className="flex items-center justify-between text-[#10b981] mb-2 font-medium">
-                    <span>RECOMMENDED REMEDIATION ACTION</span>
-                    <span>Policy Mode: Human-in-the-loop</span>
-                  </div>
-                  <p className="text-sm text-[#ededed] font-sans leading-relaxed mb-4">
-                    Rollback ECS service <code className="text-[#0ea5e9] font-mono">svc-checkout-prod</code> to previous verified task definition <code className="text-[#0ea5e9] font-mono">v42 (commit #7b19a02)</code> to restore normal database connection allocation immediately.
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <button className="px-4 py-2 rounded bg-[#0ea5e9] hover:bg-[#38bdf8] text-white font-medium text-xs transition-colors">
-                      Simulate Rollback Blast Radius
-                    </button>
-                    <button className="px-4 py-2 rounded bg-[#12151a] hover:bg-[#181b22] text-[#ededed] border border-[#1e2229] text-xs transition-colors">
-                      Generate Hotfix PR
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
+          {/* Root Cause Conclusion Strip */}
+          <div className="mt-10 pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono">
+            <div className="flex items-center gap-2 text-[#10b981]">
+              <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+              <span>Remediation simulated: Task definition rollback to v42 restores pool allocation</span>
+            </div>
+            <span className="text-[#505551]">Zero LLM hallucinations • Evidence-verified</span>
           </div>
         </div>
       </div>

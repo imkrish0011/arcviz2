@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArchVizBrand } from './icons/ArchVizIcons';
-import { SystemBadge } from './ui/SystemBadge';
-import { Menu, X,  Terminal } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,80 +30,54 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 border-b ${
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'bg-[#08090a]/90 backdrop-blur-md border-[#1e2229] py-3' 
-        : 'bg-transparent border-transparent py-4'
+        ? 'bg-[#080a08]/80 backdrop-blur-md border-b border-white/[0.06] py-3.5' 
+        : 'bg-transparent border-b border-transparent py-5'
     }`}>
-      <div className="max-w-[1280px] mx-auto px-6 md:px-10 flex items-center justify-between">
-        {/* Brand & System Status */}
-        <div className="flex items-center gap-4">
-          <Link to="/" className="flex items-center gap-2 group">
-            <ArchVizBrand />
-          </Link>
-          <div className="hidden sm:flex items-center gap-2 pl-3 border-l border-[#1e2229]">
-            <SystemBadge status="healthy" label="v1.4-prod" />
-          </div>
-        </div>
+      <div className="max-w-[1240px] mx-auto px-6 md:px-10 flex items-center justify-between">
+        {/* Brand */}
+        <Link to="/" className="flex items-center gap-2 group">
+          <ArchVizBrand />
+        </Link>
 
         {/* Center Nav Links - Desktop */}
-        <nav className="hidden lg:flex items-center gap-7 text-[13px] font-medium text-[#888d96]">
-          <a
-            href="/#problem"
-            onClick={(e) => scrollToSection(e, 'problem')}
-            className="hover:text-[#ededed] transition-colors cursor-pointer"
-          >
-            Problem
-          </a>
+        <nav className="hidden md:flex items-center gap-8 text-[13px] font-normal text-[#858a86]">
           <a
             href="/#living-system"
             onClick={(e) => scrollToSection(e, 'living-system')}
-            className="hover:text-[#ededed] transition-colors cursor-pointer"
+            className="hover:text-[#f2f2ee] transition-colors"
           >
-            Living Model
+            Product
           </a>
           <a
-            href="/#investigation"
-            onClick={(e) => scrollToSection(e, 'investigation')}
-            className="hover:text-[#ededed] transition-colors cursor-pointer"
+            href="/#problem"
+            onClick={(e) => scrollToSection(e, 'problem')}
+            className="hover:text-[#f2f2ee] transition-colors"
           >
-            Investigation
+            How it works
           </a>
           <a
-            href="/#simulation"
-            onClick={(e) => scrollToSection(e, 'simulation')}
-            className="hover:text-[#ededed] transition-colors cursor-pointer"
+            href="/#security"
+            onClick={(e) => scrollToSection(e, 'security')}
+            className="hover:text-[#f2f2ee] transition-colors"
           >
-            Simulation
-          </a>
-          <a
-            href="/#control"
-            onClick={(e) => scrollToSection(e, 'control')}
-            className="hover:text-[#ededed] transition-colors cursor-pointer"
-          >
-            Control & Policy
+            Security
           </a>
           <a
             href="/#memory"
             onClick={(e) => scrollToSection(e, 'memory')}
-            className="hover:text-[#ededed] transition-colors cursor-pointer"
+            className="hover:text-[#f2f2ee] transition-colors"
           >
             Memory
           </a>
         </nav>
 
-        {/* Right CTA - Desktop */}
-        <div className="hidden sm:flex items-center gap-3">
+        {/* Right CTA */}
+        <div className="hidden sm:flex items-center">
           <Link
             to="/contact"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-medium text-[#888d96] hover:text-[#ededed] hover:bg-[#12151a] rounded border border-transparent hover:border-[#1e2229] transition-all"
-          >
-            <Terminal className="w-3.5 h-3.5" />
-            Console
-          </Link>
-          <Link
-            to="/contact"
-            className="inline-flex items-center justify-center px-4 py-1.5 text-xs font-medium text-white bg-[#0ea5e9] hover:bg-[#38bdf8] rounded border border-[#0284c7] transition-all duration-150 shadow-sm"
+            className="inline-flex items-center justify-center px-3.5 py-1.5 text-xs font-medium text-white bg-[#0ea5e9] hover:bg-[#38bdf8] rounded transition-colors duration-150"
           >
             Connect cloud
           </Link>
@@ -113,8 +86,8 @@ export const Navbar: React.FC = () => {
         {/* Mobile Hamburger Toggle */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 text-[#888d96] hover:text-white focus:outline-none"
-          aria-label="Toggle menu"
+          className="md:hidden p-1.5 text-[#858a86] hover:text-[#f2f2ee] focus:outline-none"
+          aria-label="Toggle navigation menu"
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
@@ -122,55 +95,41 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Slide-down Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#0d0f14] border-b border-[#1e2229] px-6 py-6 transition-all">
-          <div className="flex flex-col gap-4 text-sm font-medium text-[#888d96]">
-            <a
-              href="/#problem"
-              onClick={(e) => scrollToSection(e, 'problem')}
-              className="hover:text-white transition-colors py-1"
-            >
-              Problem
-            </a>
+        <div className="md:hidden bg-[#0d100d] border-b border-white/[0.06] px-6 py-6 transition-all">
+          <div className="flex flex-col gap-4 text-sm font-normal text-[#858a86]">
             <a
               href="/#living-system"
               onClick={(e) => scrollToSection(e, 'living-system')}
-              className="hover:text-white transition-colors py-1"
+              className="hover:text-[#f2f2ee] transition-colors py-1"
             >
-              Living Model
+              Product
             </a>
             <a
-              href="/#investigation"
-              onClick={(e) => scrollToSection(e, 'investigation')}
-              className="hover:text-white transition-colors py-1"
+              href="/#problem"
+              onClick={(e) => scrollToSection(e, 'problem')}
+              className="hover:text-[#f2f2ee] transition-colors py-1"
             >
-              Investigation
+              How it works
             </a>
             <a
-              href="/#simulation"
-              onClick={(e) => scrollToSection(e, 'simulation')}
-              className="hover:text-white transition-colors py-1"
+              href="/#security"
+              onClick={(e) => scrollToSection(e, 'security')}
+              className="hover:text-[#f2f2ee] transition-colors py-1"
             >
-              Simulation
-            </a>
-            <a
-              href="/#control"
-              onClick={(e) => scrollToSection(e, 'control')}
-              className="hover:text-white transition-colors py-1"
-            >
-              Control & Policy
+              Security
             </a>
             <a
               href="/#memory"
               onClick={(e) => scrollToSection(e, 'memory')}
-              className="hover:text-white transition-colors py-1"
+              className="hover:text-[#f2f2ee] transition-colors py-1"
             >
               Memory
             </a>
-            <div className="pt-3 border-t border-[#1e2229] flex flex-col gap-2">
+            <div className="pt-3 border-t border-white/[0.06] flex flex-col gap-2">
               <Link
                 to="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full inline-flex items-center justify-center px-4 py-2 text-xs font-medium text-white bg-[#0ea5e9] hover:bg-[#38bdf8] rounded transition-all text-center"
+                className="w-full inline-flex items-center justify-center px-4 py-2 text-xs font-medium text-white bg-[#0ea5e9] hover:bg-[#38bdf8] rounded text-center"
               >
                 Connect cloud
               </Link>
