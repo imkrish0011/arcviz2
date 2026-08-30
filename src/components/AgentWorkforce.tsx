@@ -9,6 +9,21 @@ export const AgentWorkforce: React.FC = () => {
 
   const agents = [
     {
+      id: "devops",
+      name: "DevOps Agent",
+      icon: <Network className="w-4 h-4 text-[#38bdf8]" />,
+      targetResource: "github.actions.deploy_pipeline",
+      domain: "CI/CD & IaC Patches",
+      task: "Correlating container image digest, git commit SHAs, and Terraform plan changes across environments",
+      finding: "PR #429 applied commit #8f31b9d without triggering schema breaking changes • Synthesized clean rollback plan",
+      metric: "Rollout: v43 -> v42 Ready",
+      status: "Verified",
+      color: "#38bdf8",
+      thoughtLog: `[14:32:20.250] Sub-Agent 'DevOps' inspecting GitHub Actions deployment workflow.
+[14:32:20.390] Verified container image digest sha256:48b0a9 against staging registry.
+[14:32:20.550] Synthesized zero-downtime rollback task definition patch for ECS.`
+    },
+    {
       id: "sre",
       name: "Reliability Agent",
       icon: <Activity className="w-4 h-4 text-[#10b981]" />,
@@ -125,7 +140,7 @@ export const AgentWorkforce: React.FC = () => {
                       Active Agent Delegation Mesh
                     </span>
                     <span className={isDelegating ? 'text-[#38bdf8] animate-pulse font-semibold' : 'text-[#10b981]'}>
-                      {isDelegating ? '⚡ Delegating Concurrently...' : '4 Active Sub-Agents'}
+                      {isDelegating ? '⚡ Delegating Concurrently...' : '5 Active Domain Agents'}
                     </span>
                   </div>
 
@@ -145,15 +160,16 @@ export const AgentWorkforce: React.FC = () => {
                   {/* Radiating Connector Lines */}
                   <div className="flex justify-center mb-4">
                     <div className="w-full max-w-lg h-[1.5px] bg-gradient-to-r from-transparent via-white/[0.2] to-transparent relative">
-                      <div className="absolute top-0 left-6 w-[1.5px] h-6 bg-white/[0.2]" />
-                      <div className="absolute top-0 left-1/3 w-[1.5px] h-6 bg-white/[0.2]" />
-                      <div className="absolute top-0 left-2/3 w-[1.5px] h-6 bg-white/[0.2]" />
-                      <div className="absolute top-0 right-6 w-[1.5px] h-6 bg-white/[0.2]" />
+                      <div className="absolute top-0 left-4 w-[1.5px] h-6 bg-white/[0.2]" />
+                      <div className="absolute top-0 left-1/4 w-[1.5px] h-6 bg-white/[0.2]" />
+                      <div className="absolute top-0 left-1/2 w-[1.5px] h-6 bg-white/[0.2]" />
+                      <div className="absolute top-0 left-3/4 w-[1.5px] h-6 bg-white/[0.2]" />
+                      <div className="absolute top-0 right-4 w-[1.5px] h-6 bg-white/[0.2]" />
                     </div>
                   </div>
 
-                  {/* 4 Specialized Domain Agents in Mesh Grid */}
-                  <div className="grid grid-cols-2 gap-3 pt-2">
+                  {/* 5 Specialized Domain Agents in Mesh Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                     {agents.map((agent) => (
                       <button
                         key={agent.id}

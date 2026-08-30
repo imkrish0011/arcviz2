@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Sliders, FileCode2, Lock, Eye, MessageSquare, FileText, CheckSquare, Zap } from 'lucide-react';
+import { ShieldCheck, Sliders, FileCode2, Lock, Eye, MessageSquare, FileText, CheckSquare, Zap, Cpu } from 'lucide-react';
 import { ScrollReveal } from './ui/ScrollReveal';
 
 interface Scenario {
@@ -18,49 +18,57 @@ interface Scenario {
 }
 
 export const AutonomyControl: React.FC = () => {
-  const [levelIndex, setLevelIndex] = useState<number>(3); // Level 4 (APPROVE) default
+  const [levelIndex, setLevelIndex] = useState<number>(3); // L3 Approve & Execute default
   const [selectedScenarioId, setSelectedScenarioId] = useState<string>('prod-db');
 
   const levels = [
     {
-      level: 1,
-      name: "OBSERVE",
+      level: 0,
+      name: "L0 OBSERVE",
       icon: <Eye className="w-4 h-4 text-[#858a85]" />,
       iam: "Read-Only IAM",
       badge: "Discovery",
-      desc: "Continuous discovery of multi-cloud resources, VPC routing, and telemetry with zero write permissions."
+      desc: "Continuous discovery of multi-cloud topology, VPC routing, and telemetry with zero write permissions."
     },
     {
-      level: 2,
-      name: "EXPLAIN",
+      level: 1,
+      name: "L1 EXPLAIN",
       icon: <MessageSquare className="w-4 h-4 text-[#38bdf8]" />,
       iam: "Zero Write Access",
       badge: "Reasoning",
       desc: "Answers architectural and incident questions with graph-verified citations and topological traces."
     },
     {
-      level: 3,
-      name: "RECOMMEND",
+      level: 2,
+      name: "L2 RECOMMEND",
       icon: <FileText className="w-4 h-4 text-[#a855f7]" />,
       iam: "PR Draft Only",
       badge: "IaC Patches",
       desc: "Generates tested Terraform/OpenTofu patches and pull requests for human engineer review."
     },
     {
-      level: 4,
-      name: "APPROVE",
+      level: 3,
+      name: "L3 APPROVE & EXECUTE",
       icon: <CheckSquare className="w-4 h-4 text-[#f59e0b]" />,
       iam: "Dual-Key Signoff",
       badge: "Human-in-Loop",
       desc: "Applies scoped infrastructure actions only after explicit engineer authorization via hardware token."
     },
     {
+      level: 4,
+      name: "L4 CONTROLLED AUTONOMY",
+      icon: <Cpu className="w-4 h-4 text-[#38bdf8]" />,
+      iam: "Bounded Runbooks",
+      badge: "Non-Prod Auto",
+      desc: "Executes pre-authorized runbooks for bounded non-breaking anomalies in staging and development."
+    },
+    {
       level: 5,
-      name: "EXECUTE",
+      name: "L5 HIGH AUTONOMY",
       icon: <Zap className="w-4 h-4 text-[#10b981]" />,
-      iam: "Scoped OPA Rules",
-      badge: "Autonomous",
-      desc: "Executes pre-authorized runbooks for bounded non-breaking anomalies in approved tiers."
+      iam: "Strict OPA Policy",
+      badge: "Full Policy Auto",
+      desc: "Autonomous self-healing across policy-approved production tiers with automatic rollback safety nets."
     }
   ];
 
@@ -74,11 +82,12 @@ export const AutonomyControl: React.FC = () => {
       risk: 'High',
       opaRule: 'rule.prod.database.tier1_requires_dual_key',
       decisionByLevel: {
-        0: { outcome: 'BLOCKED', label: 'Read-Only Mode', detail: 'Write action blocked by read-only IAM policy.' },
-        1: { outcome: 'BLOCKED', label: 'Explanation Only', detail: 'Generated explanation with zero infrastructure modification.' },
-        2: { outcome: 'DRAFT_PR', label: 'PR #452 Created', detail: 'Terraform patch drafted on branch fix/db-pool-tuning for review.' },
-        3: { outcome: 'REQUIRES_APPROVAL', label: 'Awaiting Dual-Key Signoff', detail: 'Digital twin simulated (0 downtime). Awaiting engineer sign-off.' },
-        4: { outcome: 'REQUIRES_APPROVAL', label: 'Awaiting Dual-Key Signoff', detail: 'Production OPA policy prevents autonomous apply without dual-key.' }
+        0: { outcome: 'BLOCKED', label: 'L0: Read-Only Mode', detail: 'Write action blocked by read-only IAM policy.' },
+        1: { outcome: 'BLOCKED', label: 'L1: Explanation Only', detail: 'Generated explanation with zero infrastructure modification.' },
+        2: { outcome: 'DRAFT_PR', label: 'L2: PR #452 Created', detail: 'Terraform patch drafted on branch fix/db-pool-tuning for review.' },
+        3: { outcome: 'REQUIRES_APPROVAL', label: 'L3: Awaiting Dual-Key Signoff', detail: 'Digital twin simulated (0 downtime). Awaiting engineer sign-off.' },
+        4: { outcome: 'REQUIRES_APPROVAL', label: 'L4: Production Requires Approval', detail: 'Production database action blocked from full autonomy by OPA rule.' },
+        5: { outcome: 'AUTO_EXECUTED', label: 'L5: Auto-Executed Under Policy', detail: 'Executed within strict change-window OPA rule with pre-verified rollback.' }
       }
     },
     {
@@ -90,11 +99,12 @@ export const AutonomyControl: React.FC = () => {
       risk: 'Low',
       opaRule: 'rule.staging.auto_restart_on_crash',
       decisionByLevel: {
-        0: { outcome: 'BLOCKED', label: 'Read-Only Mode', detail: 'Crash detected. Action blocked by read-only mode.' },
-        1: { outcome: 'BLOCKED', label: 'Crash Diagnostic', detail: 'Diagnostic report generated with container exit code 137.' },
-        2: { outcome: 'DRAFT_PR', label: 'PR #453 Created', detail: 'Drafted task definition update with increased memory limit.' },
-        3: { outcome: 'REQUIRES_APPROVAL', label: 'Approval Prompted', detail: 'Simulated 0 traffic loss. Click to authorize restart.' },
-        4: { outcome: 'AUTO_EXECUTED', label: 'Auto-Remediated via Ephemeral STS', detail: 'Pre-authorized OPA rule applied via ephemeral STS token. Service healthy.' }
+        0: { outcome: 'BLOCKED', label: 'L0: Read-Only Mode', detail: 'Crash detected. Action blocked by read-only mode.' },
+        1: { outcome: 'BLOCKED', label: 'L1: Crash Diagnostic', detail: 'Diagnostic report generated with container exit code 137.' },
+        2: { outcome: 'DRAFT_PR', label: 'L2: PR #453 Created', detail: 'Drafted task definition update with increased memory limit.' },
+        3: { outcome: 'REQUIRES_APPROVAL', label: 'L3: Approval Prompted', detail: 'Simulated 0 traffic loss. Click to authorize restart.' },
+        4: { outcome: 'AUTO_EXECUTED', label: 'L4: Auto-Remediated in Staging', detail: 'Pre-authorized runbook applied via ephemeral STS token. Service healthy.' },
+        5: { outcome: 'AUTO_EXECUTED', label: 'L5: Self-Healed in Staging', detail: 'Container automatically healed under staging autonomy policy.' }
       }
     },
     {
@@ -106,11 +116,12 @@ export const AutonomyControl: React.FC = () => {
       risk: 'High',
       opaRule: 'rule.compliance.disallow_public_database_ports',
       decisionByLevel: {
-        0: { outcome: 'BLOCKED', label: 'Vulnerability Flagged', detail: 'Flagged exposure in living security graph.' },
-        1: { outcome: 'BLOCKED', label: 'Exposure Diagnostic', detail: 'Identified manual console change not tracked in Terraform.' },
-        2: { outcome: 'DRAFT_PR', label: 'Remediation PR #454', detail: 'Terraform drift fix PR opened with OPA compliance check.' },
-        3: { outcome: 'REQUIRES_APPROVAL', label: 'Remediation Ready', detail: 'Remediation blast radius verified. Awaiting security engineer click.' },
-        4: { outcome: 'AUTO_EXECUTED', label: 'Auto-Isolated by Policy', detail: 'Critical compliance violation remediated immediately by policy.' }
+        0: { outcome: 'BLOCKED', label: 'L0: Exposure Flagged', detail: 'Flagged exposure in living security graph.' },
+        1: { outcome: 'BLOCKED', label: 'L1: Exposure Diagnostic', detail: 'Identified manual console change not tracked in Terraform.' },
+        2: { outcome: 'DRAFT_PR', label: 'L2: Remediation PR #454', detail: 'Terraform drift fix PR opened with OPA compliance check.' },
+        3: { outcome: 'REQUIRES_APPROVAL', label: 'L3: Remediation Ready', detail: 'Remediation blast radius verified. Awaiting security engineer click.' },
+        4: { outcome: 'AUTO_EXECUTED', label: 'L4: Auto-Isolated by Policy', detail: 'Critical compliance violation remediated immediately by policy.' },
+        5: { outcome: 'AUTO_EXECUTED', label: 'L5: Auto-Isolated by Policy', detail: 'Immediate autonomous revocation of non-compliant public ingress.' }
       }
     }
   ];
@@ -137,17 +148,17 @@ export const AutonomyControl: React.FC = () => {
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
         {/* Section Header */}
         <ScrollReveal direction="up" delay={50} distance="30px">
-          <div className="max-w-3xl mb-16 md:mb-24 font-sans">
+          <div className="max-w-3xl mb-14 md:mb-20 font-sans">
             <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
-              06 / Progressive Autonomy Spectrum
+              07 / Progressive Autonomy Spectrum
             </span>
             <h2 className="text-4xl sm:text-6xl font-medium tracking-tight text-[#f1f2ee] leading-[1.02] mb-6">
               AI can act. <br />
               <span className="text-[#858a85]">You decide how much.</span>
             </h2>
-            <p className="text-base sm:text-lg text-[#888d96] leading-relaxed max-w-xl">
-              ArchViz operates on a continuous, granular autonomy spectrum. You establish deterministic Open Policy Agent (OPA) guardrails so AI never executes beyond your team's authorized boundaries.
+            <p className="text-base sm:text-lg text-[#888d96] leading-relaxed max-w-xl font-sans">
+              ArchViz operates on a 6-stage autonomy spectrum from pure read-only observation to policy-bounded execution. Higher autonomy is always governed by Open Policy Agent (OPA) rules.
             </p>
           </div>
         </ScrollReveal>
@@ -160,31 +171,31 @@ export const AutonomyControl: React.FC = () => {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-white/[0.08] gap-2">
                 <div className="flex items-center gap-2 text-[#f1f2ee]">
                   <Sliders className="w-4 h-4 text-[#38bdf8]" />
-                  <span className="font-semibold uppercase tracking-wider">Five-Stage Progressive Autonomy Spectrum</span>
+                  <span className="font-semibold uppercase tracking-wider">Six-Stage Progressive Autonomy Spectrum</span>
                 </div>
                 <span className="text-[11px] text-[#858a85]">
-                  Active Boundary: <span className="text-[#38bdf8] font-medium">Stage {currentLevel.level} ({currentLevel.name})</span>
+                  Active Boundary: <span className="text-[#38bdf8] font-medium">{currentLevel.name}</span>
                 </span>
               </div>
 
-              {/* 5-Stage Interactive Spectrum Bar: OBSERVE -> EXPLAIN -> RECOMMEND -> APPROVE -> EXECUTE */}
-              <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
+              {/* 6-Stage Interactive Spectrum Bar: L0 -> L5 */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
                 {levels.map((lvl, idx) => (
                   <button
-                    key={idx}
+                    key={lvl.level}
                     onClick={() => setLevelIndex(idx)}
                     className={`p-4 rounded-xl text-left transition-all duration-300 cursor-pointer border ${
                       levelIndex === idx
-                        ? 'border-[#38bdf8] bg-[#38bdf8]/15 text-[#f1f2ee] shadow-[0_0_20px_rgba(56,189,248,0.18)] scale-[1.02]'
+                        ? 'border-[#38bdf8] bg-[#38bdf8]/15 text-[#f1f2ee] shadow-[0_0_20px_rgba(56,189,248,0.2)] scale-[1.02]'
                         : 'border-white/[0.06] bg-[#0d100d]/80 text-[#858a85] hover:border-white/20'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[10px] text-[#505551] uppercase">0{lvl.level}</span>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-[10px] text-[#505551] uppercase font-semibold">{lvl.badge}</span>
                       {lvl.icon}
                     </div>
-                    <span className="font-semibold text-sm block text-[#f1f2ee] mb-1">{lvl.name}</span>
-                    <span className="text-[10px] text-[#38bdf8] block">{lvl.iam}</span>
+                    <span className="font-semibold text-xs block text-[#f1f2ee] mb-1">{lvl.name}</span>
+                    <span className="text-[10px] text-[#38bdf8] block truncate">{lvl.iam}</span>
                   </button>
                 ))}
               </div>
@@ -195,7 +206,7 @@ export const AutonomyControl: React.FC = () => {
           <div className="space-y-6">
             <ScrollReveal direction="up" delay={200} distance="30px">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-white/[0.06] gap-4">
-                <span className="text-[#f1f2ee] font-medium">Evaluate Operational Scenario:</span>
+                <span className="text-[#f1f2ee] font-medium">Evaluate Operational Scenario Against Spectrum:</span>
 
                 {/* Scenario Selector Pills */}
                 <div className="flex flex-wrap gap-2">
@@ -205,7 +216,7 @@ export const AutonomyControl: React.FC = () => {
                       onClick={() => setSelectedScenarioId(sc.id)}
                       className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer border ${
                         selectedScenarioId === sc.id
-                          ? 'border-[#38bdf8] bg-[#38bdf8]/20 text-[#f1f2ee] font-medium'
+                          ? 'border-[#38bdf8] bg-[#38bdf8]/20 text-[#f1f2ee] font-semibold'
                           : 'border-white/[0.06] bg-[#0d100d]/80 text-[#858a85] hover:text-[#f1f2ee]'
                       }`}
                     >
@@ -221,10 +232,10 @@ export const AutonomyControl: React.FC = () => {
               {/* Scenario Details & OPA Code (Slide from Left) */}
               <div className="lg:col-span-6 space-y-4">
                 <ScrollReveal direction="left" delay={280} distance="50px">
-                  <div className="p-5 rounded-xl border border-white/[0.08] bg-[#0d100d]/80 backdrop-blur-md space-y-2 shadow-lg">
+                  <div className="p-5 rounded-2xl border border-white/[0.08] bg-[#0d100d]/85 backdrop-blur-md space-y-2 shadow-lg">
                     <div className="flex items-center justify-between">
                       <span className="text-[#505551] text-[10px] uppercase">Target Resource</span>
-                      <span className={`text-[10px] px-2 py-0.5 rounded font-medium ${
+                      <span className={`text-[10px] px-2 py-0.5 rounded font-semibold ${
                         activeScenario.risk === 'High' ? 'bg-[#ef4444]/15 text-[#ef4444]' : 'bg-[#10b981]/15 text-[#10b981]'
                       }`}>
                         {activeScenario.risk} Risk • {activeScenario.env}
@@ -234,20 +245,20 @@ export const AutonomyControl: React.FC = () => {
                     <div className="text-xs text-[#858a85]">{activeScenario.action}</div>
                   </div>
 
-                  <div className="p-5 rounded-xl border border-white/[0.08] bg-[#050605] text-[11px] space-y-1 shadow-lg mt-4">
+                  <div className="p-5 rounded-2xl border border-white/[0.08] bg-[#050605] text-[11px] space-y-1 shadow-lg mt-4">
                     <div className="text-[#505551] text-[10px] flex items-center justify-between pb-2 mb-2 border-b border-white/[0.04]">
                       <span className="flex items-center gap-1.5">
                         <FileCode2 className="w-3.5 h-3.5 text-[#38bdf8]" />
                         <span>Evaluated OPA Policy Guardrail</span>
                       </span>
-                      <span className="text-[#38bdf8]">{activeScenario.opaRule}</span>
+                      <span className="text-[#38bdf8] font-mono">{activeScenario.opaRule}</span>
                     </div>
-                    <pre className="text-[#858a85] leading-relaxed overflow-x-auto pt-1 font-mono">
+                    <pre className="text-[#858a85] leading-relaxed overflow-x-auto pt-1 font-mono text-[10px]">
 {`# Open Policy Agent (OPA) Guardrail Check
 default allow = false
 allow if {
   input.environment == "${activeScenario.env.toLowerCase()}"
-  input.autonomy_level >= ${levelIndex + 1}
+  input.autonomy_level >= ${levelIndex}
   not input.touches_production_data
 }`}
                     </pre>
@@ -258,7 +269,7 @@ allow if {
               {/* Policy Decision & Action Outcome (Slide from Right) */}
               <div className="lg:col-span-6">
                 <ScrollReveal direction="right" delay={280} distance="50px">
-                  <div className="p-8 rounded-xl border border-white/[0.1] bg-[#0d100d]/90 backdrop-blur-md flex flex-col justify-between h-full shadow-2xl relative overflow-hidden">
+                  <div className="p-8 rounded-2xl border border-white/[0.12] bg-[#0d100d]/95 backdrop-blur-xl flex flex-col justify-between h-full shadow-2xl relative overflow-hidden">
                     <div>
                       <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.06]">
                         <span className="text-[10px] text-[#505551] uppercase tracking-wider">Policy Engine Decision</span>
@@ -276,7 +287,7 @@ allow if {
                       </div>
 
                       <div className="space-y-3">
-                        <div className="text-xl font-semibold text-[#f1f2ee]">
+                        <div className="text-xl font-semibold text-[#f1f2ee] font-sans">
                           {currentDecision.label}
                         </div>
                         <p className="text-xs text-[#858a85] font-sans leading-relaxed">
@@ -286,7 +297,7 @@ allow if {
                     </div>
 
                     <div className="pt-5 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-[#505551]">
-                      <span className="flex items-center gap-1.5 text-[#10b981]">
+                      <span className="flex items-center gap-1.5 text-[#10b981] font-semibold">
                         <ShieldCheck className="w-3.5 h-3.5" /> Deterministic OPA Verification
                       </span>
                       <span className="flex items-center gap-1">

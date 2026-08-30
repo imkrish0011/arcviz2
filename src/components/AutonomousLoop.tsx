@@ -3,10 +3,10 @@ import {
   Play, 
   RotateCcw, 
   CheckCircle2, 
-  Activity, 
+  Eye, 
   Search, 
+  MessageSquare,
   Sliders, 
-  ShieldCheck, 
   KeyRound, 
   Cpu, 
   LineChart, 
@@ -33,74 +33,74 @@ export const AutonomousLoop: React.FC = () => {
   const phases: LoopPhase[] = [
     {
       id: 0,
-      name: "Detect",
-      short: "01 DETECT",
-      icon: <Activity className="w-4 h-4 text-[#ef4444]" />,
-      title: "Real-Time Telemetry Anomaly Ingestion",
-      summary: "CloudWatch metric stream flagged a 20x latency spike on route POST /checkout. Target group error budget depleted by 4.2%.",
-      telemetry: "Metric: p99_latency > 800ms (Threshold: 50ms) • Status: Triggered",
-      auditLedger: `14:32:18.102 | ALERT: CloudWatch alarm 'alb-p99-latency-high' -> ALARM state.
-14:32:18.145 | INGEST: Ingested 1,420 distributed APM spans across VPC vpc-08a9f.
-14:32:18.190 | EVENT: Operational investigation trigger created and dispatched to graph.`
+      name: "See",
+      short: "01 SEE",
+      icon: <Eye className="w-4 h-4 text-[#38bdf8]" />,
+      title: "Continuous Multi-Cloud Discovery & Telemetry Stream",
+      summary: "Ingests live resources, routing tables, and metrics across AWS, Azure, and GCP via read-only IAM in real time.",
+      telemetry: "Ingested: 214 multi-cloud nodes • CloudWatch p99 stream live",
+      auditLedger: `14:32:18.102 | INGEST: Ingested 1,420 distributed APM spans across VPC vpc-08a9f.
+14:32:18.145 | ALERT: CloudWatch alarm 'alb-p99-latency-high' flagged on route /checkout.
+14:32:18.190 | EVENT: Real-time discovery snapshot synchronized with active topology.`
     },
     {
       id: 1,
-      name: "Investigate",
-      short: "02 INVESTIGATE",
+      name: "Understand",
+      short: "02 UNDERSTAND",
       icon: <Search className="w-4 h-4 text-[#38bdf8]" />,
-      title: "Parallel Sub-Agent Graph Traversal",
-      summary: "Reliability and Database agents traversed the dependency graph, isolating connection pool exhaustion on Aurora PostgreSQL primary.",
-      telemetry: "Graph Depth: 4 hops • Correlated Nodes: svc-checkout -> aurora-pg",
-      auditLedger: `14:32:20.310 | AGENT[reliability]: Scanned ECS Fargate task thread pool. 8 workers stalled.
-14:32:20.450 | AGENT[database]: Aurora active connection count at 495/500 (99.0%).
-14:32:20.720 | CORRELATION: Commit #8f31b9d introduced unclosed DB handle in transaction loop.`
+      title: "Living System Graph Correlation",
+      summary: "Connects the latency alert to the exact upstream ALB route and downstream ECS container task group in the graph.",
+      telemetry: "Graph Depth: 4 hops • Correlated Route: /api/v1/checkout",
+      auditLedger: `14:32:19.010 | GRAPH_TRAVERSE: alb-public-prod -> svc-checkout-prod -> aurora-pg-primary.
+14:32:19.450 | CONTEXT_LINK: Linked commit #8f31b9d in PR #429 to active task definition v43.
+14:32:19.820 | METRIC_MAP: P99 latency rise directly correlated with container worker saturation.`
     },
     {
       id: 2,
-      name: "Simulate",
-      short: "03 SIMULATE",
-      icon: <Sliders className="w-4 h-4 text-[#38bdf8]" />,
-      title: "Pre-Flight Digital Twin Blast Radius Check",
-      summary: "Evaluated task definition rollback to v42 in simulated twin. Projected 0 dropped connections and 75% connection release.",
-      telemetry: "Simulated Blast Radius: 0 breaking changes • +375 DB handles freed",
-      auditLedger: `14:32:22.100 | TWIN: Instantiated digital twin topology for VPC vpc-08a9f.
-14:32:22.340 | DIFF: Task definition rollback 'svc-checkout:43' -> 'svc-checkout:42'.
-14:32:22.580 | SIM_ASSERT: 0 breaking schema changes • Projected P99 drops from 890ms to 38ms.`
+      name: "Explain",
+      short: "03 EXPLAIN",
+      icon: <MessageSquare className="w-4 h-4 text-[#38bdf8]" />,
+      title: "Evidence-Backed Incident Diagnostic",
+      summary: "Sub-agents synthesize natural language diagnosis: Aurora connection pool saturated at 495/500 handles due to unclosed transaction loop.",
+      telemetry: "Diagnosis: Aurora DB connection pool starvation (94% confidence)",
+      auditLedger: `14:32:20.310 | AGENT[reliability]: 8 ECS container workers stalled on DB connection leases.
+14:32:20.450 | AGENT[database]: Aurora PostgreSQL active handles at 495/500 (99.0%).
+14:32:20.720 | REASONING: Code diff reveals missing defer db.Close() in payment controller.`
     },
     {
       id: 3,
-      name: "Policy Check",
-      short: "04 POLICY",
-      icon: <ShieldCheck className="w-4 h-4 text-[#10b981]" />,
-      title: "Open Policy Agent (OPA) Guardrail Evaluation",
-      summary: "Action verified against organizational compliance rules. Evaluated zero-downtime rolling update constraints.",
-      telemetry: "OPA Rule: rule.prod.zero_downtime_rolling_update • Result: ALLOWED",
-      auditLedger: `14:32:23.010 | OPA_EVAL: Evaluated payload against 14 enterprise policy rules.
-14:32:23.080 | RULE_PASS: 'require_immutable_tags' -> PASS.
-14:32:23.120 | RULE_PASS: 'tier1_service_rollback_bounds' -> PASS (Dual-Key authorization required).`
+      name: "Simulate",
+      short: "04 SIMULATE",
+      icon: <Sliders className="w-4 h-4 text-[#38bdf8]" />,
+      title: "Pre-Flight Digital Twin Blast Radius Check",
+      summary: "Evaluates task definition rollback to v42 in simulated twin. Asserts 0 dropped connections and 75% connection pool release.",
+      telemetry: "Simulation: 0 breaking schema changes • +375 DB handles freed",
+      auditLedger: `14:32:22.100 | TWIN_INIT: Instantiated digital twin topology for VPC vpc-08a9f.
+14:32:22.340 | DIFF_EVAL: Simulated rolling update 'svc-checkout:43' -> 'svc-checkout:42'.
+14:32:22.580 | ASSERT_PASS: 0 breaking changes • Projected latency drops from 890ms to 38ms.`
     },
     {
       id: 4,
-      name: "Approve",
-      short: "05 APPROVE",
+      name: "Decide",
+      short: "05 DECIDE",
       icon: <KeyRound className="w-4 h-4 text-[#f59e0b]" />,
-      title: "Dual-Key Production Authorization Verified",
-      summary: "Action payload cryptographically signed by on-call engineer via WebAuthn hardware token.",
-      telemetry: "Authorizer: alex@company.com (SRE Lead) • WebAuthn Verified",
-      auditLedger: `14:32:24.210 | AUTH_PROMPT: Production tier-1 action prompted engineer authorization.
-14:32:25.850 | SIGN_OFF: WebAuthn cryptographic signature verified (key_id: 88f2-a0b4).
-14:32:25.890 | STS_INIT: Minted 15-minute scoped ephemeral IAM credentials.`
+      title: "Deterministic OPA Policy & Dual-Key Authorization",
+      summary: "Evaluated against organizational OPA guardrails and signed off by on-call engineer via WebAuthn hardware token.",
+      telemetry: "Policy: OPA rule.prod.zero_downtime_rolling_update • Dual-Key Signed",
+      auditLedger: `14:32:23.010 | OPA_EVAL: Validated payload against 14 enterprise policy rules -> PASS.
+14:32:24.210 | AUTH_PROMPT: Production tier-1 action prompted engineer sign-off.
+14:32:25.850 | HARDWARE_SIGN: WebAuthn signature verified (SRE Lead: alex@company.com).`
     },
     {
       id: 5,
-      name: "Execute",
-      short: "06 EXECUTE",
+      name: "Act",
+      short: "06 ACT",
       icon: <Cpu className="w-4 h-4 text-[#38bdf8]" />,
       title: "Scoped Ephemeral STS Execution",
-      summary: "Applied zero-downtime task definition update to ECS cluster. New healthy tasks spun up before draining old tasks.",
-      telemetry: "Target: aws_ecs_service.checkout_prod • Status: Rolled Back",
-      auditLedger: `14:32:26.110 | APPLY: aws_ecs_update_service(cluster="prod-main", service="checkout", task_def="v42")
-14:32:26.940 | ROLLING: 8 new v42 tasks reached HEALTHY status on target group.
+      summary: "Minted temporary 15-minute IAM credentials to perform rolling task definition update to ECS cluster with zero downtime.",
+      telemetry: "Target: aws_ecs_service.checkout_prod • 8 tasks rolled to v42",
+      auditLedger: `14:32:26.010 | STS_MINT: Generated 15-minute scoped execution token for ECS update.
+14:32:26.440 | APPLY: aws_ecs_update_service(cluster="prod", service="checkout", task_def="v42")
 14:32:27.420 | DRAIN: 8 old v43 tasks safely drained. Ephemeral credentials revoked.`
     },
     {
@@ -109,23 +109,23 @@ export const AutonomousLoop: React.FC = () => {
       short: "07 VERIFY",
       icon: <LineChart className="w-4 h-4 text-[#10b981]" />,
       title: "Post-Flight SLO & Health Assertion",
-      summary: "Validated continuous telemetry streams: p99 latency returned to 38.2ms and Aurora connection pool stabilized at 24%.",
-      telemetry: "Post-Flight p99: 38.2ms (Restored) • Target Group: 100% Healthy",
-      auditLedger: `14:32:28.020 | HEALTH_CHECK: Polling 8 target group health probes -> 8/8 OK.
-14:32:28.840 | METRIC_ASSERT: P99 latency stabilized at 38.2ms (within SLO budget).
-14:32:29.110 | DB_ASSERT: Aurora active connection handles fell from 495 -> 120 / 500.`
+      summary: "Validated live telemetry: P99 latency normalized to 38.2ms and Aurora connection pool stabilized at 24% capacity.",
+      telemetry: "Post-Flight P99: 38.2ms (SLO Restored) • Pool: 120/500 Handles",
+      auditLedger: `14:32:28.020 | PROBE_CHECK: 8/8 target group health probes reporting HTTP 200 OK.
+14:32:28.840 | METRIC_ASSERT: P99 latency stabilized at 38.2ms (well under 50ms budget).
+14:32:29.110 | DB_ASSERT: Aurora active handles fell from 495 -> 120 / 500.`
     },
     {
       id: 7,
       name: "Learn",
       short: "08 LEARN",
-      icon: <Database className="w-4 h-4 text-[#10b981]" />,
-      title: "Persistent Operational Memory Indexed",
-      summary: "Incident graph, root cause commit, and tested remediation procedure indexed to Operational Memory for future instant retrieval.",
-      telemetry: "Indexed To: Incident Memory & Procedural Runbooks • 100% Replayable",
-      auditLedger: `14:32:30.050 | POST_MORTEM: Auto-generated post-mortem topology and incident summary.
-14:32:30.410 | MEMORY_APPEND: Appended remediation lineage to persistent knowledge graph.
-14:32:30.680 | CYCLE_COMPLETE: Closed-loop autonomous operational cycle completed.`
+      icon: <Database className="w-4 h-4 text-[#a855f7]" />,
+      title: "Persistent Operational Memory Indexing",
+      summary: "Incident graph, root cause commit, and tested remediation procedure indexed to Operational Memory for instant future retrieval.",
+      telemetry: "Indexed: Incident Graph #INC-0842 • 100% Replayable Runbook",
+      auditLedger: `14:32:30.050 | POST_MORTEM: Auto-generated post-mortem topology and root cause diff.
+14:32:30.410 | MEMORY_APPEND: Appended tested rollback runbook to persistent knowledge graph.
+14:32:30.680 | LOOP_COMPLETE: 8-stage autonomous operational loop completed successfully.`
     }
   ];
 
@@ -139,7 +139,7 @@ export const AutonomousLoop: React.FC = () => {
         }
         return prev + 1;
       });
-    }, 2800);
+    }, 2600);
     return () => clearTimeout(timer);
   }, [activeStep, isAutoRunning, phases.length]);
 
@@ -165,17 +165,17 @@ export const AutonomousLoop: React.FC = () => {
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
         {/* Section Header */}
         <ScrollReveal direction="up" delay={50} distance="30px">
-          <div className="max-w-3xl mb-16 md:mb-24 font-sans">
+          <div className="max-w-3xl mb-14 md:mb-20 font-sans">
             <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
-              07 / Closed-Loop Autonomy
+              08 / Signature ArchViz Loop
             </span>
             <h2 className="text-4xl sm:text-6xl font-medium tracking-tight text-[#f1f2ee] leading-[1.02] mb-6">
-              Autonomous operations <br />
-              <span className="text-[#858a85]">in a closed loop.</span>
+              The continuous <br />
+              <span className="text-[#858a85]">ArchViz operational loop.</span>
             </h2>
-            <p className="text-base sm:text-lg text-[#888d96] leading-relaxed max-w-xl">
-              ArchViz connects autonomous detection, diagnosis, pre-flight simulation, execution, and verification into one continuous, deterministic control loop.
+            <p className="text-base sm:text-lg text-[#888d96] leading-relaxed max-w-xl font-sans">
+              SEE → UNDERSTAND → EXPLAIN → SIMULATE → DECIDE → ACT → VERIFY → LEARN. A closed-loop control system that continuously improves your cloud infrastructure.
             </p>
           </div>
         </ScrollReveal>
@@ -184,21 +184,21 @@ export const AutonomousLoop: React.FC = () => {
         <div className="space-y-10">
           {/* Header Controls Bar with Reveal */}
           <ScrollReveal direction="up" delay={100} distance="30px">
-            <div className="p-4 sm:p-5 rounded-xl border border-white/[0.08] bg-[#0d100d]/80 backdrop-blur-md flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-lg">
+            <div className="p-4 sm:p-5 rounded-2xl border border-white/[0.08] bg-[#0d100d]/85 backdrop-blur-md flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-lg">
               <div className="flex items-center gap-3">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse" />
                 <span className="text-xs text-[#f1f2ee] uppercase tracking-wider font-semibold">
-                  Autonomous Execution Pipeline Trace
+                  Continuous 8-Phase Operational Cycle
                 </span>
               </div>
 
               <div className="flex items-center gap-3">
                 <button
                   onClick={handleRunCycle}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0ea5e9] hover:bg-[#38bdf8] text-white font-medium transition-all cursor-pointer shadow-md"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0ea5e9] hover:bg-[#38bdf8] text-white font-semibold transition-all cursor-pointer shadow-md"
                 >
                   <Play className="w-3.5 h-3.5 fill-current" />
-                  <span>Run Full Cycle</span>
+                  <span>Run Signature Loop</span>
                 </button>
 
                 <button
@@ -233,7 +233,7 @@ export const AutonomousLoop: React.FC = () => {
                   </div>
                   <span className="font-semibold text-xs block text-[#f1f2ee]">{phase.name}</span>
                   <span className={`text-[9px] block mt-1 ${
-                    activeStep === phase.id ? 'text-[#38bdf8] font-medium' : activeStep > phase.id ? 'text-[#10b981]' : 'text-[#505551]'
+                    activeStep === phase.id ? 'text-[#38bdf8] font-semibold' : activeStep > phase.id ? 'text-[#10b981]' : 'text-[#505551]'
                   }`}>
                     {activeStep === phase.id ? 'Active' : activeStep > phase.id ? 'Passed' : 'Pending'}
                   </span>
@@ -242,16 +242,16 @@ export const AutonomousLoop: React.FC = () => {
             </div>
           </ScrollReveal>
 
-          {/* Detailed Active Phase Deep-Dive View with Left & Right Side-Entrance */}
+          {/* Detailed Active Phase Deep-Dive View */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             {/* Left: Phase Title, Summary & Telemetry (Slide from Left) */}
             <div className="lg:col-span-6">
               <ScrollReveal direction="left" delay={260} distance="50px">
-                <div className="p-8 rounded-xl border border-white/[0.1] bg-[#0d100d]/90 backdrop-blur-md flex flex-col justify-between shadow-2xl h-full relative overflow-hidden">
+                <div className="p-8 rounded-2xl border border-white/[0.12] bg-[#0d100d]/95 backdrop-blur-xl flex flex-col justify-between shadow-2xl h-full space-y-4">
                   <div>
-                    <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.06]">
+                    <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-white/[0.06]">
                       <span className="text-[10px] text-[#505551] uppercase tracking-wider">Phase {currentPhase.id + 1} of 8</span>
-                      <span className="text-[#38bdf8] font-semibold px-2 py-0.5 rounded bg-[#38bdf8]/10">{currentPhase.short}</span>
+                      <span className="text-[#38bdf8] font-semibold px-2 py-0.5 rounded bg-[#38bdf8]/10 text-xs">{currentPhase.short}</span>
                     </div>
 
                     <div className="space-y-4 mb-6">
@@ -264,7 +264,7 @@ export const AutonomousLoop: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-lg border border-white/[0.06] bg-[#080a08]/90 text-[11px] text-[#10b981] flex items-center gap-2">
+                  <div className="p-4 rounded-xl border border-white/[0.06] bg-[#080a08]/90 text-[11px] text-[#10b981] flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
                     <span>{currentPhase.telemetry}</span>
                   </div>
@@ -275,14 +275,14 @@ export const AutonomousLoop: React.FC = () => {
             {/* Right: Cryptographic Audit Ledger (Slide from Right) */}
             <div className="lg:col-span-6">
               <ScrollReveal direction="right" delay={260} distance="50px">
-                <div className="p-6 sm:p-8 rounded-xl border border-white/[0.1] bg-[#050605] flex flex-col justify-between shadow-2xl h-full">
+                <div className="p-6 sm:p-8 rounded-2xl border border-white/[0.12] bg-[#050605] flex flex-col justify-between shadow-2xl h-full">
                   <div>
                     <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.04]">
                       <div className="flex items-center gap-2 text-[#505551] text-[10px]">
                         <FileCheck2 className="w-3.5 h-3.5 text-[#38bdf8]" />
                         <span>IMMUTABLE AUDIT LEDGER TRACE</span>
                       </div>
-                      <span className="text-[10px] text-[#10b981] px-2 py-0.5 rounded bg-[#10b981]/10">Verified Ledger</span>
+                      <span className="text-[10px] text-[#10b981] px-2 py-0.5 rounded bg-[#10b981]/10 font-semibold">Hardware Signed</span>
                     </div>
 
                     <pre className="text-[#858a85] text-[11px] font-mono leading-relaxed overflow-x-auto whitespace-pre-wrap">
@@ -292,9 +292,9 @@ export const AutonomousLoop: React.FC = () => {
 
                   <div className="pt-4 border-t border-white/[0.04] flex items-center justify-between text-[11px] text-[#505551]">
                     <span className="flex items-center gap-1.5 text-[#10b981]">
-                      <CheckCircle2 className="w-3.5 h-3.5" /> Hardware Signed & Replayable
+                      <CheckCircle2 className="w-3.5 h-3.5" /> Replayable Operational Record
                     </span>
-                    <span>Deterministic Control</span>
+                    <span>100% Deterministic</span>
                   </div>
                 </div>
               </ScrollReveal>

@@ -60,13 +60,20 @@ export const Navbar: React.FC = () => {
         </Link>
 
         {/* Center Nav Links - Desktop */}
-        <nav className="hidden lg:flex items-center gap-7 text-[13px] font-normal text-[#858a86]">
+        <nav className="hidden lg:flex items-center gap-6 text-[13px] font-normal text-[#858a86]">
           <a
-            href="/#build-connect"
-            onClick={(e) => scrollToSection(e, 'build-connect')}
+            href="/#what-is-archviz"
+            onClick={(e) => scrollToSection(e, 'what-is-archviz')}
             className="hover:text-[#f2f2ee] transition-colors cursor-pointer"
           >
-            How it works
+            What is ArchViz
+          </a>
+          <a
+            href="/#ask-archviz"
+            onClick={(e) => scrollToSection(e, 'ask-archviz')}
+            className="hover:text-[#f2f2ee] transition-colors cursor-pointer"
+          >
+            Ask ArchViz
           </a>
           <a
             href="/#living-system"
@@ -97,11 +104,11 @@ export const Navbar: React.FC = () => {
             Agents
           </a>
           <a
-            href="/#control"
-            onClick={(e) => scrollToSection(e, 'control')}
+            href="/#security-trust"
+            onClick={(e) => scrollToSection(e, 'security-trust')}
             className="hover:text-[#f2f2ee] transition-colors cursor-pointer"
           >
-            Security & Control
+            Security & Trust
           </a>
           <a
             href="/#memory"
@@ -138,11 +145,18 @@ export const Navbar: React.FC = () => {
         <div className="lg:hidden bg-[#0d100d] border-b border-white/[0.08] px-6 py-6 transition-all shadow-2xl">
           <div className="flex flex-col gap-3.5 text-sm font-normal text-[#858a86]">
             <a
-              href="/#build-connect"
-              onClick={(e) => scrollToSection(e, 'build-connect')}
+              href="/#what-is-archviz"
+              onClick={(e) => scrollToSection(e, 'what-is-archviz')}
               className="hover:text-[#f2f2ee] transition-colors py-1 cursor-pointer"
             >
-              How it works
+              What is ArchViz
+            </a>
+            <a
+              href="/#ask-archviz"
+              onClick={(e) => scrollToSection(e, 'ask-archviz')}
+              className="hover:text-[#f2f2ee] transition-colors py-1 cursor-pointer"
+            >
+              Ask ArchViz
             </a>
             <a
               href="/#living-system"
@@ -173,11 +187,11 @@ export const Navbar: React.FC = () => {
               Agents
             </a>
             <a
-              href="/#control"
-              onClick={(e) => scrollToSection(e, 'control')}
+              href="/#security-trust"
+              onClick={(e) => scrollToSection(e, 'security-trust')}
               className="hover:text-[#f2f2ee] transition-colors py-1 cursor-pointer"
             >
-              Security & Control
+              Security & Trust
             </a>
             <a
               href="/#memory"

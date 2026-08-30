@@ -22,7 +22,17 @@ export const LivingSystem: React.FC = () => {
   const [selectedNodeId, setSelectedNodeId] = useState<string>('ecs-checkout');
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const [filterProvider, setFilterProvider] = useState<'ALL' | 'AWS' | 'Azure' | 'GCP'>('ALL');
+  const [activeLayer, setActiveLayer] = useState<'services' | 'dependencies' | 'network' | 'iam' | 'runtime' | 'incidents'>('dependencies');
   const [activeInspectorTab, setActiveInspectorTab] = useState<'telemetry' | 'iam' | 'drift'>('telemetry');
+
+  const relationshipLayers = [
+    { id: 'services', label: '01. Services', desc: 'Compute & container instances' },
+    { id: 'dependencies', label: '02. Dependencies', desc: 'Upstream/downstream graph hops' },
+    { id: 'network', label: '03. Network', desc: 'VPC CIDRs, ALBs & edge routing' },
+    { id: 'iam', label: '04. IAM & Auth', desc: 'Least-privilege execution roles' },
+    { id: 'runtime', label: '05. Runtime', desc: 'P99 latency, CPU & pool handles' },
+    { id: 'incidents', label: '06. Incidents', desc: 'Correlated alarms & post-mortems' },
+  ] as const;
 
   const nodes: InteractiveNode[] = [
     {
@@ -162,33 +172,60 @@ export const LivingSystem: React.FC = () => {
           </div>
         </ScrollReveal>
 
-        {/* Multi-Cloud Interactive Filter & Live Signal Bar */}
+        {/* 6 Relationship Layers Lens Bar */}
         <ScrollReveal direction="up" delay={100} distance="30px">
-          <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-white/[0.08] bg-[#0d100d]/80 backdrop-blur-md mb-8 font-mono text-xs shadow-lg">
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] text-[#505551] uppercase tracking-wider mr-1">Filter Provider:</span>
-              {(['ALL', 'AWS', 'Azure', 'GCP'] as const).map((prov) => (
+          <div className="p-4 sm:p-5 rounded-2xl border border-white/[0.08] bg-[#0d100d]/85 backdrop-blur-md mb-8 font-mono text-xs shadow-lg space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/[0.06]">
+              <div className="flex items-center gap-2">
+                <Network className="w-4 h-4 text-[#10b981]" />
+                <span className="text-xs text-[#f1f2ee] font-semibold uppercase tracking-wider">
+                  Six Core Relationship Layers
+                </span>
+              </div>
+              <span className="text-[11px] text-[#858a85]">
+                Active Focus: <strong className="text-[#38bdf8]">{relationshipLayers.find(l => l.id === activeLayer)?.desc}</strong>
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+              {relationshipLayers.map((layer) => (
                 <button
-                  key={prov}
-                  onClick={() => setFilterProvider(prov)}
-                  className={`px-3 py-1 rounded-md transition-all cursor-pointer ${
-                    filterProvider === prov
-                      ? 'bg-[#38bdf8]/20 text-[#38bdf8] border border-[#38bdf8]/40 font-semibold'
-                      : 'bg-white/[0.03] text-[#858a85] border border-white/[0.06] hover:text-[#f1f2ee]'
+                  key={layer.id}
+                  onClick={() => setActiveLayer(layer.id)}
+                  className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+                    activeLayer === layer.id
+                      ? 'border-[#38bdf8] bg-[#38bdf8]/15 text-[#f1f2ee] shadow-[0_0_15px_rgba(56,189,248,0.2)] font-semibold'
+                      : 'border-white/[0.06] bg-[#080a08]/80 text-[#858a85] hover:text-[#f1f2ee]'
                   }`}
                 >
-                  {prov === 'ALL' ? 'All Providers (6)' : prov}
+                  <span className="text-xs block text-[#f1f2ee]">{layer.label}</span>
+                  <span className="text-[9px] text-[#505551] block truncate mt-0.5">{layer.desc}</span>
                 </button>
               ))}
             </div>
 
-            <div className="flex items-center gap-4 text-[11px] text-[#858a85]">
+            {/* Provider Filter Sub-Row */}
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-white/[0.04] text-[11px]">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#10b981] animate-ping" />
-                <span className="text-[#f1f2ee]">Live Telemetry Stream</span>
+                <span className="text-[10px] text-[#505551] uppercase">Filter Provider:</span>
+                {(['ALL', 'AWS', 'Azure', 'GCP'] as const).map((prov) => (
+                  <button
+                    key={prov}
+                    onClick={() => setFilterProvider(prov)}
+                    className={`px-2.5 py-0.5 rounded transition-all cursor-pointer ${
+                      filterProvider === prov
+                        ? 'bg-[#38bdf8]/20 text-[#38bdf8] border border-[#38bdf8]/40 font-semibold'
+                        : 'bg-white/[0.02] text-[#858a85] border border-white/[0.04] hover:text-[#f1f2ee]'
+                    }`}
+                  >
+                    {prov === 'ALL' ? 'All Providers (6)' : prov}
+                  </button>
+                ))}
               </div>
-              <span className="text-[#505551]">|</span>
-              <span className="text-[#38bdf8]">6/6 Synced (0 Drift)</span>
+              <div className="flex items-center gap-2 text-[10px] text-[#10b981]">
+                <span className="w-2 h-2 rounded-full bg-[#10b981] animate-ping" />
+                <span>6/6 Nodes Synced</span>
+              </div>
             </div>
           </div>
         </ScrollReveal>
