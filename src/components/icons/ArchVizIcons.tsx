@@ -37,35 +37,86 @@ export const ArchVizBrand: React.FC<{ className?: string }> = ({ className = "" 
   </div>
 );
 
-// Multi-Cloud Provider Icons
+// Official Online Cloud Provider & Infrastructure Brand Logos
 export const AwsIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M18.74 15.65c-2.3 1.69-5.63 2.59-8.5 2.59-4.04 0-7.68-1.53-10.43-4.09-.22-.2-.03-.49.24-.33 2.97 1.73 6.64 2.76 10.42 2.76 2.55 0 5.43-.65 7.97-2.02.39-.21.68.16.3.09zm1.18-1.32c-.29-.37-1.92-.18-2.65-.09-.22.03-.26-.14-.06-.28 1.3-1 3.44-.71 3.7-.38.26.34-.07 2.51-1.3 3.6-.19.17-.37.08-.29-.14.28-.71.89-2.34.6-2.71zM14.7 9.87c0 1.25-.09 2.29-.83 3.32-.61.85-1.47 1.34-2.42 1.34-1.32 0-2.07-1-2.07-2.47 0-2.88 2.52-3.4 5.32-3.4v1.21zm2.34 5.34c-.16.14-.38.16-.54.06-.73-.55-.86-.8-1.25-1.38-.94.95-2.04 1.5-3.37 1.5-2.03 0-3.52-1.32-3.52-3.5 0-1.74 1-3.03 2.5-3.72 1.29-.6 3.09-.72 4.46-.87v-.48c0-.75-.16-1.57-.75-2.11-.53-.48-1.28-.68-1.99-.68-1.38 0-2.6.59-2.92 2.05-.04.22-.2.38-.41.37l-2.04-.21c-.2-.04-.38-.2-.33-.43.51-2.48 2.59-3.44 5.56-3.44 1.5 0 3.12.39 4.23 1.5 1.13 1.13 1.21 2.65 1.21 4.22v3.74c0 1.13.48 1.63.93 2.24.16.22.14.47-.07.65l-1.99 1.49z"/>
-  </svg>
+  <img
+    src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/aws.svg"
+    alt="Amazon Web Services"
+    className={`inline-block object-contain ${className}`}
+    loading="lazy"
+  />
 );
 
 export const AzureIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M13.05 4.24l-5.7 10.12 4.1 3.52 7.7-11.45-6.1-2.19zm-7.9 11.23l2.84-5.06-4.99 7.71h5.85l-3.7-2.65z"/>
-  </svg>
+  <img
+    src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/azure-icon.svg"
+    alt="Microsoft Azure"
+    className={`inline-block object-contain ${className}`}
+    loading="lazy"
+  />
 );
 
 export const GcpIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/>
-  </svg>
+  <img
+    src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/google-cloud.svg"
+    alt="Google Cloud Platform"
+    className={`inline-block object-contain ${className}`}
+    loading="lazy"
+  />
+);
+
+export const KubernetesIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <img
+    src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/kubernetes.svg"
+    alt="Kubernetes"
+    className={`inline-block object-contain ${className}`}
+    loading="lazy"
+  />
 );
 
 export const TerraformIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M14.67 8.35v7.3l6.33-3.65V4.7l-6.33 3.65zm-7.34 4.22v7.3l6.34-3.65v-7.3L7.33 12.57zM1 4.7v7.3l6.33-3.65V1.05L1 4.7zm6.33 7.87L1 8.92v7.3l6.33 3.65v-7.3z"/>
-  </svg>
+  <img
+    src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/terraform-icon.svg"
+    alt="HashiCorp Terraform"
+    className={`inline-block object-contain ${className}`}
+    loading="lazy"
+  />
+);
+
+export const DockerIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <img
+    src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/docker-icon.svg"
+    alt="Docker"
+    className={`inline-block object-contain ${className}`}
+    loading="lazy"
+  />
 );
 
 export const GitHubIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-  </svg>
+  <img
+    src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/github-icon.svg"
+    alt="GitHub"
+    className={`inline-block object-contain ${className}`}
+    loading="lazy"
+  />
+);
+
+export const PostgresIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <img
+    src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/postgresql.svg"
+    alt="PostgreSQL"
+    className={`inline-block object-contain ${className}`}
+    loading="lazy"
+  />
+);
+
+export const RedisIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <img
+    src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/redis.svg"
+    alt="Redis"
+    className={`inline-block object-contain ${className}`}
+    loading="lazy"
+  />
 );
 
 export const CloudWatchIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (

@@ -21,58 +21,63 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-2 space-y-3">
             <ArchVizBrand />
             <p className="text-xs text-[#858a86] font-sans max-w-sm leading-relaxed mt-2">
-              The AI-native operating system for cloud infrastructure. Continuously model, investigate, simulate, and operate cloud environments with deterministic policy controls.
+              The AI-native intelligence and control layer for cloud infrastructure. Continuously model, investigate, simulate, and operate multi-cloud environments with deterministic policy controls.
             </p>
           </div>
 
-          {/* Architecture */}
+          {/* Architecture Modules */}
           <div>
             <h4 className="text-xs font-medium text-[#f2f2ee] uppercase tracking-wider mb-4">
               Architecture
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <a href="/#living-system" className="hover:text-[#f2f2ee] transition-colors">
+                <Link to="/living-model" className="hover:text-[#f2f2ee] transition-colors">
                   Living Model
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#investigation" className="hover:text-[#f2f2ee] transition-colors">
+                <Link to="/living-model#investigation" className="hover:text-[#f2f2ee] transition-colors">
                   AI Investigation
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#simulation" className="hover:text-[#f2f2ee] transition-colors">
-                  Pre-Flight Simulation
-                </a>
+                <Link to="/living-model#simulation" className="hover:text-[#f2f2ee] transition-colors">
+                  Pre-Flight Twin
+                </Link>
               </li>
               <li>
-                <a href="/#control" className="hover:text-[#f2f2ee] transition-colors">
-                  Security & Control
-                </a>
+                <Link to="/agents" className="hover:text-[#f2f2ee] transition-colors">
+                  Agent Workforce
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Platform */}
+          {/* Governance & Trust */}
           <div>
             <h4 className="text-xs font-medium text-[#f2f2ee] uppercase tracking-wider mb-4">
-              Platform
+              Governance
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <Link to="/contact" className="hover:text-[#f2f2ee] transition-colors">
-                  Connect Cloud
+                <Link to="/security" className="hover:text-[#f2f2ee] transition-colors">
+                  Security & Trust
                 </Link>
               </li>
               <li>
-                <Link to="/legal/privacy-policy" className="hover:text-[#f2f2ee] transition-colors">
-                  Security & Compliance
+                <Link to="/agents#control" className="hover:text-[#f2f2ee] transition-colors">
+                  Autonomy Spectrum
                 </Link>
               </li>
               <li>
-                <Link to="/legal/terms-of-service" className="hover:text-[#f2f2ee] transition-colors">
-                  Terms of Service
+                <Link to="/memory" className="hover:text-[#f2f2ee] transition-colors">
+                  Operational Memory
+                </Link>
+              </li>
+              <li>
+                <Link to="/security#onboarding" className="hover:text-[#f2f2ee] transition-colors">
+                  Onboarding Roadmap
                 </Link>
               </li>
             </ul>
@@ -85,29 +90,19 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#f2f2ee] transition-colors"
-                >
-                  GitHub
-                </a>
-              </li>
-              <li>
                 <Link to="/contact" className="hover:text-[#f2f2ee] transition-colors">
-                  Request Access
+                  Connect Cloud
                 </Link>
               </li>
               <li>
-                <a
-                  href="https://x.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#f2f2ee] transition-colors"
-                >
-                  Twitter / X
-                </a>
+                <Link to="/legal/privacy-policy" className="hover:text-[#f2f2ee] transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/legal/terms-of-service" className="hover:text-[#f2f2ee] transition-colors">
+                  Terms of Service
+                </Link>
               </li>
             </ul>
           </div>

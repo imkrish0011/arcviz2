@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArchVizBrand } from './icons/ArchVizIcons';
 import { Menu, X } from 'lucide-react';
 
@@ -7,7 +7,6 @@ export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,41 +16,11 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-
-    if (location.pathname !== '/') {
-      navigate(`/#${id}`);
-      setTimeout(() => {
-        const el = document.getElementById(id);
-        if (el) {
-          const navHeight = 84;
-          const elementPosition = el.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        }
-      }, 100);
-      return;
-    }
-
-    const el = document.getElementById(id);
-    if (el) {
-      const navHeight = 84;
-      const elementPosition = el.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
-
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'bg-[#080a08]/85 backdrop-blur-md border-b border-white/[0.08] py-3.5 shadow-lg' 
-        : 'bg-transparent border-b border-transparent py-5'
+        ? 'bg-[#080a08]/90 backdrop-blur-md border-b border-white/[0.08] py-3.5 shadow-lg' 
+        : 'bg-[#080a08]/40 backdrop-blur-sm border-b border-white/[0.04] py-4'
     }`}>
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 flex items-center justify-between">
         {/* Brand */}
@@ -59,81 +28,56 @@ export const Navbar: React.FC = () => {
           <ArchVizBrand />
         </Link>
 
-        {/* Center Nav Links - Desktop */}
-        <nav className="hidden lg:flex items-center gap-6 text-[13px] font-normal text-[#858a86]">
-          <a
-            href="/#what-is-archviz"
-            onClick={(e) => scrollToSection(e, 'what-is-archviz')}
-            className="hover:text-[#f2f2ee] transition-colors cursor-pointer"
-          >
-            What is ArchViz
-          </a>
-          <a
-            href="/#ask-archviz"
-            onClick={(e) => scrollToSection(e, 'ask-archviz')}
-            className="hover:text-[#f2f2ee] transition-colors cursor-pointer"
-          >
-            Ask ArchViz
-          </a>
-          <a
-            href="/#living-system"
-            onClick={(e) => scrollToSection(e, 'living-system')}
-            className="hover:text-[#f2f2ee] transition-colors cursor-pointer"
+        {/* Clean, Uncluttered Nav Links - Desktop */}
+        <nav className="hidden md:flex items-center gap-8 text-[13px] font-normal text-[#858a86]">
+          <Link
+            to="/living-model"
+            className={`transition-colors cursor-pointer ${
+              location.pathname === '/living-model' ? 'text-[#38bdf8] font-medium' : 'hover:text-[#f2f2ee]'
+            }`}
           >
             Living Model
-          </a>
-          <a
-            href="/#investigation"
-            onClick={(e) => scrollToSection(e, 'investigation')}
-            className="hover:text-[#f2f2ee] transition-colors cursor-pointer"
+          </Link>
+          <Link
+            to="/agents"
+            className={`transition-colors cursor-pointer ${
+              location.pathname === '/agents' ? 'text-[#38bdf8] font-medium' : 'hover:text-[#f2f2ee]'
+            }`}
           >
-            Investigation
-          </a>
-          <a
-            href="/#simulation"
-            onClick={(e) => scrollToSection(e, 'simulation')}
-            className="hover:text-[#f2f2ee] transition-colors cursor-pointer"
-          >
-            Simulation
-          </a>
-          <a
-            href="/#agents"
-            onClick={(e) => scrollToSection(e, 'agents')}
-            className="hover:text-[#f2f2ee] transition-colors cursor-pointer"
-          >
-            Agents
-          </a>
-          <a
-            href="/#security-trust"
-            onClick={(e) => scrollToSection(e, 'security-trust')}
-            className="hover:text-[#f2f2ee] transition-colors cursor-pointer"
+            Agents & Autonomy
+          </Link>
+          <Link
+            to="/security"
+            className={`transition-colors cursor-pointer ${
+              location.pathname === '/security' ? 'text-[#38bdf8] font-medium' : 'hover:text-[#f2f2ee]'
+            }`}
           >
             Security & Trust
-          </a>
-          <a
-            href="/#memory"
-            onClick={(e) => scrollToSection(e, 'memory')}
-            className="hover:text-[#f2f2ee] transition-colors cursor-pointer"
+          </Link>
+          <Link
+            to="/memory"
+            className={`transition-colors cursor-pointer ${
+              location.pathname === '/memory' ? 'text-[#38bdf8] font-medium' : 'hover:text-[#f2f2ee]'
+            }`}
           >
             Memory
-          </a>
+          </Link>
         </nav>
 
         {/* Right CTA */}
         <div className="hidden sm:flex items-center gap-3">
-          <a
-            href="/#final-cta"
-            onClick={(e) => scrollToSection(e, 'final-cta')}
+          <Link
+            to="/contact"
             className="inline-flex items-center justify-center px-4 py-2 text-xs font-medium text-white bg-[#0ea5e9] hover:bg-[#38bdf8] rounded-lg transition-all duration-150 shadow-[0_0_15px_rgba(14,165,233,0.3)] hover:shadow-[0_0_25px_rgba(56,189,248,0.5)] cursor-pointer"
           >
             Connect cloud
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Hamburger Toggle */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-1.5 text-[#858a86] hover:text-[#f2f2ee] focus:outline-none cursor-pointer"
+          className="md:hidden p-1.5 text-[#858a86] hover:text-[#f2f2ee] focus:outline-none cursor-pointer"
           aria-label="Toggle navigation menu"
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -142,72 +86,51 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Slide-down Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#0d100d] border-b border-white/[0.08] px-6 py-6 transition-all shadow-2xl">
-          <div className="flex flex-col gap-3.5 text-sm font-normal text-[#858a86]">
-            <a
-              href="/#what-is-archviz"
-              onClick={(e) => scrollToSection(e, 'what-is-archviz')}
+        <div className="md:hidden bg-[#0d100d] border-b border-white/[0.08] px-6 py-6 transition-all shadow-2xl">
+          <div className="flex flex-col gap-4 text-sm font-normal text-[#858a86]">
+            <Link
+              to="/"
+              onClick={() => setMobileMenuOpen(false)}
               className="hover:text-[#f2f2ee] transition-colors py-1 cursor-pointer"
             >
-              What is ArchViz
-            </a>
-            <a
-              href="/#ask-archviz"
-              onClick={(e) => scrollToSection(e, 'ask-archviz')}
-              className="hover:text-[#f2f2ee] transition-colors py-1 cursor-pointer"
-            >
-              Ask ArchViz
-            </a>
-            <a
-              href="/#living-system"
-              onClick={(e) => scrollToSection(e, 'living-system')}
+              Overview
+            </Link>
+            <Link
+              to="/living-model"
+              onClick={() => setMobileMenuOpen(false)}
               className="hover:text-[#f2f2ee] transition-colors py-1 cursor-pointer"
             >
               Living Model
-            </a>
-            <a
-              href="/#investigation"
-              onClick={(e) => scrollToSection(e, 'investigation')}
+            </Link>
+            <Link
+              to="/agents"
+              onClick={() => setMobileMenuOpen(false)}
               className="hover:text-[#f2f2ee] transition-colors py-1 cursor-pointer"
             >
-              Investigation
-            </a>
-            <a
-              href="/#simulation"
-              onClick={(e) => scrollToSection(e, 'simulation')}
-              className="hover:text-[#f2f2ee] transition-colors py-1 cursor-pointer"
-            >
-              Simulation
-            </a>
-            <a
-              href="/#agents"
-              onClick={(e) => scrollToSection(e, 'agents')}
-              className="hover:text-[#f2f2ee] transition-colors py-1 cursor-pointer"
-            >
-              Agents
-            </a>
-            <a
-              href="/#security-trust"
-              onClick={(e) => scrollToSection(e, 'security-trust')}
+              Agents & Autonomy
+            </Link>
+            <Link
+              to="/security"
+              onClick={() => setMobileMenuOpen(false)}
               className="hover:text-[#f2f2ee] transition-colors py-1 cursor-pointer"
             >
               Security & Trust
-            </a>
-            <a
-              href="/#memory"
-              onClick={(e) => scrollToSection(e, 'memory')}
+            </Link>
+            <Link
+              to="/memory"
+              onClick={() => setMobileMenuOpen(false)}
               className="hover:text-[#f2f2ee] transition-colors py-1 cursor-pointer"
             >
               Memory
-            </a>
+            </Link>
             <div className="pt-3 border-t border-white/[0.06] flex flex-col gap-2">
-              <a
-                href="/#final-cta"
-                onClick={(e) => scrollToSection(e, 'final-cta')}
+              <Link
+                to="/contact"
+                onClick={() => setMobileMenuOpen(false)}
                 className="w-full inline-flex items-center justify-center px-4 py-2.5 text-xs font-medium text-white bg-[#0ea5e9] hover:bg-[#38bdf8] rounded-lg text-center cursor-pointer shadow-md"
               >
                 Connect cloud
-              </a>
+              </Link>
             </div>
           </div>
         </div>
