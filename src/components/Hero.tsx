@@ -35,7 +35,7 @@ export const Hero: React.FC = () => {
 
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10 w-full">
         {/* Hero Narrative Block with Staggered Side Animations */}
-        <div className="max-w-3xl mb-14 md:mb-18">
+        <div className="max-w-3xl mb-24 sm:mb-32 md:mb-44 lg:mb-52">
           {/* Quiet Eyebrow Badge */}
           <ScrollReveal direction="left" delay={50} distance="30px">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.1] bg-[#0d100d]/80 backdrop-blur-md mb-6 shadow-sm">
@@ -102,7 +102,7 @@ export const Hero: React.FC = () => {
 
         {/* Live Operational Topology Canvas with Zoom Reveal */}
         <ScrollReveal direction="zoom" delay={450} distance="30px" duration={950}>
-          <div className="mt-6 p-6 sm:p-8 rounded-xl border border-white/[0.08] bg-[#0d100d]/80 backdrop-blur-xl shadow-2xl relative overflow-hidden group hover:border-white/[0.15] transition-all duration-300">
+          <div className="p-6 sm:p-8 rounded-xl border border-white/[0.08] bg-[#0d100d]/80 backdrop-blur-xl shadow-2xl relative overflow-hidden group hover:border-white/[0.15] transition-all duration-300">
             <HeroLiveLoop />
           </div>
         </ScrollReveal>
