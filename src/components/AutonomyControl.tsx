@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Sliders, FileCode2 } from 'lucide-react';
+import { ShieldCheck, Sliders, FileCode2, Lock } from 'lucide-react';
+import { ScrollReveal } from './ui/ScrollReveal';
 
 interface Scenario {
   id: string;
@@ -114,112 +115,123 @@ export const AutonomyControl: React.FC = () => {
   const currentDecision = activeScenario.decisionByLevel[levelIndex];
 
   return (
-    <section id="control" className="py-36 md:py-48 border-t border-white/[0.06] bg-[#080a08] relative">
-      <div className="max-w-[1240px] mx-auto px-6 md:px-10">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-20 md:mb-28">
-          <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4">
-            06 / Progressive Autonomy & Policy
-          </span>
-          <h2 className="text-4xl sm:text-6xl font-medium tracking-tight text-[#f1f2ee] leading-[1.02] mb-6">
-            AI can act. <br />
-            <span className="text-[#858a85]">You decide how much.</span>
-          </h2>
-          <p className="text-base sm:text-lg text-[#888d96] leading-relaxed max-w-xl">
-            ArchViz operates on a continuous, granular autonomy spectrum. You establish deterministic Open Policy Agent (OPA) guardrails so AI never executes beyond your team's authorized boundaries.
-          </p>
-        </div>
+    <section id="control" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#080a08] relative overflow-hidden">
+      {/* Background Ambient Glow */}
+      <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-[#38bdf8]/5 rounded-full blur-[140px] pointer-events-none" />
 
-        {/* Open Autonomy Spectrum & Live Policy Matrix (No heavy outer box) */}
+      <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
+        {/* Section Header */}
+        <ScrollReveal direction="up" delay={50} distance="30px">
+          <div className="max-w-3xl mb-16 md:mb-24">
+            <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
+              06 / Progressive Autonomy & Policy
+            </span>
+            <h2 className="text-4xl sm:text-6xl font-medium tracking-tight text-[#f1f2ee] leading-[1.02] mb-6">
+              AI can act. <br />
+              <span className="text-[#858a85]">You decide how much.</span>
+            </h2>
+            <p className="text-base sm:text-lg text-[#888d96] leading-relaxed max-w-xl">
+              ArchViz operates on a continuous, granular autonomy spectrum. You establish deterministic Open Policy Agent (OPA) guardrails so AI never executes beyond your team's authorized boundaries.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        {/* Autonomy Spectrum & Live Policy Matrix */}
         <div className="space-y-10">
           {/* Top Spectrum Line */}
-          <div>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-white/[0.08] gap-2 font-mono text-xs">
-              <div className="flex items-center gap-2 text-[#f1f2ee]">
-                <Sliders className="w-4 h-4 text-[#38bdf8]" />
-                <span className="font-semibold uppercase tracking-wider">Continuous Autonomy Spectrum</span>
+          <ScrollReveal direction="up" delay={120} distance="30px">
+            <div>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-white/[0.08] gap-2 font-mono text-xs">
+                <div className="flex items-center gap-2 text-[#f1f2ee]">
+                  <Sliders className="w-4 h-4 text-[#38bdf8]" />
+                  <span className="font-semibold uppercase tracking-wider">Continuous Autonomy Spectrum</span>
+                </div>
+                <span className="text-[11px] text-[#858a85]">
+                  Active Level: <span className="text-[#38bdf8] font-medium">Level {currentLevel.level} ({currentLevel.name})</span>
+                </span>
               </div>
-              <span className="text-[11px] text-[#858a85]">
-                Active Level: <span className="text-[#38bdf8] font-medium">Level {currentLevel.level} ({currentLevel.name})</span>
-              </span>
-            </div>
 
-            {/* 5-Stage Interactive Spectrum Bar */}
-            <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 font-mono text-xs">
-              {levels.map((lvl, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setLevelIndex(idx)}
-                  className={`p-4 rounded-lg text-left transition-all duration-200 cursor-pointer border ${
-                    levelIndex === idx
-                      ? 'border-[#38bdf8] bg-[#38bdf8]/10 text-[#f1f2ee] shadow-[0_0_20px_rgba(56,189,248,0.12)]'
-                      : 'border-white/[0.06] bg-[#0d100d]/80 text-[#858a85] hover:border-white/20'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[10px] text-[#505551] uppercase">Level 0{lvl.level}</span>
-                    <span className={`text-[9px] px-1.5 py-0.2 rounded font-sans ${
-                      levelIndex === idx ? 'bg-[#38bdf8]/20 text-[#38bdf8]' : 'text-[#505551]'
-                    }`}>
-                      {lvl.badge}
-                    </span>
-                  </div>
-                  <span className="font-semibold text-sm block text-[#f1f2ee] mb-1">{lvl.name}</span>
-                  <span className="text-[10px] text-[#38bdf8]">{lvl.iam}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Real-Time Scenario Evaluation Grid */}
-          <div className="space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-white/[0.06] gap-4 font-mono text-xs">
-              <span className="text-[#f1f2ee] font-medium">Test Live Operational Scenario:</span>
-
-              {/* Scenario Selector Pills */}
-              <div className="flex flex-wrap gap-2">
-                {scenarios.map((sc) => (
+              {/* 5-Stage Interactive Spectrum Bar */}
+              <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 font-mono text-xs">
+                {levels.map((lvl, idx) => (
                   <button
-                    key={sc.id}
-                    onClick={() => setSelectedScenarioId(sc.id)}
-                    className={`px-3 py-1.5 rounded transition-colors cursor-pointer border ${
-                      selectedScenarioId === sc.id
-                        ? 'border-[#38bdf8] bg-[#38bdf8]/15 text-[#f1f2ee]'
-                        : 'border-white/[0.06] bg-[#0d100d]/80 text-[#858a85] hover:text-[#f1f2ee]'
+                    key={idx}
+                    onClick={() => setLevelIndex(idx)}
+                    className={`p-4 rounded-xl text-left transition-all duration-300 cursor-pointer border ${
+                      levelIndex === idx
+                        ? 'border-[#38bdf8] bg-[#38bdf8]/15 text-[#f1f2ee] shadow-[0_0_25px_rgba(56,189,248,0.18)] scale-[1.02]'
+                        : 'border-white/[0.06] bg-[#0d100d]/80 text-[#858a85] hover:border-white/20'
                     }`}
                   >
-                    {sc.name}
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-[10px] text-[#505551] uppercase">Level 0{lvl.level}</span>
+                      <span className={`text-[9px] px-1.5 py-0.2 rounded font-sans ${
+                        levelIndex === idx ? 'bg-[#38bdf8]/20 text-[#38bdf8]' : 'text-[#505551]'
+                      }`}>
+                        {lvl.badge}
+                      </span>
+                    </div>
+                    <span className="font-semibold text-sm block text-[#f1f2ee] mb-1">{lvl.name}</span>
+                    <span className="text-[10px] text-[#38bdf8]">{lvl.iam}</span>
                   </button>
                 ))}
               </div>
             </div>
+          </ScrollReveal>
+
+          {/* Real-Time Scenario Evaluation Grid with Side-Entrance */}
+          <div className="space-y-6">
+            <ScrollReveal direction="up" delay={200} distance="30px">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-white/[0.06] gap-4 font-mono text-xs">
+                <span className="text-[#f1f2ee] font-medium">Test Live Operational Scenario:</span>
+
+                {/* Scenario Selector Pills */}
+                <div className="flex flex-wrap gap-2">
+                  {scenarios.map((sc) => (
+                    <button
+                      key={sc.id}
+                      onClick={() => setSelectedScenarioId(sc.id)}
+                      className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer border ${
+                        selectedScenarioId === sc.id
+                          ? 'border-[#38bdf8] bg-[#38bdf8]/20 text-[#f1f2ee] font-medium'
+                          : 'border-white/[0.06] bg-[#0d100d]/80 text-[#858a85] hover:text-[#f1f2ee]'
+                      }`}
+                    >
+                      {sc.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
 
             {/* Scenario Evaluation Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch font-mono text-xs">
-              {/* Scenario Details & OPA Code (6 Cols) */}
+              {/* Scenario Details & OPA Code (Slide from Left) */}
               <div className="lg:col-span-6 space-y-4">
-                <div className="p-4 rounded border border-white/[0.08] bg-[#0d100d]/80 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[#505551] text-[10px] uppercase">Target Resource</span>
-                    <span className={`text-[10px] px-2 py-0.5 rounded ${
-                      activeScenario.risk === 'High' ? 'bg-[#ef4444]/10 text-[#ef4444]' : 'bg-[#10b981]/10 text-[#10b981]'
-                    }`}>
-                      {activeScenario.risk} Risk • {activeScenario.env}
-                    </span>
+                <ScrollReveal direction="left" delay={280} distance="50px">
+                  <div className="p-5 rounded-xl border border-white/[0.08] bg-[#0d100d]/80 backdrop-blur-md space-y-2 shadow-lg">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#505551] text-[10px] uppercase">Target Resource</span>
+                      <span className={`text-[10px] px-2 py-0.5 rounded font-medium ${
+                        activeScenario.risk === 'High' ? 'bg-[#ef4444]/15 text-[#ef4444]' : 'bg-[#10b981]/15 text-[#10b981]'
+                      }`}>
+                        {activeScenario.risk} Risk • {activeScenario.env}
+                      </span>
+                    </div>
+                    <div className="text-sm text-[#f1f2ee] font-semibold">{activeScenario.resource}</div>
+                    <div className="text-xs text-[#858a85]">{activeScenario.action}</div>
                   </div>
-                  <div className="text-sm text-[#f1f2ee] font-semibold">{activeScenario.resource}</div>
-                  <div className="text-xs text-[#858a85]">{activeScenario.action}</div>
-                </div>
 
-                <div className="p-4 rounded border border-white/[0.08] bg-[#050605] text-[11px] space-y-1">
-                  <div className="text-[#505551] text-[10px] flex items-center justify-between pb-1 mb-1 border-b border-white/[0.04]">
-                    <span className="flex items-center gap-1.5">
-                      <FileCode2 className="w-3 h-3 text-[#38bdf8]" />
-                      <span>Evaluated Policy Rule</span>
-                    </span>
-                    <span className="text-[#38bdf8]">{activeScenario.opaRule}</span>
-                  </div>
-                  <pre className="text-[#858a85] leading-relaxed overflow-x-auto pt-1">
+                  <div className="p-5 rounded-xl border border-white/[0.08] bg-[#050605] text-[11px] space-y-1 shadow-lg mt-4">
+                    <div className="text-[#505551] text-[10px] flex items-center justify-between pb-2 mb-2 border-b border-white/[0.04]">
+                      <span className="flex items-center gap-1.5">
+                        <FileCode2 className="w-3.5 h-3.5 text-[#38bdf8]" />
+                        <span>Evaluated Policy Rule</span>
+                      </span>
+                      <span className="text-[#38bdf8]">{activeScenario.opaRule}</span>
+                    </div>
+                    <pre className="text-[#858a85] leading-relaxed overflow-x-auto pt-1 font-mono">
 {`# Open Policy Agent (OPA) Guardrail Check
 default allow = false
 allow if {
@@ -227,44 +239,51 @@ allow if {
   input.autonomy_level >= ${levelIndex + 1}
   not input.touches_production_data
 }`}
-                  </pre>
-                </div>
+                    </pre>
+                  </div>
+                </ScrollReveal>
               </div>
 
-              {/* Policy Decision & Action Outcome (6 Cols) */}
-              <div className="lg:col-span-6 p-8 rounded-lg border border-white/[0.08] bg-[#0d100d]/90 flex flex-col justify-between shadow-2xl">
-                <div>
-                  <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.04]">
-                    <span className="text-[10px] text-[#505551] uppercase">ArchViz Policy Decision</span>
-                    <span className={`px-2 py-0.5 rounded text-[10px] font-semibold ${
-                      currentDecision.outcome === 'AUTO_EXECUTED'
-                        ? 'bg-[#10b981]/15 text-[#10b981]'
-                        : currentDecision.outcome === 'REQUIRES_APPROVAL'
-                          ? 'bg-[#38bdf8]/15 text-[#38bdf8]'
-                          : currentDecision.outcome === 'DRAFT_PR'
-                            ? 'bg-[#f59e0b]/15 text-[#f59e0b]'
-                            : 'bg-white/[0.05] text-[#858a85]'
-                    }`}>
-                      {currentDecision.outcome.replace('_', ' ')}
-                    </span>
-                  </div>
+              {/* Policy Decision & Action Outcome (Slide from Right) */}
+              <div className="lg:col-span-6">
+                <ScrollReveal direction="right" delay={280} distance="50px">
+                  <div className="p-8 rounded-xl border border-white/[0.1] bg-[#0d100d]/90 backdrop-blur-xl flex flex-col justify-between h-full shadow-2xl relative overflow-hidden">
+                    <div>
+                      <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.06]">
+                        <span className="text-[10px] text-[#505551] uppercase tracking-wider">ArchViz Policy Decision</span>
+                        <span className={`px-2.5 py-1 rounded text-[10px] font-semibold ${
+                          currentDecision.outcome === 'AUTO_EXECUTED'
+                            ? 'bg-[#10b981]/15 text-[#10b981]'
+                            : currentDecision.outcome === 'REQUIRES_APPROVAL'
+                              ? 'bg-[#38bdf8]/15 text-[#38bdf8]'
+                              : currentDecision.outcome === 'DRAFT_PR'
+                                ? 'bg-[#f59e0b]/15 text-[#f59e0b]'
+                                : 'bg-white/[0.05] text-[#858a85]'
+                        }`}>
+                          {currentDecision.outcome.replace('_', ' ')}
+                        </span>
+                      </div>
 
-                  <div className="space-y-3">
-                    <div className="text-lg font-semibold text-[#f1f2ee]">
-                      {currentDecision.label}
+                      <div className="space-y-3">
+                        <div className="text-xl font-semibold text-[#f1f2ee]">
+                          {currentDecision.label}
+                        </div>
+                        <p className="text-xs text-[#858a85] font-sans leading-relaxed">
+                          {currentDecision.detail}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-xs text-[#858a85] font-sans leading-relaxed">
-                      {currentDecision.detail}
-                    </p>
-                  </div>
-                </div>
 
-                <div className="pt-4 border-t border-white/[0.04] flex items-center justify-between text-[11px] text-[#505551]">
-                  <span className="flex items-center gap-1.5 text-[#10b981]">
-                    <ShieldCheck className="w-3.5 h-3.5" /> Deterministic OPA Verification
-                  </span>
-                  <span>Zero Unbounded Execution</span>
-                </div>
+                    <div className="pt-5 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-[#505551]">
+                      <span className="flex items-center gap-1.5 text-[#10b981]">
+                        <ShieldCheck className="w-3.5 h-3.5" /> Deterministic OPA Verification
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Lock className="w-3 h-3" /> Zero Unbounded Execution
+                      </span>
+                    </div>
+                  </div>
+                </ScrollReveal>
               </div>
             </div>
           </div>

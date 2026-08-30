@@ -13,6 +13,7 @@ import {
   Database,
   Terminal
 } from 'lucide-react';
+import { ScrollReveal } from './ui/ScrollReveal';
 
 interface LoopPhase {
   id: number;
@@ -150,127 +151,146 @@ export const AutonomousLoop: React.FC = () => {
   };
 
   return (
-    <section id="autonomous-loop" className="py-36 md:py-48 border-t border-white/[0.06] bg-[#090c09] relative">
-      <div className="max-w-[1240px] mx-auto px-6 md:px-10">
+    <section id="autonomous-loop" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#090c09] relative overflow-hidden">
+      {/* Ambient background glow */}
+      <div className="absolute bottom-1/4 right-1/3 w-[600px] h-[600px] bg-[#10b981]/5 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
         {/* Section Header */}
-        <div className="max-w-3xl mb-20 md:mb-28">
-          <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4">
-            07 / Closed-Loop Autonomy
-          </span>
-          <h2 className="text-4xl sm:text-6xl font-medium tracking-tight text-[#f1f2ee] leading-[1.02] mb-6">
-            Autonomous operations <br />
-            <span className="text-[#858a85]">in a closed loop.</span>
-          </h2>
-          <p className="text-base sm:text-lg text-[#888d96] leading-relaxed max-w-xl">
-            ArchViz connects autonomous detection, diagnosis, pre-flight simulation, execution, and verification into one continuous, deterministic control loop.
-          </p>
-        </div>
-
-        {/* Open Closed-Loop Execution Engine (No heavy outer box) */}
-        <div className="space-y-10">
-          {/* Header Controls Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-white/[0.08] gap-4 font-mono text-xs">
-            <div className="flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
-              <span className="text-xs text-[#f1f2ee] uppercase tracking-wider font-semibold">
-                Autonomous Execution Pipeline Trace
-              </span>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <button
-                onClick={handleRunCycle}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#0ea5e9] hover:bg-[#38bdf8] text-white font-medium transition-colors cursor-pointer"
-              >
-                <Play className="w-3.5 h-3.5 fill-current" />
-                <span>Run Full Cycle</span>
-              </button>
-
-              <button
-                onClick={() => { setIsAutoRunning(false); setActiveStep(0); }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-white/[0.04] hover:bg-white/[0.08] text-[#858a85] hover:text-[#f1f2ee] border border-white/[0.08] transition-colors cursor-pointer"
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span>Reset</span>
-              </button>
-            </div>
+        <ScrollReveal direction="up" delay={50} distance="30px">
+          <div className="max-w-3xl mb-16 md:mb-24">
+            <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
+              07 / Closed-Loop Autonomy
+            </span>
+            <h2 className="text-4xl sm:text-6xl font-medium tracking-tight text-[#f1f2ee] leading-[1.02] mb-6">
+              Autonomous operations <br />
+              <span className="text-[#858a85]">in a closed loop.</span>
+            </h2>
+            <p className="text-base sm:text-lg text-[#888d96] leading-relaxed max-w-xl">
+              ArchViz connects autonomous detection, diagnosis, pre-flight simulation, execution, and verification into one continuous, deterministic control loop.
+            </p>
           </div>
+        </ScrollReveal>
+
+        {/* Closed-Loop Execution Engine */}
+        <div className="space-y-10">
+          {/* Header Controls Bar with Reveal */}
+          <ScrollReveal direction="up" delay={100} distance="30px">
+            <div className="p-4 sm:p-5 rounded-xl border border-white/[0.08] bg-[#0d100d]/80 backdrop-blur-md flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs shadow-lg">
+              <div className="flex items-center gap-3">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse" />
+                <span className="text-xs text-[#f1f2ee] uppercase tracking-wider font-semibold">
+                  Autonomous Execution Pipeline Trace
+                </span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={handleRunCycle}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0ea5e9] hover:bg-[#38bdf8] text-white font-medium transition-all cursor-pointer shadow-md"
+                >
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>Run Full Cycle</span>
+                </button>
+
+                <button
+                  onClick={() => { setIsAutoRunning(false); setActiveStep(0); }}
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-[#858a85] hover:text-[#f1f2ee] border border-white/[0.08] transition-colors cursor-pointer"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  <span>Reset</span>
+                </button>
+              </div>
+            </div>
+          </ScrollReveal>
 
           {/* 8-Stage Connected Pipeline Trace Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 font-mono text-xs">
-            {phases.map((phase) => (
-              <button
-                key={phase.id}
-                onClick={() => { setIsAutoRunning(false); setActiveStep(phase.id); }}
-                className={`p-3.5 rounded-lg text-left transition-all duration-200 cursor-pointer border relative ${
-                  activeStep === phase.id
-                    ? 'border-[#38bdf8] bg-[#38bdf8]/15 text-[#f1f2ee] shadow-[0_0_20px_rgba(56,189,248,0.15)]'
-                    : activeStep > phase.id
-                      ? 'border-white/[0.08] bg-[#0d100d]/80 text-[#10b981]'
-                      : 'border-white/[0.04] bg-[#0d100d]/60 text-[#858a85] hover:border-white/15'
-                }`}
-              >
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-[10px] text-[#505551]">0{phase.id + 1}</span>
-                  {phase.icon}
-                </div>
-                <span className="font-semibold text-xs block text-[#f1f2ee]">{phase.name}</span>
-                <span className={`text-[9px] block mt-1 ${
-                  activeStep === phase.id ? 'text-[#38bdf8]' : activeStep > phase.id ? 'text-[#10b981]' : 'text-[#505551]'
-                }`}>
-                  {activeStep === phase.id ? 'Active' : activeStep > phase.id ? 'Passed' : 'Pending'}
-                </span>
-              </button>
-            ))}
-          </div>
+          <ScrollReveal direction="up" delay={180} distance="30px">
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 font-mono text-xs">
+              {phases.map((phase) => (
+                <button
+                  key={phase.id}
+                  onClick={() => { setIsAutoRunning(false); setActiveStep(phase.id); }}
+                  className={`p-3.5 rounded-xl text-left transition-all duration-300 cursor-pointer border relative ${
+                    activeStep === phase.id
+                      ? 'border-[#38bdf8] bg-[#38bdf8]/15 text-[#f1f2ee] shadow-[0_0_20px_rgba(56,189,248,0.2)] scale-[1.03]'
+                      : activeStep > phase.id
+                        ? 'border-white/[0.08] bg-[#0d100d]/80 text-[#10b981]'
+                        : 'border-white/[0.04] bg-[#0d100d]/60 text-[#858a85] hover:border-white/15'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-[10px] text-[#505551]">0{phase.id + 1}</span>
+                    {phase.icon}
+                  </div>
+                  <span className="font-semibold text-xs block text-[#f1f2ee]">{phase.name}</span>
+                  <span className={`text-[9px] block mt-1 ${
+                    activeStep === phase.id ? 'text-[#38bdf8] font-medium' : activeStep > phase.id ? 'text-[#10b981]' : 'text-[#505551]'
+                  }`}>
+                    {activeStep === phase.id ? 'Active' : activeStep > phase.id ? 'Passed' : 'Pending'}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </ScrollReveal>
 
-          {/* Detailed Active Phase Deep-Dive View */}
+          {/* Detailed Active Phase Deep-Dive View with Left & Right Side-Entrance */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch font-mono text-xs">
-            {/* Left: Phase Title, Summary & Telemetry (6 Cols) */}
-            <div className="lg:col-span-6 p-8 rounded-lg border border-white/[0.08] bg-[#0d100d]/90 flex flex-col justify-between shadow-2xl">
-              <div>
-                <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.04]">
-                  <span className="text-[10px] text-[#505551] uppercase">Phase {currentPhase.id + 1} of 8</span>
-                  <span className="text-[#38bdf8] font-semibold">{currentPhase.short}</span>
-                </div>
+            {/* Left: Phase Title, Summary & Telemetry (Slide from Left) */}
+            <div className="lg:col-span-6">
+              <ScrollReveal direction="left" delay={260} distance="50px">
+                <div className="p-8 rounded-xl border border-white/[0.1] bg-[#0d100d]/90 backdrop-blur-xl flex flex-col justify-between shadow-2xl h-full relative overflow-hidden">
+                  <div>
+                    <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.06]">
+                      <span className="text-[10px] text-[#505551] uppercase tracking-wider">Phase {currentPhase.id + 1} of 8</span>
+                      <span className="text-[#38bdf8] font-semibold px-2 py-0.5 rounded bg-[#38bdf8]/10">{currentPhase.short}</span>
+                    </div>
 
-                <div className="space-y-3 mb-6">
-                  <h3 className="text-lg font-medium text-[#f1f2ee] font-sans">
-                    {currentPhase.title}
-                  </h3>
-                  <p className="text-xs text-[#858a85] font-sans leading-relaxed">
-                    {currentPhase.summary}
-                  </p>
-                </div>
-              </div>
+                    <div className="space-y-4 mb-6">
+                      <h3 className="text-xl font-medium text-[#f1f2ee] font-sans">
+                        {currentPhase.title}
+                      </h3>
+                      <p className="text-xs text-[#858a85] font-sans leading-relaxed">
+                        {currentPhase.summary}
+                      </p>
+                    </div>
+                  </div>
 
-              <div className="p-3.5 rounded border border-white/[0.06] bg-[#080a08] text-[11px] text-[#10b981]">
-                {currentPhase.telemetry}
-              </div>
+                  <div className="p-4 rounded-lg border border-white/[0.06] bg-[#080a08]/90 text-[11px] text-[#10b981] flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+                    <span>{currentPhase.telemetry}</span>
+                  </div>
+                </div>
+              </ScrollReveal>
             </div>
 
-            {/* Right: Live Execution Log Terminal (6 Cols) */}
-            <div className="lg:col-span-6 p-6 rounded-lg border border-white/[0.08] bg-[#050605] flex flex-col justify-between shadow-2xl">
-              <div>
-                <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/[0.04]">
-                  <div className="flex items-center gap-2 text-[#505551] text-[10px]">
-                    <Terminal className="w-3 h-3 text-[#38bdf8]" />
-                    <span>ARCHVIZ OS EXECUTION LOG</span>
+            {/* Right: Live Execution Log Terminal (Slide from Right) */}
+            <div className="lg:col-span-6">
+              <ScrollReveal direction="right" delay={260} distance="50px">
+                <div className="p-6 rounded-xl border border-white/[0.1] bg-[#050605] flex flex-col justify-between shadow-2xl h-full">
+                  <div>
+                    <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/[0.04]">
+                      <div className="flex items-center gap-2 text-[#505551] text-[10px]">
+                        <Terminal className="w-3.5 h-3.5 text-[#38bdf8]" />
+                        <span>ARCHVIZ OS EXECUTION LOG</span>
+                      </div>
+                      <span className="text-[10px] text-[#10b981] px-2 py-0.5 rounded bg-[#10b981]/10">Live Trace</span>
+                    </div>
+
+                    <pre className="text-[#858a85] text-[11px] font-mono leading-relaxed overflow-x-auto whitespace-pre-wrap">
+                      {currentPhase.outputLog}
+                    </pre>
                   </div>
-                  <span className="text-[10px] text-[#10b981]">Live Trace</span>
+
+                  <div className="pt-4 border-t border-white/[0.04] flex items-center justify-between text-[11px] text-[#505551]">
+                    <span className="flex items-center gap-1.5 text-[#10b981]">
+                      <CheckCircle2 className="w-3.5 h-3.5" /> Cryptographic Audit Ledger
+                    </span>
+                    <span>Deterministic Control</span>
+                  </div>
                 </div>
-
-                <pre className="text-[#858a85] text-[11px] font-mono leading-relaxed overflow-x-auto whitespace-pre-wrap">
-                  {currentPhase.outputLog}
-                </pre>
-              </div>
-
-              <div className="pt-4 border-t border-white/[0.04] flex items-center justify-between text-[11px] text-[#505551]">
-                <span className="flex items-center gap-1.5 text-[#10b981]">
-                  <CheckCircle2 className="w-3.5 h-3.5" /> Cryptographic Audit Ledger
-                </span>
-                <span>Deterministic Control</span>
-              </div>
+              </ScrollReveal>
             </div>
           </div>
         </div>
