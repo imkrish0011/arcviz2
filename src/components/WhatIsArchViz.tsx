@@ -7,6 +7,17 @@ export const WhatIsArchViz: React.FC = () => {
 
   return (
     <section id="what-is-archviz" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#070907] relative overflow-hidden font-mono text-xs">
+      {/* Background Architectural Atmosphere - High Visibility */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-60 filter contrast-125 brightness-110 saturate-125">
+        <img
+          src="/assets/images/geometric-architecture-glow.jpg"
+          alt="Spatial architecture background"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#070907]/70 via-[#070907]/50 to-[#070907]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#070907_90%)]" />
+      </div>
+
       {/* Background Subtle Grid */}
       <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
 

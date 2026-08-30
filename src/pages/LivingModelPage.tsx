@@ -18,15 +18,15 @@ export const LivingModelPage: React.FC = () => {
       <main className="pt-24">
         {/* Page Hero Header with Atmospheric Dark Background */}
         <section className="py-24 md:py-36 bg-[#080a08] relative overflow-hidden font-mono text-xs border-b border-white/[0.06]">
-          {/* Background Image Layer */}
-          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-30 filter contrast-125 brightness-90">
+          {/* Background Image Layer - High Visibility & Contrast */}
+          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-85 filter contrast-125 brightness-110 saturate-125">
             <img
               src="/assets/images/living-model-bg.jpg"
               alt="Living model network background"
               className="w-full h-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#080a08] via-[#080a08]/80 to-[#080a08]" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#080a08_90%)]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/60 via-[#080a08]/40 to-[#080a08]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#080a08_85%)]" />
           </div>
 
           {/* Grid Overlay */}

@@ -115,14 +115,14 @@ export const AskArchVizDemo: React.FC = () => {
 
   return (
     <section id="ask-archviz" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#090c09] relative overflow-hidden font-mono text-xs">
-      {/* Background Cosmic Atmosphere */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-20 filter contrast-125">
+      {/* Background Cosmic Atmosphere - High Visibility */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-75 filter contrast-125 brightness-110 saturate-125">
         <img
           src="/assets/images/cosmic-nebula.jpg"
           alt="Cosmic background"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090c09] via-[#090c09]/85 to-[#090c09]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#090c09]/70 via-[#090c09]/50 to-[#090c09]" />
       </div>
 
       {/* Background Grid */}

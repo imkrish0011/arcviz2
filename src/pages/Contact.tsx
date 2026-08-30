@@ -38,15 +38,15 @@ export const Contact: React.FC = () => {
       <Navbar />
 
       <main className="pt-32 pb-24 md:pt-40 md:pb-36 relative overflow-hidden">
-        {/* Background Image Layer */}
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-25 filter contrast-125 brightness-90">
+        {/* Background Image Layer - High Visibility & Contrast */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-80 filter contrast-125 brightness-110 saturate-125">
           <img
             src="/assets/images/contact-space-bg.jpg"
             alt="Space background"
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#08090a] via-[#08090a]/85 to-[#08090a]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#08090a_90%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#08090a]/60 via-[#08090a]/40 to-[#08090a]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#08090a_85%)]" />
         </div>
 
         {/* Grid Overlay */}

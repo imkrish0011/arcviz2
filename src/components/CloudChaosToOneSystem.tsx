@@ -19,14 +19,14 @@ export const CloudChaosToOneSystem: React.FC = () => {
 
   return (
     <section id="cloud-chaos" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#080a08] relative overflow-hidden font-mono text-xs">
-      {/* Background Star Texture */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-15">
+      {/* Background Star Texture - High Visibility */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-65 filter contrast-125 brightness-110 saturate-125">
         <img
           src="/assets/images/star-trails-vortex.jpg"
           alt="Star trails vortex background"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08] via-[#080a08]/85 to-[#080a08]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/70 via-[#080a08]/50 to-[#080a08]" />
       </div>
 
       {/* Background Grid */}
