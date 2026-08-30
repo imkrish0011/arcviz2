@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Sliders, FileCode2, Lock } from 'lucide-react';
+import { ShieldCheck, Sliders, FileCode2, Lock, Eye, MessageSquare, FileText, CheckSquare, Zap } from 'lucide-react';
 import { ScrollReveal } from './ui/ScrollReveal';
 
 interface Scenario {
@@ -18,43 +18,48 @@ interface Scenario {
 }
 
 export const AutonomyControl: React.FC = () => {
-  const [levelIndex, setLevelIndex] = useState<number>(3); // Level 4 (Approve) default
+  const [levelIndex, setLevelIndex] = useState<number>(3); // Level 4 (APPROVE) default
   const [selectedScenarioId, setSelectedScenarioId] = useState<string>('prod-db');
 
   const levels = [
     {
       level: 1,
-      name: "Observe",
+      name: "OBSERVE",
+      icon: <Eye className="w-4 h-4 text-[#858a85]" />,
       iam: "Read-Only IAM",
-      badge: "Discovery Only",
-      desc: "Continuous discovery of resources, VPC routing, and telemetry with zero write permissions."
+      badge: "Discovery",
+      desc: "Continuous discovery of multi-cloud resources, VPC routing, and telemetry with zero write permissions."
     },
     {
       level: 2,
-      name: "Explain",
+      name: "EXPLAIN",
+      icon: <MessageSquare className="w-4 h-4 text-[#38bdf8]" />,
       iam: "Zero Write Access",
-      badge: "Knowledge Query",
-      desc: "Answers architectural and incident questions with graph-verified citations."
+      badge: "Reasoning",
+      desc: "Answers architectural and incident questions with graph-verified citations and topological traces."
     },
     {
       level: 3,
-      name: "Recommend",
+      name: "RECOMMEND",
+      icon: <FileText className="w-4 h-4 text-[#a855f7]" />,
       iam: "PR Draft Only",
-      badge: "IaC Generation",
-      desc: "Generates tested Terraform/OpenTofu patches and pull requests for human review."
+      badge: "IaC Patches",
+      desc: "Generates tested Terraform/OpenTofu patches and pull requests for human engineer review."
     },
     {
       level: 4,
-      name: "Approve",
-      iam: "Human-in-the-Loop",
-      badge: "Dual-Key Signoff",
-      desc: "Applies scoped infrastructure actions only after explicit engineer authorization."
+      name: "APPROVE",
+      icon: <CheckSquare className="w-4 h-4 text-[#f59e0b]" />,
+      iam: "Dual-Key Signoff",
+      badge: "Human-in-Loop",
+      desc: "Applies scoped infrastructure actions only after explicit engineer authorization via hardware token."
     },
     {
       level: 5,
-      name: "Execute",
+      name: "EXECUTE",
+      icon: <Zap className="w-4 h-4 text-[#10b981]" />,
       iam: "Scoped OPA Rules",
-      badge: "Autonomous Fix",
+      badge: "Autonomous",
       desc: "Executes pre-authorized runbooks for bounded non-breaking anomalies in approved tiers."
     }
   ];
@@ -70,15 +75,15 @@ export const AutonomyControl: React.FC = () => {
       opaRule: 'rule.prod.database.tier1_requires_dual_key',
       decisionByLevel: {
         0: { outcome: 'BLOCKED', label: 'Read-Only Mode', detail: 'Write action blocked by read-only IAM policy.' },
-        1: { outcome: 'BLOCKED', label: 'Explanation Only', detail: 'Generated explanation with 0 infrastructure modification.' },
+        1: { outcome: 'BLOCKED', label: 'Explanation Only', detail: 'Generated explanation with zero infrastructure modification.' },
         2: { outcome: 'DRAFT_PR', label: 'PR #452 Created', detail: 'Terraform patch drafted on branch fix/db-pool-tuning for review.' },
-        3: { outcome: 'REQUIRES_APPROVAL', label: 'Awaiting Dual-Key', detail: 'Digital twin simulated (0 downtime). Awaiting engineer sign-off.' },
-        4: { outcome: 'REQUIRES_APPROVAL', label: 'Awaiting Dual-Key', detail: 'Production OPA policy prevents autonomous apply without dual-key.' }
+        3: { outcome: 'REQUIRES_APPROVAL', label: 'Awaiting Dual-Key Signoff', detail: 'Digital twin simulated (0 downtime). Awaiting engineer sign-off.' },
+        4: { outcome: 'REQUIRES_APPROVAL', label: 'Awaiting Dual-Key Signoff', detail: 'Production OPA policy prevents autonomous apply without dual-key.' }
       }
     },
     {
       id: 'staging-restart',
-      name: 'Staging Unhealthy Task Auto-Healing',
+      name: 'Staging Unhealthy Task Healing',
       env: 'Staging',
       action: 'Restart 2 crashed worker containers',
       resource: 'ecs.svc_checkout.staging',
@@ -89,7 +94,7 @@ export const AutonomyControl: React.FC = () => {
         1: { outcome: 'BLOCKED', label: 'Crash Diagnostic', detail: 'Diagnostic report generated with container exit code 137.' },
         2: { outcome: 'DRAFT_PR', label: 'PR #453 Created', detail: 'Drafted task definition update with increased memory limit.' },
         3: { outcome: 'REQUIRES_APPROVAL', label: 'Approval Prompted', detail: 'Simulated 0 traffic loss. Click to authorize restart.' },
-        4: { outcome: 'AUTO_EXECUTED', label: 'Auto-Remediated in 1.2s', detail: 'Pre-authorized OPA rule applied via ephemeral STS token. Service healthy.' }
+        4: { outcome: 'AUTO_EXECUTED', label: 'Auto-Remediated via Ephemeral STS', detail: 'Pre-authorized OPA rule applied via ephemeral STS token. Service healthy.' }
       }
     },
     {
@@ -101,11 +106,11 @@ export const AutonomyControl: React.FC = () => {
       risk: 'High',
       opaRule: 'rule.compliance.disallow_public_database_ports',
       decisionByLevel: {
-        0: { outcome: 'BLOCKED', label: 'Vulnerability Flagged', detail: 'Flagged CVE exposure in living security graph.' },
+        0: { outcome: 'BLOCKED', label: 'Vulnerability Flagged', detail: 'Flagged exposure in living security graph.' },
         1: { outcome: 'BLOCKED', label: 'Exposure Diagnostic', detail: 'Identified manual console change not tracked in Terraform.' },
         2: { outcome: 'DRAFT_PR', label: 'Remediation PR #454', detail: 'Terraform drift fix PR opened with OPA compliance check.' },
         3: { outcome: 'REQUIRES_APPROVAL', label: 'Remediation Ready', detail: 'Remediation blast radius verified. Awaiting security engineer click.' },
-        4: { outcome: 'AUTO_EXECUTED', label: 'Auto-Isolated in 0.8s', detail: 'Critical compliance violation remediated immediately by policy.' }
+        4: { outcome: 'AUTO_EXECUTED', label: 'Auto-Isolated by Policy', detail: 'Critical compliance violation remediated immediately by policy.' }
       }
     }
   ];
@@ -115,17 +120,17 @@ export const AutonomyControl: React.FC = () => {
   const currentDecision = activeScenario.decisionByLevel[levelIndex];
 
   return (
-    <section id="control" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#080a08] relative overflow-hidden">
-      {/* Background Ambient Glow */}
-      <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-[#38bdf8]/5 rounded-full blur-[140px] pointer-events-none" />
+    <section id="control" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#080a08] relative overflow-hidden font-mono text-xs">
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
 
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
         {/* Section Header */}
         <ScrollReveal direction="up" delay={50} distance="30px">
-          <div className="max-w-3xl mb-16 md:mb-24">
+          <div className="max-w-3xl mb-16 md:mb-24 font-sans">
             <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
-              06 / Progressive Autonomy & Policy
+              06 / Progressive Autonomy Spectrum
             </span>
             <h2 className="text-4xl sm:text-6xl font-medium tracking-tight text-[#f1f2ee] leading-[1.02] mb-6">
               AI can act. <br />
@@ -142,38 +147,34 @@ export const AutonomyControl: React.FC = () => {
           {/* Top Spectrum Line */}
           <ScrollReveal direction="up" delay={120} distance="30px">
             <div>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-white/[0.08] gap-2 font-mono text-xs">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-white/[0.08] gap-2">
                 <div className="flex items-center gap-2 text-[#f1f2ee]">
                   <Sliders className="w-4 h-4 text-[#38bdf8]" />
-                  <span className="font-semibold uppercase tracking-wider">Continuous Autonomy Spectrum</span>
+                  <span className="font-semibold uppercase tracking-wider">Five-Stage Progressive Autonomy Spectrum</span>
                 </div>
                 <span className="text-[11px] text-[#858a85]">
-                  Active Level: <span className="text-[#38bdf8] font-medium">Level {currentLevel.level} ({currentLevel.name})</span>
+                  Active Boundary: <span className="text-[#38bdf8] font-medium">Stage {currentLevel.level} ({currentLevel.name})</span>
                 </span>
               </div>
 
-              {/* 5-Stage Interactive Spectrum Bar */}
-              <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 font-mono text-xs">
+              {/* 5-Stage Interactive Spectrum Bar: OBSERVE -> EXPLAIN -> RECOMMEND -> APPROVE -> EXECUTE */}
+              <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
                 {levels.map((lvl, idx) => (
                   <button
                     key={idx}
                     onClick={() => setLevelIndex(idx)}
                     className={`p-4 rounded-xl text-left transition-all duration-300 cursor-pointer border ${
                       levelIndex === idx
-                        ? 'border-[#38bdf8] bg-[#38bdf8]/15 text-[#f1f2ee] shadow-[0_0_25px_rgba(56,189,248,0.18)] scale-[1.02]'
+                        ? 'border-[#38bdf8] bg-[#38bdf8]/15 text-[#f1f2ee] shadow-[0_0_20px_rgba(56,189,248,0.18)] scale-[1.02]'
                         : 'border-white/[0.06] bg-[#0d100d]/80 text-[#858a85] hover:border-white/20'
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[10px] text-[#505551] uppercase">Level 0{lvl.level}</span>
-                      <span className={`text-[9px] px-1.5 py-0.2 rounded font-sans ${
-                        levelIndex === idx ? 'bg-[#38bdf8]/20 text-[#38bdf8]' : 'text-[#505551]'
-                      }`}>
-                        {lvl.badge}
-                      </span>
+                      <span className="text-[10px] text-[#505551] uppercase">0{lvl.level}</span>
+                      {lvl.icon}
                     </div>
                     <span className="font-semibold text-sm block text-[#f1f2ee] mb-1">{lvl.name}</span>
-                    <span className="text-[10px] text-[#38bdf8]">{lvl.iam}</span>
+                    <span className="text-[10px] text-[#38bdf8] block">{lvl.iam}</span>
                   </button>
                 ))}
               </div>
@@ -183,8 +184,8 @@ export const AutonomyControl: React.FC = () => {
           {/* Real-Time Scenario Evaluation Grid with Side-Entrance */}
           <div className="space-y-6">
             <ScrollReveal direction="up" delay={200} distance="30px">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-white/[0.06] gap-4 font-mono text-xs">
-                <span className="text-[#f1f2ee] font-medium">Test Live Operational Scenario:</span>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-white/[0.06] gap-4">
+                <span className="text-[#f1f2ee] font-medium">Evaluate Operational Scenario:</span>
 
                 {/* Scenario Selector Pills */}
                 <div className="flex flex-wrap gap-2">
@@ -206,7 +207,7 @@ export const AutonomyControl: React.FC = () => {
             </ScrollReveal>
 
             {/* Scenario Evaluation Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch font-mono text-xs">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
               {/* Scenario Details & OPA Code (Slide from Left) */}
               <div className="lg:col-span-6 space-y-4">
                 <ScrollReveal direction="left" delay={280} distance="50px">
@@ -227,7 +228,7 @@ export const AutonomyControl: React.FC = () => {
                     <div className="text-[#505551] text-[10px] flex items-center justify-between pb-2 mb-2 border-b border-white/[0.04]">
                       <span className="flex items-center gap-1.5">
                         <FileCode2 className="w-3.5 h-3.5 text-[#38bdf8]" />
-                        <span>Evaluated Policy Rule</span>
+                        <span>Evaluated OPA Policy Guardrail</span>
                       </span>
                       <span className="text-[#38bdf8]">{activeScenario.opaRule}</span>
                     </div>
@@ -247,10 +248,10 @@ allow if {
               {/* Policy Decision & Action Outcome (Slide from Right) */}
               <div className="lg:col-span-6">
                 <ScrollReveal direction="right" delay={280} distance="50px">
-                  <div className="p-8 rounded-xl border border-white/[0.1] bg-[#0d100d]/90 backdrop-blur-xl flex flex-col justify-between h-full shadow-2xl relative overflow-hidden">
+                  <div className="p-8 rounded-xl border border-white/[0.1] bg-[#0d100d]/90 backdrop-blur-md flex flex-col justify-between h-full shadow-2xl relative overflow-hidden">
                     <div>
                       <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.06]">
-                        <span className="text-[10px] text-[#505551] uppercase tracking-wider">ArchViz Policy Decision</span>
+                        <span className="text-[10px] text-[#505551] uppercase tracking-wider">Policy Engine Decision</span>
                         <span className={`px-2.5 py-1 rounded text-[10px] font-semibold ${
                           currentDecision.outcome === 'AUTO_EXECUTED'
                             ? 'bg-[#10b981]/15 text-[#10b981]'

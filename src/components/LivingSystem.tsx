@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Database, Layers, Network, ArrowUpRight } from 'lucide-react';
+import { AwsIcon, AzureIcon } from './icons/ArchVizIcons';
 import { ScrollReveal } from './ui/ScrollReveal';
 
 interface InteractiveNode {
@@ -24,7 +25,7 @@ export const LivingSystem: React.FC = () => {
       name: 'ingress-global-edge',
       provider: 'AWS',
       type: 'CloudFront CDN / Route53',
-      region: 'Global',
+      region: 'Global Edge',
       dependencies: ['alb-ingress'],
       metrics: { latency: '12ms', throughput: '4.8k req/s', cpu: '14%' },
       recentEvent: 'WAF rules synced via OPA policy',
@@ -49,7 +50,7 @@ export const LivingSystem: React.FC = () => {
       region: 'us-east-1a/b',
       dependencies: ['alb-ingress', 'rds-aurora', 'redis-cache'],
       metrics: { latency: '42ms', throughput: '2.1k req/s', cpu: '34%' },
-      recentEvent: 'Autoscaled 6 -> 8 tasks (14:32:10 UTC)',
+      recentEvent: 'Autoscaled 6 -> 8 tasks on CPU trigger',
       cost: '$380/mo'
     },
     {
@@ -99,8 +100,8 @@ export const LivingSystem: React.FC = () => {
 
   return (
     <section id="living-system" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#090c09] relative overflow-hidden">
-      {/* Background Ambient Glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#38bdf8]/5 rounded-full blur-[160px] pointer-events-none" />
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
 
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
         {/* Section Header */}
@@ -125,7 +126,7 @@ export const LivingSystem: React.FC = () => {
           {/* Spatial Graph Display (Left Side-Entrance) */}
           <div className="lg:col-span-8">
             <ScrollReveal direction="left" delay={150} distance="50px">
-              <div className="p-6 sm:p-8 rounded-xl border border-white/[0.08] bg-[#0d100d]/60 backdrop-blur-xl flex flex-col items-center gap-5 select-none shadow-2xl relative">
+              <div className="p-6 sm:p-8 rounded-xl border border-white/[0.08] bg-[#0d100d]/70 backdrop-blur-md flex flex-col items-center gap-5 select-none shadow-2xl relative">
                 {/* Level 1: Edge CDN */}
                 <div 
                   onMouseEnter={() => setHoveredNodeId('edge-router')}
@@ -140,7 +141,8 @@ export const LivingSystem: React.FC = () => {
                   }`}
                 >
                   <div className="flex items-center gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
+                    <AwsIcon className="w-3.5 h-3.5 text-[#38bdf8]" />
+                    <span className="w-2 h-2 rounded-full bg-[#10b981]" />
                     <span className="text-[#f1f2ee] font-medium">ingress-global-edge</span>
                     <span className="text-[10px] text-[#505551]">AWS CloudFront</span>
                   </div>
@@ -192,7 +194,10 @@ export const LivingSystem: React.FC = () => {
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="font-semibold text-sm text-[#f1f2ee]">svc-checkout</span>
+                      <div className="flex items-center gap-2">
+                        <AwsIcon className="w-3.5 h-3.5 text-[#f1f2ee]" />
+                        <span className="font-semibold text-sm text-[#f1f2ee]">svc-checkout</span>
+                      </div>
                       <span className="text-[10px] text-[#38bdf8] px-1.5 py-0.2 rounded bg-[#38bdf8]/10">AWS ECS</span>
                     </div>
                     <div className="text-[11px] text-[#858a85]">8 tasks • 42ms p99</div>
@@ -211,7 +216,10 @@ export const LivingSystem: React.FC = () => {
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="font-semibold text-sm text-[#f1f2ee]">svc-auth</span>
+                      <div className="flex items-center gap-2">
+                        <AzureIcon className="w-3.5 h-3.5 text-[#f1f2ee]" />
+                        <span className="font-semibold text-sm text-[#f1f2ee]">svc-auth</span>
+                      </div>
                       <span className="text-[10px] text-[#38bdf8] px-1.5 py-0.2 rounded bg-[#38bdf8]/10">Azure Apps</span>
                     </div>
                     <div className="text-[11px] text-[#858a85]">4 instances • 8ms p99</div>
@@ -271,23 +279,21 @@ export const LivingSystem: React.FC = () => {
           {/* Floating Contextual Inspector (Right Side-Entrance) */}
           <div className="lg:col-span-4">
             <ScrollReveal direction="right" delay={250} distance="50px">
-              <div className="p-6 sm:p-8 rounded-xl border border-white/[0.1] bg-[#0d100d]/90 backdrop-blur-xl font-mono text-xs flex flex-col justify-between min-h-[380px] shadow-2xl relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#38bdf8]/5 rounded-full blur-2xl pointer-events-none" />
-                
+              <div className="p-6 sm:p-8 rounded-xl border border-white/[0.1] bg-[#0d100d]/90 backdrop-blur-md font-mono text-xs flex flex-col justify-between min-h-[380px] shadow-2xl relative overflow-hidden">
                 <div>
                   <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-white/[0.08]">
                     <span className="text-[10px] uppercase tracking-wider text-[#505551] flex items-center gap-1.5">
                       <Network className="w-3.5 h-3.5 text-[#38bdf8]" />
-                      Live Node Inspector
+                      Resource Inspector
                     </span>
                     <span className="text-[#10b981] flex items-center gap-1.5 text-[11px] font-medium px-2 py-0.5 rounded bg-[#10b981]/10">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse" /> Active Telemetry
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" /> Active Stream
                     </span>
                   </div>
 
                   <div className="space-y-4 mb-6">
                     <div>
-                      <span className="text-[10px] text-[#505551] block uppercase">Resource Handle</span>
+                      <span className="text-[10px] text-[#505551] block uppercase">Resource Identifier</span>
                       <span className="text-base sm:text-lg font-semibold text-[#f1f2ee]">{activeNode.name}</span>
                       <span className="text-[11px] text-[#38bdf8] block mt-0.5">{activeNode.type}</span>
                     </div>
@@ -321,7 +327,7 @@ export const LivingSystem: React.FC = () => {
                 </div>
 
                 <div className="pt-4 border-t border-white/[0.08] text-[11px] text-[#858a85] flex items-center justify-between">
-                  <span>Event: {activeNode.recentEvent}</span>
+                  <span>Recent: {activeNode.recentEvent}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-[#38bdf8]" />
                 </div>
               </div>

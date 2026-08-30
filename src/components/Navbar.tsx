@@ -51,18 +51,18 @@ export const Navbar: React.FC = () => {
             Product
           </a>
           <a
-            href="/#problem"
-            onClick={(e) => scrollToSection(e, 'problem')}
+            href="/#build-connect"
+            onClick={(e) => scrollToSection(e, 'build-connect')}
             className="hover:text-[#f2f2ee] transition-colors"
           >
             How it works
           </a>
           <a
-            href="/#security"
-            onClick={(e) => scrollToSection(e, 'security')}
+            href="/#control"
+            onClick={(e) => scrollToSection(e, 'control')}
             className="hover:text-[#f2f2ee] transition-colors"
           >
-            Security
+            Security & Control
           </a>
           <a
             href="/#memory"
@@ -105,18 +105,18 @@ export const Navbar: React.FC = () => {
               Product
             </a>
             <a
-              href="/#problem"
-              onClick={(e) => scrollToSection(e, 'problem')}
+              href="/#build-connect"
+              onClick={(e) => scrollToSection(e, 'build-connect')}
               className="hover:text-[#f2f2ee] transition-colors py-1"
             >
               How it works
             </a>
             <a
-              href="/#security"
-              onClick={(e) => scrollToSection(e, 'security')}
+              href="/#control"
+              onClick={(e) => scrollToSection(e, 'control')}
               className="hover:text-[#f2f2ee] transition-colors py-1"
             >
-              Security
+              Security & Control
             </a>
             <a
               href="/#memory"

@@ -1,47 +1,56 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Activity, DollarSign, Database, Play, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Activity, DollarSign, Database, Play, CheckCircle2, Network } from 'lucide-react';
 import { ArchVizLogo } from './icons/ArchVizIcons';
 import { ScrollReveal } from './ui/ScrollReveal';
 
 export const AgentWorkforce: React.FC = () => {
   const [isDelegating, setIsDelegating] = useState<boolean>(false);
+  const [activeAgentId, setActiveAgentId] = useState<string>('db');
 
-  const subAgents = [
+  const agents = [
     {
       id: "sre",
       name: "Reliability Agent",
       icon: <Activity className="w-4 h-4 text-[#10b981]" />,
-      task: "Auditing worker thread latency & error budgets",
-      finding: "Identified 8 stalled tasks waiting on DB connection timeout",
+      targetResource: "ecs.svc_checkout_prod",
+      domain: "Container Thread Pools",
+      task: "Auditing worker thread latency and connection timeouts across 8 ECS tasks",
+      finding: "Identified 8 stalled container workers blocked on database connection acquisition",
       status: "Verified",
-      direction: "left" as const
+      color: "#10b981"
     },
     {
       id: "db",
       name: "Database Agent",
       icon: <Database className="w-4 h-4 text-[#38bdf8]" />,
-      task: "Analyzing connection pool starvation & active locks",
-      finding: "Aurora pool reached 495/500 max limit due to unclosed handle",
+      targetResource: "rds.aurora_pg_primary",
+      domain: "Connection Pool & Locks",
+      task: "Analyzing connection pool starvation, transaction lifetimes, and table locks",
+      finding: "Aurora pool saturated at 495/500 max limit due to unclosed handle in transaction loop",
       status: "Verified",
-      direction: "left" as const
+      color: "#38bdf8"
     },
     {
       id: "sec",
-      name: "Security Agent",
+      name: "Security & IAM Agent",
       icon: <ShieldCheck className="w-4 h-4 text-[#a855f7]" />,
-      task: "Checking IAM role permissions & ingress security drift",
-      finding: "0 unauthorized policy changes • OPA rules verified",
+      targetResource: "iam.role.ecs_execution",
+      domain: "Permissions & Drift",
+      task: "Checking IAM permissions, ingress security group drift, and OPA policy boundaries",
+      finding: "Zero unauthorized security group drift • Ephemeral STS execution role verified",
       status: "Verified",
-      direction: "right" as const
+      color: "#a855f7"
     },
     {
       id: "finops",
       name: "FinOps Agent",
       icon: <DollarSign className="w-4 h-4 text-[#f59e0b]" />,
-      task: "Evaluating cost impact of proposed capacity rollback",
-      finding: "Rollback saves $60/mo in over-provisioned compute buffers",
+      targetResource: "aws_billing.us_east_1",
+      domain: "Cost & Overprovisioning",
+      task: "Evaluating compute and database capacity buffers to minimize idle spend",
+      finding: "Proposed rollback releases over-provisioned memory buffers, saving $60/mo",
       status: "Verified",
-      direction: "right" as const
+      color: "#f59e0b"
     }
   ];
 
@@ -49,110 +58,160 @@ export const AgentWorkforce: React.FC = () => {
     setIsDelegating(true);
     setTimeout(() => {
       setIsDelegating(false);
-    }, 3000);
+    }, 2500);
   };
 
+  const selectedAgent = agents.find(a => a.id === activeAgentId) || agents[1];
+
   return (
-    <section id="agents" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#080a08] relative overflow-hidden">
-      {/* Background Ambient Glow */}
-      <div className="absolute top-1/3 left-1/3 w-[600px] h-[600px] bg-[#38bdf8]/5 rounded-full blur-[160px] pointer-events-none" />
+    <section id="agents" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#080a08] relative overflow-hidden font-mono text-xs">
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
 
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
         {/* Section Header */}
         <ScrollReveal direction="up" delay={50} distance="30px">
-          <div className="max-w-3xl mb-16 md:mb-24">
+          <div className="max-w-3xl mb-16 md:mb-24 font-sans">
             <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" />
               05 / Parallel Agent Workforce
             </span>
             <h2 className="text-4xl sm:text-6xl font-medium tracking-tight text-[#f1f2ee] leading-[1.02] mb-6">
-              One system. <br />
-              <span className="text-[#858a85]">An autonomous workforce.</span>
+              One orchestrator. <br />
+              <span className="text-[#858a85]">A dynamic agent mesh.</span>
             </h2>
             <p className="text-base sm:text-lg text-[#888d96] leading-relaxed max-w-xl">
-              The primary ArchViz orchestrator analyzes incoming operational triggers and creates specialized parallel sub-agents to investigate, diagnose, and resolve issues simultaneously across specific cloud domains.
+              When operational triggers occur, the primary orchestrator dynamically dispatches specialized sub-agents across cloud domains to investigate, diagnose, and simulate concurrently.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Spatial Orchestrator & Sub-Agent Network Canvas with Cascading Reveals */}
-        <div className="space-y-10">
-          {/* Central Orchestrator Node with Up/Zoom Reveal */}
-          <ScrollReveal direction="zoom" delay={120} distance="30px">
-            <div className="flex flex-col items-center">
-              <div className="p-6 rounded-xl border border-[#38bdf8]/50 bg-[#38bdf8]/10 backdrop-blur-xl font-mono text-xs max-w-lg w-full text-center shadow-[0_0_40px_rgba(56,189,248,0.18)] relative overflow-hidden">
-                <div className="flex items-center justify-center gap-2 mb-1.5">
-                  <ArchVizLogo size={20} />
-                  <span className="font-semibold text-sm text-[#f1f2ee]">ARCHVIZ PRIMARY ORCHESTRATOR</span>
-                </div>
-                <p className="text-[11px] text-[#858a85]">
-                  Incoming Trigger: "Investigate checkout latency spike after deployment #8f31b9d"
-                </p>
-              </div>
+        {/* Dynamic Visual Agent Mesh Network */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+          {/* Left: Active Agent Network Mesh Diagram (Slide from Left) */}
+          <div className="lg:col-span-7">
+            <ScrollReveal direction="left" delay={150} distance="50px">
+              <div className="p-6 sm:p-8 rounded-xl border border-white/[0.08] bg-[#0d100d]/90 backdrop-blur-md flex flex-col justify-between shadow-2xl h-full relative">
+                <div>
+                  <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/[0.06] text-[10px] text-[#505551] uppercase">
+                    <span className="flex items-center gap-2">
+                      <Network className="w-3.5 h-3.5 text-[#38bdf8]" />
+                      Active Agent Delegation Mesh
+                    </span>
+                    <span className={isDelegating ? 'text-[#38bdf8] animate-pulse' : 'text-[#10b981]'}>
+                      {isDelegating ? 'Delegating Concurrently...' : '4 Active Sub-Agents'}
+                    </span>
+                  </div>
 
-              {/* Downward Branching Line with Pulse */}
-              <div className="w-[1px] h-8 bg-gradient-to-b from-[#38bdf8] to-white/[0.1] my-2 relative">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] absolute top-1/2 -left-[2px] animate-pulse" />
-              </div>
-              <div className="w-full max-w-2xl h-[1px] bg-gradient-to-r from-transparent via-white/[0.2] to-transparent relative hidden sm:block">
-                <div className="absolute top-0 left-0 w-[1px] h-6 bg-white/[0.15]" />
-                <div className="absolute top-0 left-1/3 w-[1px] h-6 bg-white/[0.15]" />
-                <div className="absolute top-0 left-2/3 w-[1px] h-6 bg-white/[0.15]" />
-                <div className="absolute top-0 right-0 w-[1px] h-6 bg-white/[0.15]" />
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* 4 Branching Specialized Sub-Agent Nodes with Alternating Side Reveals */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-mono text-xs">
-            {subAgents.map((agent, index) => (
-              <ScrollReveal
-                key={agent.id}
-                direction={agent.direction}
-                delay={180 + index * 80}
-                distance="40px"
-              >
-                <div className="p-5 rounded-xl border border-white/[0.08] bg-[#0d100d]/80 backdrop-blur-md flex flex-col justify-between shadow-xl hover:border-white/20 transition-all duration-300 h-full group">
-                  <div>
-                    <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/[0.06]">
-                      <div className="flex items-center gap-2 font-semibold text-[#f1f2ee]">
-                        {agent.icon}
-                        <span className="text-xs">{agent.name}</span>
+                  {/* Primary Orchestrator Hub */}
+                  <div className="flex justify-center mb-6">
+                    <div className="p-4 rounded-xl border border-[#38bdf8]/40 bg-[#38bdf8]/10 text-center max-w-md w-full shadow-lg">
+                      <div className="flex items-center justify-center gap-2 mb-1">
+                        <ArchVizLogo size={18} />
+                        <span className="font-semibold text-sm text-[#f1f2ee]">ARCHVIZ PRIMARY ORCHESTRATOR</span>
                       </div>
-                      <span className="text-[9px] text-[#10b981] px-1.5 py-0.2 rounded bg-[#10b981]/10">{agent.status}</span>
+                      <span className="text-[10px] text-[#858a85]">
+                        Incident Trigger: "Investigate checkout latency spike after deployment #8f31b9d"
+                      </span>
                     </div>
-
-                    <span className="text-[10px] text-[#505551] block mb-1">Delegated Task:</span>
-                    <p className="text-xs font-sans text-[#858a85] leading-tight mb-4">
-                      {agent.task}
-                    </p>
                   </div>
 
-                  <div className="p-3 rounded-lg border border-white/[0.04] bg-[#080a08]/90 text-[10px] text-[#f1f2ee]">
-                    <span className="text-[#38bdf8] block font-medium mb-0.5">Finding:</span>
-                    {agent.finding}
+                  {/* Radiating Connector Lines */}
+                  <div className="flex justify-center mb-4">
+                    <div className="w-full max-w-lg h-[1px] bg-gradient-to-r from-transparent via-white/[0.2] to-transparent relative">
+                      <div className="absolute top-0 left-6 w-[1px] h-6 bg-white/[0.2]" />
+                      <div className="absolute top-0 left-1/3 w-[1px] h-6 bg-white/[0.2]" />
+                      <div className="absolute top-0 left-2/3 w-[1px] h-6 bg-white/[0.2]" />
+                      <div className="absolute top-0 right-6 w-[1px] h-6 bg-white/[0.2]" />
+                    </div>
+                  </div>
+
+                  {/* 4 Specialized Domain Agents in Mesh Grid */}
+                  <div className="grid grid-cols-2 gap-3 pt-2">
+                    {agents.map((agent) => (
+                      <button
+                        key={agent.id}
+                        onClick={() => setActiveAgentId(agent.id)}
+                        className={`p-4 rounded-xl border text-left transition-all duration-300 cursor-pointer ${
+                          activeAgentId === agent.id
+                            ? 'border-[#38bdf8] bg-[#38bdf8]/15 text-[#f1f2ee] shadow-[0_0_20px_rgba(56,189,248,0.18)] scale-[1.02]'
+                            : 'border-white/[0.06] bg-[#080a08]/80 text-[#858a85] hover:border-white/20 hover:text-[#f1f2ee]'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2 font-semibold text-xs">
+                            {agent.icon}
+                            <span>{agent.name}</span>
+                          </div>
+                          <span className="text-[9px] text-[#10b981] px-1.5 py-0.2 rounded bg-[#10b981]/10">
+                            {agent.status}
+                          </span>
+                        </div>
+                        <div className="text-[10px] text-[#505551] block">{agent.domain}</div>
+                        <div className="text-[10px] text-[#38bdf8] mt-1">{agent.targetResource}</div>
+                      </button>
+                    ))}
                   </div>
                 </div>
-              </ScrollReveal>
-            ))}
+
+                <div className="pt-6 border-t border-white/[0.06] flex items-center justify-between text-[11px]">
+                  <span className="text-[#505551]">Click any sub-agent to inspect findings</span>
+                  <button
+                    onClick={triggerDelegation}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#0ea5e9] hover:bg-[#38bdf8] text-white font-medium transition-all cursor-pointer shadow-md"
+                  >
+                    <Play className="w-3 h-3 fill-current" />
+                    <span>{isDelegating ? "Delegating..." : "Simulate Parallel Run"}</span>
+                  </button>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
 
-          {/* Converged Root Cause Output Strip */}
-          <ScrollReveal direction="up" delay={450} distance="30px">
-            <div className="p-5 rounded-xl border border-white/[0.08] bg-[#0d100d]/60 backdrop-blur-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-xs shadow-xl">
-              <div className="flex items-center gap-2 text-[#10b981]">
-                <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-                <span>Parallel findings synthesized: DB pool saturation root cause verified in 1.4s</span>
+          {/* Right: Delegated Agent Task & Finding Detail (Slide from Right) */}
+          <div className="lg:col-span-5">
+            <ScrollReveal direction="right" delay={250} distance="50px">
+              <div className="p-6 sm:p-8 rounded-xl border border-white/[0.1] bg-[#0d100d]/90 backdrop-blur-md flex flex-col justify-between shadow-2xl h-full">
+                <div>
+                  <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.06]">
+                    <span className="text-[10px] text-[#505551] uppercase tracking-wider">Sub-Agent Detail Inspector</span>
+                    <span className="text-[#10b981] flex items-center gap-1 text-[11px]">
+                      <CheckCircle2 className="w-3.5 h-3.5" /> Parallel Finding Verified
+                    </span>
+                  </div>
+
+                  <div className="space-y-4 mb-6">
+                    <div>
+                      <div className="flex items-center gap-2 text-base font-semibold text-[#f1f2ee] mb-1">
+                        {selectedAgent.icon}
+                        <span>{selectedAgent.name}</span>
+                      </div>
+                      <span className="text-[11px] text-[#38bdf8]">{selectedAgent.targetResource}</span>
+                    </div>
+
+                    <div className="p-4 rounded-lg border border-white/[0.06] bg-[#080a08]/90 space-y-1">
+                      <span className="text-[10px] text-[#505551] uppercase block">Assigned Investigation Scope:</span>
+                      <p className="text-xs text-[#858a85] font-sans leading-relaxed">
+                        {selectedAgent.task}
+                      </p>
+                    </div>
+
+                    <div className="p-4 rounded-lg border border-[#38bdf8]/25 bg-[#38bdf8]/10 space-y-1">
+                      <span className="text-[10px] text-[#38bdf8] uppercase font-semibold block">Synthesized Finding:</span>
+                      <p className="text-xs text-[#f1f2ee] font-sans leading-relaxed">
+                        {selectedAgent.finding}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-[#505551]">
+                  <span>Domain: {selectedAgent.domain}</span>
+                  <span className="text-[#10b981]">Concurrently Executed</span>
+                </div>
               </div>
-              <button 
-                onClick={triggerDelegation}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0ea5e9] hover:bg-[#38bdf8] text-white font-medium transition-all cursor-pointer shadow-md"
-              >
-                <Play className="w-3.5 h-3.5 fill-current" />
-                <span>{isDelegating ? "Simulating Delegation..." : "Simulate Parallel Delegation"}</span>
-              </button>
-            </div>
-          </ScrollReveal>
+            </ScrollReveal>
+          </div>
         </div>
       </div>
     </section>

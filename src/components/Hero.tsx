@@ -41,7 +41,7 @@ export const Hero: React.FC = () => {
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.1] bg-[#0d100d]/80 backdrop-blur-md mb-6 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#38bdf8] animate-pulse" />
               <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider">
-                AI-Native Multi-Cloud Operating System
+                AI-Native Cloud Operating System
               </span>
             </div>
           </ScrollReveal>
@@ -63,7 +63,7 @@ export const Hero: React.FC = () => {
             </p>
           </ScrollReveal>
 
-          {/* Compact CTAs & Live Stats */}
+          {/* Compact CTAs & Technical Capability Badges */}
           <ScrollReveal direction="left" delay={350} distance="40px">
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-8">
               <Link
@@ -82,31 +82,27 @@ export const Hero: React.FC = () => {
               </a>
             </div>
 
-            {/* Live Operational Health Bar */}
-            <div className="flex flex-wrap items-center gap-5 pt-4 border-t border-white/[0.06] text-[11px] font-mono text-[#858a85]">
+            {/* Technical Capability Line */}
+            <div className="flex flex-wrap items-center gap-6 pt-4 border-t border-white/[0.06] text-[11px] font-mono text-[#858a85]">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#10b981]" />
-                <span>Zero-Agent IAM Discovery</span>
+                <span>Read-Only Cross-Account Discovery</span>
               </div>
               <div className="flex items-center gap-2">
                 <Zap className="w-3.5 h-3.5 text-[#38bdf8]" />
-                <span>1.4s Autonomous Anomaly Isolation</span>
+                <span>Pre-Flight Digital Twin Simulation</span>
               </div>
               <div className="flex items-center gap-2">
-                <Server className="w-3.5 h-3.5 text-[#a855f7]" />
-                <span>Unified AWS • Azure • GCP DAG</span>
+                <Server className="w-3.5 h-3.5 text-[#38bdf8]" />
+                <span>Unified multi-cloud infrastructure graph</span>
               </div>
             </div>
           </ScrollReveal>
         </div>
 
-        {/* Live Operational Simulator with Zoom Reveal */}
+        {/* Live Operational Topology Canvas with Zoom Reveal */}
         <ScrollReveal direction="zoom" delay={450} distance="30px" duration={950}>
-          <div className="mt-6 p-6 sm:p-8 rounded-xl border border-white/[0.08] bg-[#0d100d]/70 backdrop-blur-xl shadow-2xl relative overflow-hidden group hover:border-white/[0.15] transition-all duration-300">
-            {/* Subtle glow border reflection */}
-            <div className="absolute -top-24 -right-24 w-72 h-72 bg-[#38bdf8]/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-[#10b981]/10 rounded-full blur-3xl pointer-events-none" />
-            
+          <div className="mt-6 p-6 sm:p-8 rounded-xl border border-white/[0.08] bg-[#0d100d]/80 backdrop-blur-xl shadow-2xl relative overflow-hidden group hover:border-white/[0.15] transition-all duration-300">
             <HeroLiveLoop />
           </div>
         </ScrollReveal>
