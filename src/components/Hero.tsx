@@ -17,18 +17,20 @@ export const Hero: React.FC = () => {
     <section id="hero" className="relative min-h-[960px] pt-32 pb-24 md:pt-44 md:pb-36 overflow-hidden bg-[#080a08] flex flex-col justify-between">
       {/* Layered Cinematic Mountain Sunset Atmosphere Backdrop */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
-        {/* Sunset Mountain Landscape Photograph */}
+        {/* Sunset Mountain Landscape Photograph - Positioned clearly in the upper/middle hero band */}
         <img
           src="/assets/images/hero-landscape.jpg"
           alt="Atmospheric mountain twilight landscape"
-          className="w-full h-[120%] object-cover object-[center_20%] -translate-y-12 md:-translate-y-20 opacity-45 filter brightness-[0.65] contrast-[1.1] saturate-[0.85]"
+          className="w-full h-full object-cover object-[center_48%] sm:object-[center_45%] opacity-85 filter brightness-[1.0] contrast-[1.15] saturate-[1.2]"
         />
-        {/* Vertical Dissolve Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/35 via-[#080a08]/65 to-[#080a08]" />
-        {/* Edge Radial Vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#080a08_80%)]" />
+        {/* Soft Ambient Horizon Glow */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-3/4 h-64 bg-[#f97316]/10 rounded-full blur-[120px]" />
+        {/* Gentle Vertical Dissolve Gradient so sunset horizon shines brightly */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/40 via-transparent via-50% to-[#080a08]" />
+        {/* Subtle Edge Radial Vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,#080a08_90%)]" />
         {/* Coordinate Grid Overlay */}
-        <div className="absolute inset-0 bg-grid-subtle opacity-40" />
+        <div className="absolute inset-0 bg-grid-subtle opacity-30" />
       </div>
 
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10 w-full">
