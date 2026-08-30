@@ -21,7 +21,7 @@ export const Hero: React.FC = () => {
         <img
           src="/assets/images/hero-landscape.jpg"
           alt="Atmospheric mountain twilight landscape"
-          className="w-full h-full object-cover object-center opacity-40 filter brightness-[0.6] contrast-[1.1] saturate-[0.8]"
+          className="w-full h-[120%] object-cover object-[center_20%] -translate-y-12 md:-translate-y-20 opacity-45 filter brightness-[0.65] contrast-[1.1] saturate-[0.85]"
         />
         {/* Vertical Dissolve Gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/35 via-[#080a08]/65 to-[#080a08]" />
