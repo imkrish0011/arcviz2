@@ -152,16 +152,6 @@ export const AutonomousLoop: React.FC = () => {
 
   return (
     <section id="autonomous-loop" className="py-32 md:py-44 bg-[#080a08] relative overflow-hidden font-mono text-xs">
-      {/* Background Cosmic Atmosphere - High Visibility */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-65 filter contrast-125 brightness-110 saturate-125">
-        <img
-          src="/assets/images/cosmic-nebula.jpg"
-          alt="Cosmic background"
-          className="w-full h-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/70 via-[#080a08]/50 to-[#080a08]" />
-      </div>
-
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
         {/* Section Header */}
         <ScrollReveal direction="up" delay={50} distance="30px">

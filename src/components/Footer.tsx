@@ -5,15 +5,6 @@ import { ArchVizBrand } from './icons/ArchVizIcons';
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-[#080a08] pt-20 pb-14 relative z-10 text-xs font-mono text-[#858a86] overflow-hidden">
-      {/* Background Star Texture */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-40">
-        <img
-          src="/assets/images/star-trails-vortex.jpg"
-          alt="Star trails vortex background"
-          className="w-full h-full object-cover object-bottom"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080a08] via-[#080a08]/85 to-[#080a08]" />
-      </div>
 
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-16 border-b border-white/[0.06]">
