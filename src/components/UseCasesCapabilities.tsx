@@ -77,7 +77,7 @@ export const UseCasesCapabilities: React.FC = () => {
   ];
 
   return (
-    <section id="capabilities" className="py-24 md:py-36 bg-[#080a08] relative overflow-hidden font-mono text-xs">
+    <section id="capabilities" className="py-32 md:py-44 bg-[#080a08] relative overflow-hidden font-mono text-xs">
       {/* Background Star Trails Texture - High Visibility */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-65 filter contrast-125 brightness-110 saturate-125">
         <img

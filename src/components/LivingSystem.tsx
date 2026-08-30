@@ -140,7 +140,7 @@ export const LivingSystem: React.FC = () => {
   };
 
   return (
-    <section id="living-system" className="py-24 md:py-36 bg-[#080a08] relative overflow-hidden">
+    <section id="living-system" className="py-32 md:py-44 bg-[#080a08] relative overflow-hidden">
       {/* Background Living Model Network Atmosphere - High Visibility */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-75 filter contrast-125 brightness-110 saturate-125">
         <img

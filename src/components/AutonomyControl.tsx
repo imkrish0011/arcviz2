@@ -131,7 +131,7 @@ export const AutonomyControl: React.FC = () => {
   const currentDecision = activeScenario.decisionByLevel[levelIndex];
 
   return (
-    <section id="control" className="py-24 md:py-36 bg-[#080a08] relative overflow-hidden font-mono text-xs">
+    <section id="control" className="py-32 md:py-44 bg-[#080a08] relative overflow-hidden font-mono text-xs">
       {/* Background Subtle Safety Orbit Atmosphere - High Visibility */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-65 filter contrast-125 brightness-110 saturate-125">
         <img

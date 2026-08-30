@@ -106,7 +106,7 @@ WaitQueue: 142 client workers waiting for connection pool lease`,
   const currentStep = investigationSteps[activeStepIndex];
 
   return (
-    <section id="investigation" className="py-24 md:py-36 bg-[#080a08] relative overflow-hidden">
+    <section id="investigation" className="py-32 md:py-44 bg-[#080a08] relative overflow-hidden">
       {/* Background Star Trails Texture - High Visibility */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-65 filter contrast-125 brightness-110 saturate-125">
         <img
