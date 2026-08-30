@@ -65,6 +65,16 @@ export const AgentWorkforce: React.FC = () => {
 
   return (
     <section id="agents" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#080a08] relative overflow-hidden font-mono text-xs">
+      {/* Background Subtle Agent Mesh Atmosphere */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-20 filter saturate-150">
+        <img
+          src="/assets/images/neon-purple-ribbon.jpg"
+          alt="Agent mesh neural atmosphere"
+          className="w-full h-full object-cover object-center scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08] via-[#080a08]/85 to-[#080a08]" />
+      </div>
+
       {/* Background Grid */}
       <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
 

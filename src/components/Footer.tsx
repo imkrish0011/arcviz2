@@ -4,8 +4,18 @@ import { ArchVizBrand } from './icons/ArchVizIcons';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="border-t border-white/[0.06] bg-[#050605] pt-20 pb-12 relative z-10 text-xs font-mono text-[#858a86]">
-      <div className="max-w-[1240px] mx-auto px-6 md:px-10">
+    <footer className="border-t border-white/[0.08] bg-[#050605] pt-20 pb-14 relative z-10 text-xs font-mono text-[#858a86] overflow-hidden">
+      {/* Background Star Texture */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-15">
+        <img
+          src="/assets/images/star-trails-vortex.jpg"
+          alt="Star trails vortex background"
+          className="w-full h-full object-cover object-bottom"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050605] via-[#050605]/90 to-[#050605]" />
+      </div>
+
+      <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-16 border-b border-white/[0.06]">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-3">
@@ -23,7 +33,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5">
               <li>
                 <a href="/#living-system" className="hover:text-[#f2f2ee] transition-colors">
-                  Living System Model
+                  Living Model
                 </a>
               </li>
               <li>
@@ -38,7 +48,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a href="/#control" className="hover:text-[#f2f2ee] transition-colors">
-                  Controlled Execution
+                  Security & Control
                 </a>
               </li>
             </ul>
@@ -52,7 +62,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5">
               <li>
                 <Link to="/contact" className="hover:text-[#f2f2ee] transition-colors">
-                  Connect AWS Cloud
+                  Connect Cloud
                 </Link>
               </li>
               <li>

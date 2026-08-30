@@ -121,6 +121,16 @@ export const AutonomyControl: React.FC = () => {
 
   return (
     <section id="control" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#080a08] relative overflow-hidden font-mono text-xs">
+      {/* Background Subtle Safety Orbit Atmosphere */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-15 filter contrast-125">
+        <img
+          src="/assets/images/star-trails-vortex.jpg"
+          alt="Safety orbit radar atmosphere"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08] via-[#080a08]/85 to-[#080a08]" />
+      </div>
+
       {/* Background Grid */}
       <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
 

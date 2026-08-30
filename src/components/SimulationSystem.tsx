@@ -15,6 +15,16 @@ export const SimulationSystem: React.FC = () => {
 
   return (
     <section id="simulation" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#090c09] relative overflow-hidden">
+      {/* Background Subtle Spatial Architecture Atmosphere */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-20 filter contrast-125">
+        <img
+          src="/assets/images/geometric-architecture-glow.jpg"
+          alt="Spatial digital twin architecture"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#090c09] via-[#090c09]/85 to-[#090c09]" />
+      </div>
+
       {/* Background Grid */}
       <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
 
