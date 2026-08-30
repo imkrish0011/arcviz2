@@ -37,7 +37,21 @@ export const Contact: React.FC = () => {
     <div className="min-h-screen bg-[#08090a] text-[#ededed] font-sans antialiased selection:bg-[#0ea5e9] selection:text-white">
       <Navbar />
 
-      <main className="pt-32 pb-24 md:pt-40 md:pb-36 relative">
+      <main className="pt-32 pb-24 md:pt-40 md:pb-36 relative overflow-hidden">
+        {/* Background Image Layer */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-25 filter contrast-125 brightness-90">
+          <img
+            src="/assets/images/contact-space-bg.jpg"
+            alt="Space background"
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#08090a] via-[#08090a]/85 to-[#08090a]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#08090a_90%)]" />
+        </div>
+
+        {/* Grid Overlay */}
+        <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
+
         <div className="max-w-[640px] mx-auto px-6 relative z-10">
           {/* Header */}
           <div className="mb-10 text-center">

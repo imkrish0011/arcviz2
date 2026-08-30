@@ -15,16 +15,29 @@ export const LivingModelPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#080a08] text-[#f1f2ee] font-sans antialiased selection:bg-[#0ea5e9] selection:text-white">
       <Navbar />
-      <main className="pt-28">
-        {/* Page Hero Header */}
-        <section className="py-20 md:py-28 bg-[#080a08] relative overflow-hidden font-mono text-xs border-b border-white/[0.06]">
-          <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
+      <main className="pt-24">
+        {/* Page Hero Header with Atmospheric Dark Background */}
+        <section className="py-24 md:py-36 bg-[#080a08] relative overflow-hidden font-mono text-xs border-b border-white/[0.06]">
+          {/* Background Image Layer */}
+          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-30 filter contrast-125 brightness-90">
+            <img
+              src="/assets/images/living-model-bg.jpg"
+              alt="Living model network background"
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#080a08] via-[#080a08]/80 to-[#080a08]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#080a08_90%)]" />
+          </div>
+
+          {/* Grid Overlay */}
+          <div className="absolute inset-0 bg-grid-subtle opacity-25 pointer-events-none" />
+
           <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
             <ScrollReveal direction="up" delay={50} distance="30px">
               <div className="max-w-3xl font-sans">
                 <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4 flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
-                  Deep-Dive System Model
+                  Deep-Dive System Architecture
                 </span>
                 <h1 className="text-4xl sm:text-6xl md:text-7xl font-medium tracking-tight text-[#f1f2ee] leading-[1.0] mb-6">
                   Living System Model <br />
