@@ -49,7 +49,7 @@ export const AwsIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4
 
 export const AzureIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
   <img
-    src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/azure-icon.svg"
+    src="/assets/images/azure-logo.png"
     alt="Microsoft Azure"
     className={`inline-block object-contain ${className}`}
     loading="lazy"
