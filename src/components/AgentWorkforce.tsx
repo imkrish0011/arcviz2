@@ -95,7 +95,7 @@ export const AgentWorkforce: React.FC = () => {
   const selectedAgent = agents.find(a => a.id === activeAgentId) || agents[1];
 
   return (
-    <section id="agents" className="py-32 md:py-44 bg-[#080a08] relative overflow-hidden font-mono text-xs">
+    <section id="agents" className="pt-8 md:pt-12 pb-16 md:pb-24 bg-[#080a08] relative overflow-hidden font-mono text-xs">
       {/* Background Neural Agent Mesh Atmosphere - High Visibility */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-75 filter contrast-125 brightness-110 saturate-125">
         <img

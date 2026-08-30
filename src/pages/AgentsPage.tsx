@@ -15,7 +15,7 @@ export const AgentsPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#080a08] text-[#f1f2ee] font-sans antialiased selection:bg-[#0ea5e9] selection:text-white">
       <Navbar />
-      <main className="pt-28 md:pt-36">
+      <main className="pt-16">
         {/* 01. 5-Domain Specialized Agent Workforce */}
         <AgentWorkforce />
 

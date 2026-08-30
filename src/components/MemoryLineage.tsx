@@ -97,7 +97,7 @@ export const MemoryLineage: React.FC = () => {
   const activeQuery = queries.find(q => q.id === selectedQueryId) || queries[0];
 
   return (
-    <section id="memory" className="py-32 md:py-44 bg-[#080a08] relative overflow-hidden font-mono text-xs">
+    <section id="memory" className="pt-8 md:pt-12 pb-16 md:pb-24 bg-[#080a08] relative overflow-hidden font-mono text-xs">
       {/* Background Cosmic Memory Lineage Texture - High Visibility */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-75 filter contrast-125 brightness-110 saturate-125">
         <img

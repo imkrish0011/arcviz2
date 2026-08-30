@@ -106,7 +106,7 @@ WaitQueue: 142 client workers waiting for connection pool lease`,
   const currentStep = investigationSteps[activeStepIndex];
 
   return (
-    <section id="investigation" className="py-32 md:py-44 bg-[#080a08] relative overflow-hidden">
+    <section id="investigation" className="py-16 md:py-24 bg-[#080a08] relative overflow-hidden">
 
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
         {/* Section Header */}

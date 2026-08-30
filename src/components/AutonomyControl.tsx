@@ -131,7 +131,7 @@ export const AutonomyControl: React.FC = () => {
   const currentDecision = activeScenario.decisionByLevel[levelIndex];
 
   return (
-    <section id="control" className="py-32 md:py-44 bg-[#080a08] relative overflow-hidden font-mono text-xs">
+    <section id="control" className="py-16 md:py-24 bg-[#080a08] relative overflow-hidden font-mono text-xs">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
 

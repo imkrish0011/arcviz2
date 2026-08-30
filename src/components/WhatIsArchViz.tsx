@@ -6,7 +6,7 @@ export const WhatIsArchViz: React.FC = () => {
   const [activeTier, setActiveTier] = useState<'agents' | 'intelligence' | 'infra'>('intelligence');
 
   return (
-    <section id="what-is-archviz" className="py-32 md:py-44 bg-[#080a08] relative overflow-hidden font-mono text-xs">
+    <section id="what-is-archviz" className="py-16 md:py-24 bg-[#080a08] relative overflow-hidden font-mono text-xs">
       {/* Background Subtle Grid */}
       <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
 

@@ -151,7 +151,7 @@ export const AutonomousLoop: React.FC = () => {
   };
 
   return (
-    <section id="autonomous-loop" className="py-32 md:py-44 bg-[#080a08] relative overflow-hidden font-mono text-xs">
+    <section id="autonomous-loop" className="py-16 md:py-24 bg-[#080a08] relative overflow-hidden font-mono text-xs">
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
         {/* Section Header */}
         <ScrollReveal direction="up" delay={50} distance="30px">

@@ -77,7 +77,7 @@ export const UseCasesCapabilities: React.FC = () => {
   ];
 
   return (
-    <section id="capabilities" className="py-32 md:py-44 bg-[#080a08] relative overflow-hidden font-mono text-xs">
+    <section id="capabilities" className="py-16 md:py-24 bg-[#080a08] relative overflow-hidden font-mono text-xs">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
 
