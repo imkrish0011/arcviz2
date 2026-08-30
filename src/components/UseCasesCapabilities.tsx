@@ -17,7 +17,7 @@ export const UseCasesCapabilities: React.FC = () => {
     {
       id: 'incident',
       icon: <Activity className="w-5 h-5 text-[#ef4444]" />,
-      tag: "01 / Investigation",
+      tag: "Investigation",
       title: "Incident Investigation",
       summary: "Trace multi-cloud outages from ingress down to unclosed database handles in seconds.",
       detail: "Instead of jumping between Grafana, Datadog, and AWS CloudWatch, ArchViz traverses the full dependency graph to isolate root cause.",
@@ -27,7 +27,7 @@ export const UseCasesCapabilities: React.FC = () => {
     {
       id: 'security',
       icon: <ShieldCheck className="w-5 h-5 text-[#10b981]" />,
-      tag: "02 / Governance",
+      tag: "Governance",
       title: "Security & Compliance",
       summary: "Continuous IAM audit, unmanaged port detection, and deterministic OPA policy guardrails.",
       detail: "Detect unauthorized security group changes, excessive IAM permissions, and unencrypted volumes before compliance audits flag them.",
@@ -37,7 +37,7 @@ export const UseCasesCapabilities: React.FC = () => {
     {
       id: 'deployment',
       icon: <GitPullRequest className="w-5 h-5 text-[#38bdf8]" />,
-      tag: "03 / Delivery",
+      tag: "Delivery",
       title: "Deployment Debugging",
       summary: "Correlate every git commit and container rollout directly with runtime metric shifts.",
       detail: "Immediately see which commit triggered memory starvation, container restarts, or HTTP 5xx errors across ECS and Kubernetes.",
@@ -47,7 +47,7 @@ export const UseCasesCapabilities: React.FC = () => {
     {
       id: 'cost',
       icon: <DollarSign className="w-5 h-5 text-[#f59e0b]" />,
-      tag: "04 / FinOps",
+      tag: "FinOps",
       title: "Cost Optimization",
       summary: "Identify idle instances, unattached EBS volumes, and over-provisioned memory buffers.",
       detail: "Continuous analysis of resource utilization curves provides tested rightsizing recommendations that preserve application budgets.",
@@ -57,7 +57,7 @@ export const UseCasesCapabilities: React.FC = () => {
     {
       id: 'reliability',
       icon: <Gauge className="w-5 h-5 text-[#a855f7]" />,
-      tag: "05 / SRE",
+      tag: "SRE",
       title: "Reliability & SLOs",
       summary: "Proactive bottleneck detection, connection pool headroom monitoring, and failover validation.",
       detail: "Model peak traffic cascades across load balancers, caching tiers, and read replicas before high-load events cause degradation.",
@@ -67,7 +67,7 @@ export const UseCasesCapabilities: React.FC = () => {
     {
       id: 'planning',
       icon: <Layers className="w-5 h-5 text-[#38bdf8]" />,
-      tag: "06 / Architecture",
+      tag: "Architecture",
       title: "Infrastructure Planning",
       summary: "Simulate major database upgrades, multi-region failover, and architecture changes on digital twins.",
       detail: "Evaluate blast radius, compatibility constraints, and cost projections before executing complex Terraform refactors.",
@@ -87,7 +87,7 @@ export const UseCasesCapabilities: React.FC = () => {
           <div className="max-w-3xl mb-16 md:mb-24 font-sans">
             <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" />
-              05 / Enterprise Architecture Modules
+              Enterprise Architecture Modules
             </span>
             <h2 className="text-4xl sm:text-6xl font-medium tracking-tight text-[#f1f2ee] leading-[1.02] mb-6">
               What ArchViz helps with. <br />

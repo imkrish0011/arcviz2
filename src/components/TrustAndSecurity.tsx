@@ -81,36 +81,8 @@ export const TrustAndSecurity: React.FC = () => {
   ];
 
   return (
-    <section id="security-trust" className="pt-8 md:pt-12 pb-16 md:pb-24 bg-[#080a08] relative overflow-hidden font-mono text-xs">
-      {/* Background Cyber Security Matrix Atmosphere - High Visibility */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-75 filter contrast-125 brightness-110 saturate-125">
-        <img
-          src="/assets/images/security-shield-bg.jpg"
-          alt="Cyber security matrix background"
-          className="w-full h-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/70 via-[#080a08]/50 to-[#080a08]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#080a08_85%)]" />
-      </div>
-
+    <section id="security-trust" className="pb-16 md:pb-24 bg-[#080a08] relative overflow-hidden font-mono text-xs">
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
-        {/* Section Header */}
-        <ScrollReveal direction="up" delay={50} distance="30px">
-          <div className="max-w-3xl mb-16 md:mb-24 font-sans">
-            <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
-              10 / Enterprise Trust & Governance
-            </span>
-            <h2 className="text-4xl sm:text-6xl font-medium tracking-tight text-[#f1f2ee] leading-[1.02] mb-6">
-              Built with zero compromise <br />
-              <span className="text-[#858a85]">on cloud security.</span>
-            </h2>
-            <p className="text-base sm:text-lg text-[#888d96] leading-relaxed max-w-xl font-sans">
-              ArchViz is engineered from the ground up to respect enterprise security boundaries, least-privilege access, and immutable auditability.
-            </p>
-          </div>
-        </ScrollReveal>
-
         {/* 6 Security Pillars Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {securityPillars.map((pillar, idx) => (

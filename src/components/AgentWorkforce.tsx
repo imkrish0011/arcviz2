@@ -95,39 +95,11 @@ export const AgentWorkforce: React.FC = () => {
   const selectedAgent = agents.find(a => a.id === activeAgentId) || agents[1];
 
   return (
-    <section id="agents" className="pt-8 md:pt-12 pb-16 md:pb-24 bg-[#080a08] relative overflow-hidden font-mono text-xs">
-      {/* Background Neural Agent Mesh Atmosphere - High Visibility */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-75 filter contrast-125 brightness-110 saturate-125">
-        <img
-          src="/assets/images/agents-mesh-bg.jpg"
-          alt="Agent mesh neural atmosphere"
-          className="w-full h-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/70 via-[#080a08]/50 to-[#080a08]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#080a08_85%)]" />
-      </div>
-
+    <section id="agents" className="pb-16 md:pb-24 bg-[#080a08] relative overflow-hidden font-mono text-xs">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
 
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
-        {/* Section Header */}
-        <ScrollReveal direction="up" delay={50} distance="30px">
-          <div className="max-w-3xl mb-14 md:mb-20 font-sans">
-            <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" />
-              05 / Parallel Agent Workforce
-            </span>
-            <h2 className="text-4xl sm:text-6xl font-medium tracking-tight text-[#f1f2ee] leading-[1.02] mb-6">
-              One orchestrator. <br />
-              <span className="text-[#858a85]">A dynamic agent mesh.</span>
-            </h2>
-            <p className="text-base sm:text-lg text-[#888d96] leading-relaxed max-w-xl font-sans">
-              When operational triggers occur, the primary orchestrator dynamically dispatches specialized sub-agents across cloud domains to investigate, diagnose, and simulate concurrently.
-            </p>
-          </div>
-        </ScrollReveal>
-
         {/* Dynamic Visual Agent Mesh Network */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           {/* Left: Active Agent Network Mesh Diagram (Slide from Left) */}

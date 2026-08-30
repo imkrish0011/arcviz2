@@ -24,7 +24,7 @@ export const SimulationSystem: React.FC = () => {
           <div className="max-w-3xl mb-14 md:mb-20 font-sans">
             <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" />
-              04 / Pre-Flight Digital Twin
+              Pre-Flight Digital Twin Sandbox
             </span>
             <h2 className="text-4xl sm:text-6xl font-medium tracking-tight text-[#f1f2ee] leading-[1.02] mb-6">
               Before it acts, <br />
