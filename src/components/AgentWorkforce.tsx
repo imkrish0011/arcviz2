@@ -95,15 +95,16 @@ export const AgentWorkforce: React.FC = () => {
   const selectedAgent = agents.find(a => a.id === activeAgentId) || agents[1];
 
   return (
-    <section id="agents" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#080a08] relative overflow-hidden font-mono text-xs">
-      {/* Background Subtle Agent Mesh Atmosphere */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-20 filter saturate-150">
+    <section id="agents" className="py-24 md:py-36 bg-[#080a08] relative overflow-hidden font-mono text-xs">
+      {/* Background Neural Agent Mesh Atmosphere - High Visibility */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-75 filter contrast-125 brightness-110 saturate-125">
         <img
-          src="/assets/images/neon-purple-ribbon.jpg"
+          src="/assets/images/agents-mesh-bg.jpg"
           alt="Agent mesh neural atmosphere"
-          className="w-full h-full object-cover object-center scale-110"
+          className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08] via-[#080a08]/85 to-[#080a08]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/70 via-[#080a08]/50 to-[#080a08]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#080a08_85%)]" />
       </div>
 
       {/* Background Grid */}

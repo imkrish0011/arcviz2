@@ -106,15 +106,15 @@ WaitQueue: 142 client workers waiting for connection pool lease`,
   const currentStep = investigationSteps[activeStepIndex];
 
   return (
-    <section id="investigation" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#080a08] relative overflow-hidden">
-      {/* Background Star Trails Texture */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-20 filter contrast-125">
+    <section id="investigation" className="py-24 md:py-36 bg-[#080a08] relative overflow-hidden">
+      {/* Background Star Trails Texture - High Visibility */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-65 filter contrast-125 brightness-110 saturate-125">
         <img
           src="/assets/images/star-trails-vortex.jpg"
           alt="Star trails vortex background"
           className="w-full h-full object-cover object-center scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08] via-[#080a08]/85 to-[#080a08]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/70 via-[#080a08]/50 to-[#080a08]" />
       </div>
 
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">

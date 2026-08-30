@@ -81,9 +81,17 @@ export const TrustAndSecurity: React.FC = () => {
   ];
 
   return (
-    <section id="security-trust" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#070907] relative overflow-hidden font-mono text-xs">
-      {/* Background Grid */}
-      <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
+    <section id="security-trust" className="py-24 md:py-36 bg-[#080a08] relative overflow-hidden font-mono text-xs">
+      {/* Background Cyber Security Matrix Atmosphere - High Visibility */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-75 filter contrast-125 brightness-110 saturate-125">
+        <img
+          src="/assets/images/security-shield-bg.jpg"
+          alt="Cyber security matrix background"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/70 via-[#080a08]/50 to-[#080a08]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#080a08_85%)]" />
+      </div>
 
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
         {/* Section Header */}

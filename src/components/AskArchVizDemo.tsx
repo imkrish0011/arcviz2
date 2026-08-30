@@ -114,7 +114,7 @@ export const AskArchVizDemo: React.FC = () => {
   }, [pipelineStage, isRunning]);
 
   return (
-    <section id="ask-archviz" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#090c09] relative overflow-hidden font-mono text-xs">
+    <section id="ask-archviz" className="py-24 md:py-36 bg-[#080a08] relative overflow-hidden font-mono text-xs">
       {/* Background Cosmic Atmosphere - High Visibility */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-75 filter contrast-125 brightness-110 saturate-125">
         <img

@@ -6,19 +6,19 @@ import { ScrollReveal } from './ui/ScrollReveal';
 
 export const FinalCTA: React.FC = () => {
   return (
-    <section id="final-cta" className="relative py-36 md:py-48 border-t border-white/[0.08] bg-[#060806] overflow-hidden">
+    <section id="final-cta" className="relative py-36 md:py-48 bg-[#080a08] overflow-hidden">
       {/* High-Impact Atmospheric Cosmic Vortex Background */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
         <img
           src="/assets/images/cosmic-nebula.jpg"
           alt="Cosmic galaxy atmosphere"
-          className="w-full h-full object-cover object-center opacity-45 filter brightness-110 contrast-125 saturate-125 scale-105"
+          className="w-full h-full object-cover object-center opacity-70 filter brightness-110 contrast-125 saturate-125 scale-105"
         />
         {/* Glowing Radial Spotlight */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-96 bg-[#0ea5e9]/15 rounded-full blur-[140px]" />
         {/* Soft Vignette Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08] via-transparent to-[#050605]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#060806_90%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08] via-transparent to-[#080a08]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#080a08_90%)]" />
         <div className="absolute inset-0 bg-grid-subtle opacity-30" />
       </div>
 

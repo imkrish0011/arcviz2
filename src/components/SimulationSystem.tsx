@@ -14,15 +14,15 @@ export const SimulationSystem: React.FC = () => {
   const bufferPercentage = Math.round(((500 - dbConnections) / 500) * 100);
 
   return (
-    <section id="simulation" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#090c09] relative overflow-hidden font-mono text-xs">
-      {/* Background Subtle Spatial Architecture Atmosphere */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-20 filter contrast-125">
+    <section id="simulation" className="py-24 md:py-36 bg-[#080a08] relative overflow-hidden font-mono text-xs">
+      {/* Background Subtle Spatial Architecture Atmosphere - High Visibility */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-65 filter contrast-125 brightness-110 saturate-125">
         <img
           src="/assets/images/geometric-architecture-glow.jpg"
           alt="Spatial digital twin architecture"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090c09] via-[#090c09]/85 to-[#090c09]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/70 via-[#080a08]/50 to-[#080a08]" />
       </div>
 
       {/* Background Grid */}

@@ -140,15 +140,16 @@ export const LivingSystem: React.FC = () => {
   };
 
   return (
-    <section id="living-system" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#090c09] relative overflow-hidden">
-      {/* Background Cosmic Atmosphere */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-25 filter contrast-125">
+    <section id="living-system" className="py-24 md:py-36 bg-[#080a08] relative overflow-hidden">
+      {/* Background Living Model Network Atmosphere - High Visibility */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-75 filter contrast-125 brightness-110 saturate-125">
         <img
-          src="/assets/images/cosmic-nebula.jpg"
-          alt="Cosmic background"
+          src="/assets/images/living-model-bg.jpg"
+          alt="Living model network background"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090c09] via-[#090c09]/85 to-[#090c09]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/70 via-[#080a08]/50 to-[#080a08]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#080a08_85%)]" />
       </div>
 
       {/* Background Grid */}

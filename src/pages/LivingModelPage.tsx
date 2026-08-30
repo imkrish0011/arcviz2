@@ -5,7 +5,6 @@ import { InvestigationSystem } from '../components/InvestigationSystem';
 import { SimulationSystem } from '../components/SimulationSystem';
 import { FinalCTA } from '../components/FinalCTA';
 import { Footer } from '../components/Footer';
-import { ScrollReveal } from '../components/ui/ScrollReveal';
 
 export const LivingModelPage: React.FC = () => {
   useEffect(() => {
@@ -15,42 +14,7 @@ export const LivingModelPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#080a08] text-[#f1f2ee] font-sans antialiased selection:bg-[#0ea5e9] selection:text-white">
       <Navbar />
-      <main className="pt-24">
-        {/* Page Hero Header with Atmospheric Dark Background */}
-        <section className="py-24 md:py-36 bg-[#080a08] relative overflow-hidden font-mono text-xs border-b border-white/[0.06]">
-          {/* Background Image Layer - High Visibility & Contrast */}
-          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-85 filter contrast-125 brightness-110 saturate-125">
-            <img
-              src="/assets/images/living-model-bg.jpg"
-              alt="Living model network background"
-              className="w-full h-full object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/60 via-[#080a08]/40 to-[#080a08]" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#080a08_85%)]" />
-          </div>
-
-          {/* Grid Overlay */}
-          <div className="absolute inset-0 bg-grid-subtle opacity-25 pointer-events-none" />
-
-          <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
-            <ScrollReveal direction="up" delay={50} distance="30px">
-              <div className="max-w-3xl font-sans">
-                <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
-                  Deep-Dive System Architecture
-                </span>
-                <h1 className="text-4xl sm:text-6xl md:text-7xl font-medium tracking-tight text-[#f1f2ee] leading-[1.0] mb-6">
-                  Living System Model <br />
-                  <span className="text-[#858a85]">& Digital Twin Sandbox.</span>
-                </h1>
-                <p className="text-base sm:text-lg text-[#888d96] leading-relaxed max-w-2xl font-sans">
-                  Explore how ArchViz continuously models multi-cloud services, dependencies, network boundaries, IAM execution roles, runtime metrics, and simulated digital twin states.
-                </p>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-
+      <main className="pt-20">
         {/* 01. Living Infrastructure Model (6 Relationship Layers) */}
         <LivingSystem />
 

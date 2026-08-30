@@ -67,7 +67,7 @@ export const HowArchVizActs: React.FC = () => {
   ];
 
   return (
-    <section id="how-archviz-acts" className="py-32 md:py-44 border-t border-white/[0.06] bg-[#070907] relative overflow-hidden font-mono text-xs">
+    <section id="how-archviz-acts" className="py-24 md:py-36 bg-[#080a08] relative overflow-hidden font-mono text-xs">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
 
