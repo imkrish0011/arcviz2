@@ -15,21 +15,18 @@ export const Hero: React.FC = () => {
 
   return (
     <section id="hero" className="relative min-h-[960px] pt-32 pb-24 md:pt-44 md:pb-36 overflow-hidden bg-[#080a08] flex flex-col justify-between">
-      {/* Layered Cosmic Atmosphere Backdrop */}
+      {/* Layered Cinematic Mountain Sunset Atmosphere Backdrop */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
-        {/* Deep Cosmic Galaxy Nebula Image */}
+        {/* Sunset Mountain Landscape Photograph */}
         <img
-          src="/assets/images/cosmic-nebula.jpg"
-          alt="Cosmic nebula atmosphere"
-          className="w-full h-full object-cover object-center opacity-30 filter brightness-[0.7] contrast-[1.2] saturate-[1.2] scale-105 animate-cosmic-twinkle"
+          src="/assets/images/hero-landscape.jpg"
+          alt="Atmospheric mountain twilight landscape"
+          className="w-full h-full object-cover object-center opacity-40 filter brightness-[0.6] contrast-[1.1] saturate-[0.8]"
         />
-        {/* Subtle Ambient Radial Light Spheres */}
-        <div className="absolute -top-40 left-1/4 w-[600px] h-[600px] bg-[#38bdf8]/10 rounded-full blur-[140px]" />
-        <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-[#818cf8]/10 rounded-full blur-[130px]" />
         {/* Vertical Dissolve Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/40 via-[#080a08]/75 to-[#080a08]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/35 via-[#080a08]/65 to-[#080a08]" />
         {/* Edge Radial Vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#080a08_85%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#080a08_80%)]" />
         {/* Coordinate Grid Overlay */}
         <div className="absolute inset-0 bg-grid-subtle opacity-40" />
       </div>
@@ -51,7 +48,7 @@ export const Hero: React.FC = () => {
           <ScrollReveal direction="left" delay={150} distance="40px">
             <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[80px] font-medium tracking-tight leading-[0.96] text-[#f1f2ee] mb-6 max-w-2xl">
               The operating system <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#f1f2ee] via-[#ffffff] to-[#38bdf8]">
+              <span className="text-[#f1f2ee]">
                 for your cloud.
               </span>
             </h1>
