@@ -81,8 +81,36 @@ export const TrustAndSecurity: React.FC = () => {
   ];
 
   return (
-    <section id="security-trust" className="pb-16 md:pb-24 bg-[#080a08] relative overflow-hidden font-mono text-xs">
+    <section id="security-trust" className="pt-24 pb-20 md:pt-32 md:pb-28 bg-[#080a08] relative overflow-hidden font-mono text-xs">
+      {/* Seamless Top Atmospheric Background Layer - Extends smoothly down past header */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-70 filter contrast-125 brightness-110 saturate-125">
+        <img
+          src="/assets/images/security-shield-bg.jpg"
+          alt="Cyber security matrix background"
+          className="w-full h-full object-cover object-top"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080a08]/50 via-[#080a08]/85 to-[#080a08]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#080a08_90%)]" />
+      </div>
+
       <div className="max-w-[1240px] mx-auto px-6 md:px-10 relative z-10">
+        {/* Page Hero Header */}
+        <ScrollReveal direction="up" delay={50} distance="30px">
+          <div className="max-w-3xl mb-16 md:mb-20 font-sans">
+            <span className="text-[11px] font-mono text-[#858a85] uppercase tracking-wider block mb-4 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
+              Enterprise Trust & Governance
+            </span>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-medium tracking-tight text-[#f1f2ee] leading-[1.0] mb-6">
+              Security by design. <br />
+              <span className="text-[#858a85]">Zero-trust cloud governance.</span>
+            </h1>
+            <p className="text-base sm:text-lg text-[#888d96] leading-relaxed max-w-2xl font-sans">
+              ArchViz operates on strict least-privilege principles. Read-only IAM discovery by default, bounded action policies, hardware WebAuthn signoffs, and complete cryptographic auditability.
+            </p>
+          </div>
+        </ScrollReveal>
+
         {/* 6 Security Pillars Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {securityPillars.map((pillar, idx) => (
