@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { HeroLiveLoop } from './ui/HeroLiveLoop';
 import { ArrowRight, ShieldCheck, Zap, Server } from 'lucide-react';
 import { ScrollReveal } from './ui/ScrollReveal';
 
@@ -100,10 +99,19 @@ export const Hero: React.FC = () => {
           </ScrollReveal>
         </div>
 
-        {/* Live Operational Topology Canvas with Zoom Reveal */}
+        {/* Static Product Mockup */}
         <ScrollReveal direction="zoom" delay={450} distance="30px" duration={950}>
-          <div className="p-6 sm:p-8 rounded-xl border border-white/[0.08] bg-[#0d100d]/80 backdrop-blur-xl shadow-2xl relative overflow-hidden group hover:border-white/[0.15] transition-all duration-300">
-            <HeroLiveLoop />
+          <div className="rounded-xl border border-white/[0.08] bg-[#0d100d]/80 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+            <div className="flex items-center px-4 py-3 border-b border-white/[0.08] bg-black/40">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#3f3f46]" />
+                <div className="w-3 h-3 rounded-full bg-[#3f3f46]" />
+                <div className="w-3 h-3 rounded-full bg-[#3f3f46]" />
+              </div>
+            </div>
+            <div className="h-64 md:h-96 w-full flex items-center justify-center bg-[#080a08]/50">
+              <span className="text-[#38bdf8] font-mono text-sm tracking-widest opacity-80 uppercase">ArcViz System Graph</span>
+            </div>
           </div>
         </ScrollReveal>
       </div>
