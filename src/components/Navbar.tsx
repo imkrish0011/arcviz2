@@ -1,17 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArchVizBrand } from './icons/ArchVizIcons';
-import { 
-  Home as HomeIcon, 
-  Network, 
-  Bot, 
-  ShieldCheck, 
-  History, 
-  Menu, 
-  X, 
-  ArrowRight,
-  Sparkles
-} from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,160 +10,113 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 15);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const navLinks = [
-    { name: 'Home', path: '/', icon: <HomeIcon className="w-3.5 h-3.5" /> },
-    { name: 'Living Model', path: '/living-model', icon: <Network className="w-3.5 h-3.5" /> },
-    { name: 'Agents & Autonomy', path: '/agents', icon: <Bot className="w-3.5 h-3.5" /> },
-    { name: 'Security & Trust', path: '/security', icon: <ShieldCheck className="w-3.5 h-3.5" /> },
-    { name: 'Memory', path: '/memory', icon: <History className="w-3.5 h-3.5" /> },
+    { name: 'Home', path: '/' },
+    { name: 'Living Model', path: '/living-model' },
+    { name: 'Agents', path: '/agents' },
+    { name: 'Security', path: '/security' },
+    { name: 'Memory', path: '/memory' },
   ];
 
+  const isActive = (path: string) => location.pathname === path;
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 sm:py-4 px-4 sm:px-6">
-      <div className="max-w-[1240px] mx-auto">
-        <div 
-          className={`mx-auto rounded-2xl transition-all duration-300 flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 ${
-            isScrolled 
-              ? 'bg-[#0a0d0a]/90 backdrop-blur-xl border border-white/[0.12] shadow-[0_10px_35px_rgba(0,0,0,0.6)]' 
-              : 'bg-[#0a0d0a]/60 backdrop-blur-md border border-white/[0.06] shadow-md'
-          }`}
-        >
-          {/* Brand Logo */}
-          <Link to="/" className="flex items-center gap-2 group cursor-pointer">
-            <ArchVizBrand />
-          </Link>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? 'bg-[#080a08]/80 backdrop-blur-2xl border-b border-white/[0.06]'
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="max-w-[1240px] mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+        {/* Brand */}
+        <Link to="/" className="flex items-center gap-2 group cursor-pointer flex-shrink-0">
+          <ArchVizBrand />
+        </Link>
 
-          {/* Center Navigation Links - Desktop */}
-          <nav className="hidden lg:flex items-center gap-1 p-1 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-            {navLinks.map((link) => {
-              const isActive = location.pathname === link.path;
-
-              return (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all duration-200 cursor-pointer relative ${
-                    isActive
-                      ? 'bg-white/[0.08] text-[#f1f2ee] font-medium border border-white/[0.1] shadow-sm'
-                      : 'text-[#858a86] hover:text-[#f1f2ee] hover:bg-white/[0.03]'
-                  }`}
-                >
-                  <span className={isActive ? 'text-[#38bdf8]' : 'text-[#505551]'}>
-                    {link.icon}
-                  </span>
-                  <span>{link.name}</span>
-                  {isActive && (
-                    <span className="w-1 h-1 rounded-full bg-[#38bdf8] absolute bottom-1 left-1/2 -translate-x-1/2" />
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Medium Screen Compact Nav */}
-          <nav className="hidden md:flex lg:hidden items-center gap-4 text-xs font-mono text-[#858a86]">
-            {navLinks.map((link) => {
-              const isActive = location.pathname === link.path;
-              return (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`transition-colors cursor-pointer ${
-                    isActive ? 'text-[#38bdf8] font-medium' : 'hover:text-[#f1f2ee]'
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Right Action Buttons */}
-          <div className="hidden sm:flex items-center gap-3">
-            {/* Live System Status Pill */}
-            <div className="hidden xl:flex items-center gap-2 px-2.5 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] text-[10px] font-mono text-[#858a85]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse" />
-              <span>Multi-Cloud Live</span>
-            </div>
-
+        {/* Center Nav Links — Desktop */}
+        <nav className="hidden md:flex items-center gap-1">
+          {navLinks.map((link) => (
             <Link
-              to="/contact"
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-mono font-medium text-white bg-[#0ea5e9] hover:bg-[#38bdf8] rounded-xl transition-all duration-200 shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] cursor-pointer group"
+              key={link.path}
+              to={link.path}
+              className={`relative px-3.5 py-1.5 rounded-lg text-[13px] transition-all duration-200 cursor-pointer ${
+                isActive(link.path)
+                  ? 'text-[#f1f2ee] font-medium'
+                  : 'text-[#6b6e6b] hover:text-[#c8cac8]'
+              }`}
             >
-              <Sparkles className="w-3 h-3 text-white/90" />
-              <span>Connect cloud</span>
-              <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+              {link.name}
+              {isActive(link.path) && (
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[2px] rounded-full bg-[#38bdf8]" />
+              )}
             </Link>
-          </div>
+          ))}
+        </nav>
 
-          {/* Mobile Hamburger Toggle */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg bg-white/[0.03] border border-white/[0.06] text-[#858a86] hover:text-[#f2f2ee] focus:outline-none cursor-pointer"
-            aria-label="Toggle navigation menu"
+        {/* Right CTA */}
+        <div className="hidden sm:flex items-center gap-4">
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white/[0.07] hover:bg-white/[0.12] text-[#f1f2ee] text-xs font-medium transition-all duration-200 border border-white/[0.08] hover:border-white/[0.16] cursor-pointer group"
           >
-            {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-          </button>
+            Connect cloud
+            <ArrowRight className="w-3 h-3 text-[#858a85] group-hover:text-[#f1f2ee] group-hover:translate-x-0.5 transition-all duration-200" />
+          </Link>
         </div>
 
-        {/* Mobile Slide-down Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden mt-2 p-5 rounded-2xl bg-[#0c0f0c]/95 backdrop-blur-2xl border border-white/[0.12] shadow-2xl transition-all space-y-3 font-mono text-xs">
-            <div className="text-[10px] text-[#505551] uppercase tracking-wider pb-2 border-b border-white/[0.06] flex items-center justify-between">
-              <span>Navigation Menu</span>
-              <span className="flex items-center gap-1.5 text-[#10b981]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse" />
-                Live Graph
-              </span>
-            </div>
+        {/* Mobile Toggle */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden p-2 text-[#858a86] hover:text-[#f2f2ee] focus:outline-none cursor-pointer transition-colors"
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+      </div>
 
-            <div className="grid grid-cols-1 gap-1">
-              {navLinks.map((link) => {
-                const isActive = location.pathname === link.path;
-                return (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center justify-between p-3 rounded-xl transition-colors cursor-pointer ${
-                      isActive 
-                        ? 'bg-[#38bdf8]/15 border border-[#38bdf8]/30 text-[#f1f2ee] font-medium' 
-                        : 'text-[#858a86] hover:text-[#f1f2ee] hover:bg-white/[0.04]'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className={isActive ? 'text-[#38bdf8]' : 'text-[#505551]'}>
-                        {link.icon}
-                      </span>
-                      <span>{link.name}</span>
-                    </div>
-                    {isActive && <span className="text-[10px] text-[#38bdf8]">Active</span>}
-                  </Link>
-                );
-              })}
-            </div>
+      {/* Mobile Menu */}
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          mobileMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className="px-6 pb-6 pt-2 bg-[#080a08]/95 backdrop-blur-2xl border-b border-white/[0.06] space-y-1">
+          {navLinks.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              className={`block px-4 py-3 rounded-lg text-sm transition-colors cursor-pointer ${
+                isActive(link.path)
+                  ? 'text-[#f1f2ee] bg-white/[0.05] font-medium'
+                  : 'text-[#6b6e6b] hover:text-[#f1f2ee] hover:bg-white/[0.03]'
+              }`}
+            >
+              {link.name}
+            </Link>
+          ))}
 
-            <div className="pt-3 border-t border-white/[0.06]">
-              <Link
-                to="/contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-mono font-medium text-white bg-[#0ea5e9] hover:bg-[#38bdf8] rounded-xl text-center cursor-pointer shadow-lg"
-              >
-                <span>Connect your cloud</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
+          <div className="pt-3 mt-2 border-t border-white/[0.06]">
+            <Link
+              to="/contact"
+              className="block w-full text-center px-4 py-2.5 rounded-lg bg-white/[0.07] hover:bg-white/[0.12] text-[#f1f2ee] text-xs font-medium border border-white/[0.08] transition-colors cursor-pointer"
+            >
+              Connect your cloud →
+            </Link>
           </div>
-        )}
+        </div>
       </div>
     </header>
   );
 };
-
-export default Navbar;
