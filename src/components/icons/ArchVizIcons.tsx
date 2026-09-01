@@ -126,9 +126,44 @@ export const CloudWatchIcon: React.FC<{ className?: string }> = ({ className = "
   </svg>
 );
 
-export const PolicyShieldIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-    <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
+export const DatadogIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <img
+    src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/datadog.svg"
+    alt="Datadog"
+    className={`inline-block object-contain ${className}`}
+    loading="lazy"
+  />
+);
+
+export const PrometheusIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <img
+    src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/prometheus.svg"
+    alt="Prometheus"
+    className={`inline-block object-contain ${className}`}
+    loading="lazy"
+  />
+);
+
+export const SlackIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <img
+    src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/slack-icon.svg"
+    alt="Slack"
+    className={`inline-block object-contain ${className}`}
+    loading="lazy"
+  />
+);
+
+export const OpenTofuIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <svg viewBox="0 0 24 24" fill="none" className={className}>
+    <path d="M12 2L4 7v10l8 5 8-5V7l-8-5z" fill="#FFDA1A" fillOpacity="0.2" stroke="#FFDA1A" strokeWidth="1.5" strokeLinejoin="round"/>
+    <path d="M12 7l-5 3.5v7L12 21l5-3.5v-7L12 7z" fill="#FFDA1A" fillOpacity="0.4" stroke="#FFDA1A" strokeWidth="1.2"/>
   </svg>
 );
+
+export const OpaIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <svg viewBox="0 0 24 24" fill="none" className={className}>
+    <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" fill="#38BDF8" fillOpacity="0.15" stroke="#38BDF8" strokeWidth="1.5"/>
+    <path d="M9 12l2 2 4-4" stroke="#10B981" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+

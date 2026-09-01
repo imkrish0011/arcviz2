@@ -19,6 +19,7 @@ interface QueryPreset {
 
 export const AskArchVizDemo: React.FC = () => {
   const [activeQueryId, setActiveQueryId] = useState<string>('latency');
+  const [customQueryText, setCustomQueryText] = useState<string>("Why is my API latency increasing on /checkout?");
   const [pipelineStage, setPipelineStage] = useState<number>(5); // 0 to 5 (all done by default)
   const [isRunning, setIsRunning] = useState<boolean>(false);
 
@@ -97,6 +98,14 @@ export const AskArchVizDemo: React.FC = () => {
 
   const runSimulatedQuery = (id: string) => {
     setActiveQueryId(id);
+    const target = presets.find(p => p.id === id);
+    if (target) setCustomQueryText(target.query);
+    setPipelineStage(0);
+    setIsRunning(true);
+  };
+
+  const handleCustomSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     setPipelineStage(0);
     setIsRunning(true);
   };
@@ -141,22 +150,24 @@ export const AskArchVizDemo: React.FC = () => {
           <ScrollReveal direction="up" delay={100} distance="30px">
             <div className="p-4 sm:p-5 rounded-2xl border border-white/[0.1] bg-[#0d100d]/90 backdrop-blur-xl shadow-2xl space-y-4">
               {/* Simulated Command Bar */}
-              <div className="flex items-center gap-3 p-3.5 sm:p-4 rounded-xl bg-[#080a08]/90 border border-white/[0.08] shadow-inner">
+              <form onSubmit={handleCustomSubmit} className="flex items-center gap-3 p-3.5 sm:p-4 rounded-xl bg-[#080a08]/90 border border-white/[0.08] shadow-inner">
                 <Search className="w-4 h-4 text-[#38bdf8] flex-shrink-0" />
                 <input
                   type="text"
-                  readOnly
-                  value={currentPreset.query}
-                  className="bg-transparent text-sm sm:text-base text-[#f1f2ee] w-full focus:outline-none font-sans font-medium"
+                  value={customQueryText}
+                  onChange={(e) => setCustomQueryText(e.target.value)}
+                  placeholder="Ask any question about your multi-cloud infrastructure..."
+                  className="bg-transparent text-sm sm:text-base text-[#f1f2ee] w-full focus:outline-none font-sans font-medium placeholder-[#505551]"
                 />
                 <button
-                  onClick={() => runSimulatedQuery(activeQueryId)}
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#0ea5e9] hover:bg-[#38bdf8] text-white font-semibold transition-all cursor-pointer shadow-md flex-shrink-0"
+                  type="submit"
+                  disabled={isRunning}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#0ea5e9] hover:bg-[#38bdf8] disabled:opacity-50 text-white font-semibold transition-all cursor-pointer shadow-md flex-shrink-0 text-xs font-mono"
                 >
                   <Play className="w-3 h-3 fill-current" />
                   <span>{isRunning ? "Reasoning..." : "Execute"}</span>
                 </button>
-              </div>
+              </form>
 
               {/* Preset Selector Pills */}
               <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px]">
